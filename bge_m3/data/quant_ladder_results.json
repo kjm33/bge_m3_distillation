@@ -1,7 +1,7 @@
 {
   "meta": {
     "script": "quant_ladder.py",
-    "created": "2026-09-26 15:55:36",
+    "created": "2026-09-26 16:39:50",
     "seed": 42,
     "onnxruntime": "1.30.0",
     "onnx": "1.23.0",
@@ -17,7 +17,11 @@
     "int4_wall_s": 25.9,
     "vocab_wall_s": 17.4,
     "vocab4_wall_s": 18.5,
-    "static_wall_s": 46.2
+    "static_wall_s": 46.2,
+    "tokprune_wall_s": 5.2,
+    "vocab4e_wall_s": 22.0,
+    "vocab4s_wall_s": 62.7,
+    "fresh_audit_wall_s": 23.1
   },
   "baseline": {
     "files": [
@@ -241,5 +245,300 @@
     "quant_note": "vectors int8 (model2vec quantize_model)",
     "cos_vs_torch_note": "n/a: 300d rung vs 384d torch (PCA-whitened space)"
   },
-  "errors": {}
+  "errors": {},
+  "tokprune": {
+    "kept_vocab_size": 15276,
+    "dir": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok15",
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok15/tokenizer.json",
+        "bytes": 788886
+      },
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok15/tokenizer_config.json",
+        "bytes": 407
+      }
+    ],
+    "total_mb": 0.75,
+    "replaces": "17.0MB full tokenizer.json + 107KB LUT (emits new ids natively)",
+    "verify": {
+      "corpus": {
+        "n": 21959,
+        "mismatches": 0,
+        "unk_full_lut": 0,
+        "unk_pruned": 0,
+        "tokens_full": 869113,
+        "tokens_pruned": 869113,
+        "examples": []
+      },
+      "bench": {
+        "n": 512,
+        "mismatches": 0,
+        "unk_full_lut": 0,
+        "unk_pruned": 0,
+        "tokens_full": 18230,
+        "tokens_pruned": 18230,
+        "examples": []
+      },
+      "demo": {
+        "n": 10,
+        "mismatches": 2,
+        "unk_full_lut": 3,
+        "unk_pruned": 0,
+        "tokens_full": 223,
+        "tokens_pruned": 227,
+        "examples": [
+          "Poprowadź mnie z Barcelony do Saragossy bez płatnych dróg, z przerwą na obiad w ",
+          "find me the nearest parking garage with a car wash in Zagreb"
+        ]
+      }
+    }
+  },
+  "vocab4e": {
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4e.onnx",
+        "bytes": 15633799
+      }
+    ],
+    "total_mb": 14.9,
+    "load_s": 0.09,
+    "p50_ms": 5.33,
+    "p95_ms": 8.79,
+    "bs1_texts_s": 168.6,
+    "tps_bs8": 146.7,
+    "tps_bs32": 97.1,
+    "peak_rss_mb": 1587,
+    "rss_delta_mb": 61,
+    "cos_vs_torch": 0.978731,
+    "cos_vs_torch_min": 0.968718,
+    "quality": {
+      "spearman_20k": 0.9006,
+      "jaccard_at10": 0.6065,
+      "mrr_at10": 0.7914,
+      "top1": 0.6758,
+      "top1_crosslingual": 0.5119,
+      "ari_50": 0.3421
+    },
+    "deployment": {
+      "onnx_mb": 14.9,
+      "pruned_tokenizer_mb": 0.75,
+      "lut_needed": false,
+      "deploy_total_mb": 15.65,
+      "max_seq_len": 320,
+      "tokenizer_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok15"
+    },
+    "kept_vocab_size": 15276,
+    "pos_rows": 320,
+    "quant": "MatMulNBits int4 (block 64) matmuls + int4-packed word/pos tables (uint8 nibble pairs, per-row fp32 scales, in-graph decode); biases/LayerNorm/token_type fp32",
+    "table_bytes": {
+      "word_packed": 2932992,
+      "word_scales": 61104,
+      "pos_packed": 61440,
+      "pos_scales": 1280
+    },
+    "sp_floor": 0.89,
+    "sp_within_acceptance": true,
+    "meets_size_budget": false
+  },
+  "vocab4s": {
+    "12k": {
+      "files": [
+        {
+          "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4s12.onnx",
+          "bytes": 14991703
+        }
+      ],
+      "total_mb": 14.3,
+      "load_s": 0.09,
+      "p50_ms": 5.4,
+      "p95_ms": 8.85,
+      "bs1_texts_s": 165.7,
+      "tps_bs8": 145.8,
+      "tps_bs32": 95.2,
+      "peak_rss_mb": 1635,
+      "rss_delta_mb": 67,
+      "cos_vs_torch": 0.976272,
+      "cos_vs_torch_min": 0.853659,
+      "quality": {
+        "spearman_20k": 0.8954,
+        "jaccard_at10": 0.6046,
+        "mrr_at10": 0.7845,
+        "top1": 0.6641,
+        "top1_crosslingual": 0.4762,
+        "ari_50": 0.3173
+      },
+      "deployment": {
+        "onnx_mb": 14.3,
+        "pruned_tokenizer_mb": 0.65,
+        "lut_needed": false,
+        "deploy_total_mb": 14.95,
+        "max_seq_len": 320,
+        "tokenizer_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok12"
+      },
+      "kept_vocab_size": 12000,
+      "pos_rows": 320,
+      "quant": "MatMulNBits int4 (block 64) matmuls + int4-packed word/pos tables (uint8 nibble pairs, per-row fp32 scales, in-graph decode); biases/LayerNorm/token_type fp32",
+      "table_bytes": {
+        "word_packed": 2304000,
+        "word_scales": 48000,
+        "pos_packed": 61440,
+        "pos_scales": 1280
+      },
+      "sp_floor": 0.89,
+      "sp_within_acceptance": true,
+      "meets_size_budget": true,
+      "min_freq_kept": 1,
+      "max_freq_dropped": 1
+    },
+    "10k": {
+      "files": [
+        {
+          "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4s10.onnx",
+          "bytes": 14599701
+        }
+      ],
+      "total_mb": 13.9,
+      "load_s": 0.09,
+      "p50_ms": 5.11,
+      "p95_ms": 8.46,
+      "bs1_texts_s": 172.8,
+      "tps_bs8": 143.5,
+      "tps_bs32": 99.4,
+      "peak_rss_mb": 1690,
+      "rss_delta_mb": 89,
+      "cos_vs_torch": 0.974744,
+      "cos_vs_torch_min": 0.853659,
+      "quality": {
+        "spearman_20k": 0.8945,
+        "jaccard_at10": 0.6033,
+        "mrr_at10": 0.7834,
+        "top1": 0.6641,
+        "top1_crosslingual": 0.4643,
+        "ari_50": 0.3373
+      },
+      "deployment": {
+        "onnx_mb": 13.9,
+        "pruned_tokenizer_mb": 0.59,
+        "lut_needed": false,
+        "deploy_total_mb": 14.49,
+        "max_seq_len": 320,
+        "tokenizer_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok10"
+      },
+      "kept_vocab_size": 10000,
+      "pos_rows": 320,
+      "quant": "MatMulNBits int4 (block 64) matmuls + int4-packed word/pos tables (uint8 nibble pairs, per-row fp32 scales, in-graph decode); biases/LayerNorm/token_type fp32",
+      "table_bytes": {
+        "word_packed": 1920000,
+        "word_scales": 40000,
+        "pos_packed": 61440,
+        "pos_scales": 1280
+      },
+      "sp_floor": 0.89,
+      "sp_within_acceptance": true,
+      "meets_size_budget": true,
+      "min_freq_kept": 2,
+      "max_freq_dropped": 2
+    },
+    "8k": {
+      "files": [
+        {
+          "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4s8.onnx",
+          "bytes": 14207701
+        }
+      ],
+      "total_mb": 13.5,
+      "load_s": 0.1,
+      "p50_ms": 5.37,
+      "p95_ms": 9.19,
+      "bs1_texts_s": 165.0,
+      "tps_bs8": 143.9,
+      "tps_bs32": 94.2,
+      "peak_rss_mb": 1700,
+      "rss_delta_mb": 92,
+      "cos_vs_torch": 0.971126,
+      "cos_vs_torch_min": 0.788526,
+      "quality": {
+        "spearman_20k": 0.8882,
+        "jaccard_at10": 0.5999,
+        "mrr_at10": 0.771,
+        "top1": 0.6523,
+        "top1_crosslingual": 0.4286,
+        "ari_50": 0.3319
+      },
+      "deployment": {
+        "onnx_mb": 13.5,
+        "pruned_tokenizer_mb": 0.54,
+        "lut_needed": false,
+        "deploy_total_mb": 14.04,
+        "max_seq_len": 320,
+        "tokenizer_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok8"
+      },
+      "kept_vocab_size": 8000,
+      "pos_rows": 320,
+      "quant": "MatMulNBits int4 (block 64) matmuls + int4-packed word/pos tables (uint8 nibble pairs, per-row fp32 scales, in-graph decode); biases/LayerNorm/token_type fp32",
+      "table_bytes": {
+        "word_packed": 1536000,
+        "word_scales": 32000,
+        "pos_packed": 61440,
+        "pos_scales": 1280
+      },
+      "sp_floor": 0.89,
+      "sp_within_acceptance": false,
+      "meets_size_budget": true,
+      "min_freq_kept": 3,
+      "max_freq_dropped": 3
+    }
+  },
+  "fresh_audit": {
+    "teacher_wall_s": 0.245,
+    "path": "/home/kamil/projects/here/embeddings/bge_m3/data/fresh_audit_results.json",
+    "artifacts": {
+      "vocab8_ref": {
+        "verdicts": {
+          "EXACT": 5,
+          "REORDER": 5,
+          "IN_TOP10": 0,
+          "DIVERGE": 0
+        },
+        "drift_min": 0.90367
+      },
+      "vocab4e": {
+        "verdicts": {
+          "EXACT": 5,
+          "REORDER": 4,
+          "IN_TOP10": 0,
+          "DIVERGE": 1
+        },
+        "drift_min": 0.93497
+      },
+      "vocab4s12": {
+        "verdicts": {
+          "EXACT": 5,
+          "REORDER": 4,
+          "IN_TOP10": 0,
+          "DIVERGE": 1
+        },
+        "drift_min": 0.93497
+      },
+      "vocab4s10": {
+        "verdicts": {
+          "EXACT": 5,
+          "REORDER": 4,
+          "IN_TOP10": 0,
+          "DIVERGE": 1
+        },
+        "drift_min": 0.93497
+      },
+      "vocab4s8": {
+        "verdicts": {
+          "EXACT": 5,
+          "REORDER": 4,
+          "IN_TOP10": 0,
+          "DIVERGE": 1
+        },
+        "drift_min": 0.93497
+      }
+    }
+  }
 }

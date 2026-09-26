@@ -1,0 +1,710 @@
+{
+  "meta": {
+    "queries": 10,
+    "gt": "/home/kamil/projects/here/embeddings/bge_m3/data/edge_gt_fp32.npy",
+    "teacher": "BAAI/bge-m3 fp32 CUDA CLS (live, cached)",
+    "deployment_path": "pruned tokenizer -> ids -> onnx (no LUT)"
+  },
+  "artifacts": {
+    "vocab8_ref": {
+      "onnx": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab8.onnx",
+      "tokenizer": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok15",
+      "verdicts": {
+        "EXACT": 5,
+        "REORDER": 5,
+        "IN_TOP10": 0,
+        "DIVERGE": 0
+      },
+      "latency_ms": {
+        "p50": 2.9,
+        "mean": 2.89
+      },
+      "drift_cos_vs_int8_query_emb": {
+        "mean": 0.98467,
+        "min": 0.90367
+      },
+      "queries": [
+        {
+          "id": "Q1_control_verbatim",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.9949,
+          "drift_vs_int8q": 0.996,
+          "tok_full": 17,
+          "tok_pruned": 17,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q2_paraphrase_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.9602,
+          "drift_vs_int8q": 0.99721,
+          "tok_full": 24,
+          "tok_pruned": 24,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q3_xling_pl_of_es",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 3,
+          "cos_top1": 0.7336,
+          "drift_vs_int8q": 0.90367,
+          "tok_full": 31,
+          "tok_pruned": 31,
+          "unk_full_lut": 2,
+          "unk_pruned": 2,
+          "ids_equal": true
+        },
+        {
+          "id": "Q4_xling_de_of_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8447,
+          "drift_vs_int8q": 0.99599,
+          "tok_full": 23,
+          "tok_pruned": 23,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q5_theme_ev",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8256,
+          "drift_vs_int8q": 0.99721,
+          "tok_full": 27,
+          "tok_pruned": 27,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q6_offcorpus_intent",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.6963,
+          "drift_vs_int8q": 0.96454,
+          "tok_full": 19,
+          "tok_pruned": 19,
+          "unk_full_lut": 1,
+          "unk_pruned": 1,
+          "ids_equal": true
+        },
+        {
+          "id": "Q7_de_ev",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 4,
+          "cos_top1": 0.7327,
+          "drift_vs_int8q": 0.99549,
+          "tok_full": 21,
+          "tok_pruned": 21,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q8_fr_tolls",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 1,
+          "cos_top1": 0.8439,
+          "drift_vs_int8q": 0.99664,
+          "tok_full": 26,
+          "tok_pruned": 26,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q9_es_fastest",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 1,
+          "cos_top1": 0.7478,
+          "drift_vs_int8q": 1.0,
+          "tok_full": 19,
+          "tok_pruned": 19,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q10_template_pl",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 4,
+          "cos_top1": 0.6789,
+          "drift_vs_int8q": 1.0,
+          "tok_full": 16,
+          "tok_pruned": 16,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        }
+      ]
+    },
+    "vocab4e": {
+      "onnx": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4e.onnx",
+      "tokenizer": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok15",
+      "verdicts": {
+        "EXACT": 5,
+        "REORDER": 4,
+        "IN_TOP10": 0,
+        "DIVERGE": 1
+      },
+      "latency_ms": {
+        "p50": 3.77,
+        "mean": 4.05
+      },
+      "drift_cos_vs_int8_query_emb": {
+        "mean": 0.96101,
+        "min": 0.93497
+      },
+      "queries": [
+        {
+          "id": "Q1_control_verbatim",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 1.0,
+          "drift_vs_int8q": 0.95888,
+          "tok_full": 17,
+          "tok_pruned": 17,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q2_paraphrase_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.9638,
+          "drift_vs_int8q": 0.97635,
+          "tok_full": 24,
+          "tok_pruned": 24,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q3_xling_pl_of_es",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.7493,
+          "drift_vs_int8q": 0.93497,
+          "tok_full": 31,
+          "tok_pruned": 34,
+          "unk_full_lut": 2,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q4_xling_de_of_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8582,
+          "drift_vs_int8q": 0.96481,
+          "tok_full": 23,
+          "tok_pruned": 23,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q5_theme_ev",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8336,
+          "drift_vs_int8q": 0.972,
+          "tok_full": 27,
+          "tok_pruned": 27,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q6_offcorpus_intent",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.6826,
+          "drift_vs_int8q": 0.93789,
+          "tok_full": 19,
+          "tok_pruned": 20,
+          "unk_full_lut": 1,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q7_de_ev",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 4,
+          "cos_top1": 0.7492,
+          "drift_vs_int8q": 0.9596,
+          "tok_full": 21,
+          "tok_pruned": 21,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q8_fr_tolls",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 1,
+          "cos_top1": 0.87,
+          "drift_vs_int8q": 0.97191,
+          "tok_full": 26,
+          "tok_pruned": 26,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q9_es_fastest",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.7561,
+          "drift_vs_int8q": 0.96899,
+          "tok_full": 19,
+          "tok_pruned": 19,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        },
+        {
+          "id": "Q10_template_pl",
+          "verdict": "DIVERGE",
+          "teacher_top1_rank_in_student": 14,
+          "cos_top1": 0.6815,
+          "drift_vs_int8q": 0.96473,
+          "tok_full": 16,
+          "tok_pruned": 16,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": true
+        }
+      ]
+    },
+    "vocab4s12": {
+      "onnx": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4s12.onnx",
+      "tokenizer": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok12",
+      "verdicts": {
+        "EXACT": 5,
+        "REORDER": 4,
+        "IN_TOP10": 0,
+        "DIVERGE": 1
+      },
+      "latency_ms": {
+        "p50": 3.84,
+        "mean": 4.01
+      },
+      "drift_cos_vs_int8_query_emb": {
+        "mean": 0.96101,
+        "min": 0.93497
+      },
+      "queries": [
+        {
+          "id": "Q1_control_verbatim",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 1.0,
+          "drift_vs_int8q": 0.95888,
+          "tok_full": 17,
+          "tok_pruned": 17,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q2_paraphrase_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.9638,
+          "drift_vs_int8q": 0.97635,
+          "tok_full": 24,
+          "tok_pruned": 24,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q3_xling_pl_of_es",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.7493,
+          "drift_vs_int8q": 0.93497,
+          "tok_full": 31,
+          "tok_pruned": 34,
+          "unk_full_lut": 2,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q4_xling_de_of_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8582,
+          "drift_vs_int8q": 0.96481,
+          "tok_full": 23,
+          "tok_pruned": 23,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q5_theme_ev",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8336,
+          "drift_vs_int8q": 0.972,
+          "tok_full": 27,
+          "tok_pruned": 27,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q6_offcorpus_intent",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.6826,
+          "drift_vs_int8q": 0.93789,
+          "tok_full": 19,
+          "tok_pruned": 20,
+          "unk_full_lut": 1,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q7_de_ev",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 4,
+          "cos_top1": 0.7465,
+          "drift_vs_int8q": 0.9596,
+          "tok_full": 21,
+          "tok_pruned": 21,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q8_fr_tolls",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 1,
+          "cos_top1": 0.87,
+          "drift_vs_int8q": 0.97191,
+          "tok_full": 26,
+          "tok_pruned": 26,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q9_es_fastest",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.7561,
+          "drift_vs_int8q": 0.96899,
+          "tok_full": 19,
+          "tok_pruned": 19,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q10_template_pl",
+          "verdict": "DIVERGE",
+          "teacher_top1_rank_in_student": 14,
+          "cos_top1": 0.6815,
+          "drift_vs_int8q": 0.96473,
+          "tok_full": 16,
+          "tok_pruned": 16,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        }
+      ]
+    },
+    "vocab4s10": {
+      "onnx": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4s10.onnx",
+      "tokenizer": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok10",
+      "verdicts": {
+        "EXACT": 5,
+        "REORDER": 4,
+        "IN_TOP10": 0,
+        "DIVERGE": 1
+      },
+      "latency_ms": {
+        "p50": 4.14,
+        "mean": 4.12
+      },
+      "drift_cos_vs_int8_query_emb": {
+        "mean": 0.96101,
+        "min": 0.93497
+      },
+      "queries": [
+        {
+          "id": "Q1_control_verbatim",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 1.0,
+          "drift_vs_int8q": 0.95888,
+          "tok_full": 17,
+          "tok_pruned": 17,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q2_paraphrase_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.9638,
+          "drift_vs_int8q": 0.97635,
+          "tok_full": 24,
+          "tok_pruned": 24,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q3_xling_pl_of_es",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.7493,
+          "drift_vs_int8q": 0.93497,
+          "tok_full": 31,
+          "tok_pruned": 34,
+          "unk_full_lut": 2,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q4_xling_de_of_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8582,
+          "drift_vs_int8q": 0.96481,
+          "tok_full": 23,
+          "tok_pruned": 23,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q5_theme_ev",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8336,
+          "drift_vs_int8q": 0.972,
+          "tok_full": 27,
+          "tok_pruned": 27,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q6_offcorpus_intent",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.6826,
+          "drift_vs_int8q": 0.93789,
+          "tok_full": 19,
+          "tok_pruned": 20,
+          "unk_full_lut": 1,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q7_de_ev",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 4,
+          "cos_top1": 0.7465,
+          "drift_vs_int8q": 0.9596,
+          "tok_full": 21,
+          "tok_pruned": 21,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q8_fr_tolls",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 1,
+          "cos_top1": 0.87,
+          "drift_vs_int8q": 0.97191,
+          "tok_full": 26,
+          "tok_pruned": 26,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q9_es_fastest",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.7561,
+          "drift_vs_int8q": 0.96899,
+          "tok_full": 19,
+          "tok_pruned": 19,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q10_template_pl",
+          "verdict": "DIVERGE",
+          "teacher_top1_rank_in_student": 14,
+          "cos_top1": 0.6815,
+          "drift_vs_int8q": 0.96473,
+          "tok_full": 16,
+          "tok_pruned": 16,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        }
+      ]
+    },
+    "vocab4s8": {
+      "onnx": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4s8.onnx",
+      "tokenizer": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_tok8",
+      "verdicts": {
+        "EXACT": 5,
+        "REORDER": 4,
+        "IN_TOP10": 0,
+        "DIVERGE": 1
+      },
+      "latency_ms": {
+        "p50": 3.62,
+        "mean": 3.72
+      },
+      "drift_cos_vs_int8_query_emb": {
+        "mean": 0.96101,
+        "min": 0.93497
+      },
+      "queries": [
+        {
+          "id": "Q1_control_verbatim",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 1.0,
+          "drift_vs_int8q": 0.95888,
+          "tok_full": 17,
+          "tok_pruned": 17,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q2_paraphrase_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.9638,
+          "drift_vs_int8q": 0.97635,
+          "tok_full": 24,
+          "tok_pruned": 24,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q3_xling_pl_of_es",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.748,
+          "drift_vs_int8q": 0.93497,
+          "tok_full": 31,
+          "tok_pruned": 34,
+          "unk_full_lut": 2,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q4_xling_de_of_en",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8582,
+          "drift_vs_int8q": 0.96481,
+          "tok_full": 23,
+          "tok_pruned": 23,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q5_theme_ev",
+          "verdict": "EXACT",
+          "teacher_top1_rank_in_student": 0,
+          "cos_top1": 0.8336,
+          "drift_vs_int8q": 0.972,
+          "tok_full": 27,
+          "tok_pruned": 27,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q6_offcorpus_intent",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.6826,
+          "drift_vs_int8q": 0.93789,
+          "tok_full": 19,
+          "tok_pruned": 20,
+          "unk_full_lut": 1,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q7_de_ev",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 4,
+          "cos_top1": 0.7465,
+          "drift_vs_int8q": 0.9596,
+          "tok_full": 21,
+          "tok_pruned": 21,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q8_fr_tolls",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 1,
+          "cos_top1": 0.87,
+          "drift_vs_int8q": 0.97191,
+          "tok_full": 26,
+          "tok_pruned": 26,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q9_es_fastest",
+          "verdict": "REORDER",
+          "teacher_top1_rank_in_student": 2,
+          "cos_top1": 0.7561,
+          "drift_vs_int8q": 0.96899,
+          "tok_full": 19,
+          "tok_pruned": 19,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        },
+        {
+          "id": "Q10_template_pl",
+          "verdict": "DIVERGE",
+          "teacher_top1_rank_in_student": 14,
+          "cos_top1": 0.6815,
+          "drift_vs_int8q": 0.96473,
+          "tok_full": 16,
+          "tok_pruned": 16,
+          "unk_full_lut": 0,
+          "unk_pruned": 0,
+          "ids_equal": false
+        }
+      ]
+    }
+  }
+}

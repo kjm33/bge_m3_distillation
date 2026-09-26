@@ -187,6 +187,30 @@ Findings:
 
 **Updated deployment recommendation (supersedes §7.3-1):** ship **vocab8** — 26.6 MB, sp 0.896, cross-lingual top-1 0.50, 4.3 ms. That is 4.2× smaller than §7's pick at identical quality, and 20× smaller / 9.5× faster than bge-m3 int8 at ~90% rank fidelity. Combined with MRL 128d vectors (§7), index storage halves again (1.5 KB→512 B/text).
 
+### 8.1 The <15 MB question: total shipped footprint (onnx + tokenizer)
+
+The §8 table counted only the `.onnx` file. Real deployment ships the tokenizer too, and the full `tokenizer.json` is **17.0 MB** (250k-piece Unigram): vocab8's true footprint is 26.6 + 17.0 + 0.1 (LUT) = **43.7 MB**, vocab4's is 34.9 MB. Two new levers close the gap (`quant_ladder.py` stages `tokprune`/`vocab4e`/`vocab4s`/`fresh_audit`, results in `data/quant_ladder_results.json`):
+
+1. **Pruned tokenizer (nav_tok*)**: filter `tokenizer.json` to the kept pieces in ascending-id order, so it *emits new ids natively* — the 250k→15k LUT is no longer needed at runtime. Hard gate: ids byte-identical to full+LUT on **0/21,959 corpus and 0/512 bench mismatches** (Unigram argmax is unchanged when every piece of the optimal path survives). Size: **0.75 MB** (15,276 pieces) down to 0.54 MB (8k). On fresh text, dropped pieces decompose into kept subwords/chars instead of mapping to `<unk>` — strictly better than the LUT path (demo queries: unk 3→0).
+2. **int4 embedding tables + pos trim**: the word/position Gather tables are quantized to int4 (uint8 nibble pairs + per-row fp32 scales, exact symmetric per-row, decoded in-graph with plain opset-17 ops — no int4 dtype, no LUT), and the position table is sliced 514→320 rows (MAX_LEN 256 + headroom). Matmuls stay MatMulNBits int4 (block 64). Table cost: 15,276×384 → **2.9 MB**, 10k → 1.9 MB, 8k → 1.5 MB.
+
+| rung | onnx | tokenizer | **total** | p50 ms | sp 20k | jac@10 | top1 | top1-xl | verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| vocab8 (§8) | 26.6 MB | 17.0 MB + LUT | 43.7 MB | 4.33 | 0.896 | 0.599 | 0.664 | 0.500 | prev. pick |
+| vocab4 (§8) | 17.8 MB | 17.0 MB + LUT | 34.9 MB | 5.22 | 0.901 | 0.611 | 0.678 | 0.512 | |
+| vocab4e | 14.9 MB | 0.75 MB | **15.65 MB** | 5.33 | 0.901 | 0.607 | 0.676 | 0.512 | int4-tier, misses by 0.65 |
+| vocab4s12 | 14.3 MB | 0.65 MB | **14.95 MB** | 5.40 | 0.895 | 0.605 | 0.664 | 0.476 | ✓ floor, ✓ budget (hairline) |
+| **vocab4s10** | 13.9 MB | 0.59 MB | **14.49 MB** | 5.11 | 0.895 | 0.603 | 0.664 | 0.464 | **✓ floor, ✓ budget (pick)** |
+| vocab4s8 | 13.5 MB | 0.54 MB | 14.04 MB | 5.37 | 0.888 | 0.600 | 0.652 | 0.429 | ✗ sp floor 0.89 |
+
+Acceptance floor sp ≥ 0.89 (§7 harness): 12k/10k pass, 8k misses by 0.002. The body dominates (≈11.5 MB of int4 matmuls) — further shrink needs layer-drop + re-distill, not vocab.
+
+**Fresh-query audit** (`--stage fresh_audit`, same 10 hand-written queries as the discrepancy demo; teacher live fp32 CUDA, cached): vocab8 (deployment path incl. LUT): 5 EXACT / 5 REORDER / 0 DIVERGE, drift vs int8 query emb ≥ 0.904. All int4 rungs incl. vocab4s10: 5 EXACT / 4 REORDER / 1 DIVERGE, drift ≥ 0.935. The single DIVERGE (Q10, pl template query, teacher-top1 at rank 14) is identical across vocab4e/12k/10k/8k → caused by the int4 *body*, not the vocab shrink; Q3 (pl rendering of an es instruction) actually *improves* rank 3→0 thanks to tokenizer decomposition replacing unks.
+
+**Per-language models?** Rejected. The body is the cost (≈11.5 MB int4); a per-language model still carries it, so 5 models ≈ 5×(11.5 + ~1 MB shard) ≈ 60+ MB to keep all languages resident — worse than one shared 14.5 MB model — and it kills the shared space (cross-lingual retrieval, top1-xl 0.46-0.51 here, becomes impossible). The same goal (load less per language) is served by sharding the *embedding table* of the shared model, which at int4 costs ~0.2 MB/1k tokens — not worth the plumbing at these sizes.
+
+**Updated deployment recommendation (supersedes §8 pick):** ship **vocab4s10** (`models/edge/nav_e5s_distill_vocab4s10.onnx` + `models/edge/nav_tok10/`) — **14.49 MB total, sp 0.895, 9/10 fresh queries in top-5**, max seq 320, no LUT. If 16 MB is acceptable, vocab4e buys back sp 0.901 / xl 0.512; if maximum robustness is wanted, vocab8 remains the conservative pick at 43.7 MB true footprint.
+
 ## Files
 
 | File | Purpose |
@@ -201,5 +225,7 @@ Findings:
 | `train_distill.py` / `data/distill_results.json`, `data/teacher_full_bge_m3.npy`, `data/train_texts.jsonl` | §7 distillation training + results |
 | `models/nav-e5s-distill/` / `models/edge/nav_e5s_distill(.int8).onnx` | §7 trained student model (ST format) + ONNX exports |
 | `quant_ladder.py` / `data/quant_ladder_results.json` | §8 size ladder (int4 / vocab pruning / static) |
-| `models/edge/nav_e5s_distill_vocab8.onnx` (+ `_vocab4`, `_int4`, `_vocab_fp32`) / `nav_vocab_kept_ids.json` / `models/edge/nav_static/` | §8 ladder artifacts (vocab8 = deployment pick) |
+| `models/edge/nav_e5s_distill_vocab8.onnx` (+ `_vocab4`, `_int4`, `_vocab_fp32`) / `nav_vocab_kept_ids.json` / `models/edge/nav_static/` | §8 ladder artifacts (vocab8 = §8 pick) |
+| `models/edge/nav_e5s_distill_vocab4e.onnx` + `nav_e5s_distill_vocab4s{12,10,8}.onnx` / `models/edge/nav_tok{15,12,10,8}/` / `nav_vocab_kept_ids_{12,10,8}k.json` / `data/nav_token_freq.json` | §8.1 <15 MB rungs (vocab4s10 = current pick) |
+| `data/fresh_audit_results.json` / `data/fresh_audit_teacher_q.npy` | §8.1 fresh-query audit (10 hand-written queries, teacher cached) |
 | `discrepancy_demo.py` | live-query demo: fresh queries → top-5 retrieval, teacher (bge-m3) vs deployed student |

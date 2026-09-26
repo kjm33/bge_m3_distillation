@@ -12,8 +12,21 @@ Rungs (runnable separately, results merged into data/quant_ladder_results.json):
   vocab4   - pruned fp32 graph -> MatMulNBits -> quantize_dynamic -> int4+int8
   static   - model2vec-style static distillation (single-token forward passes,
              mean-pool) sliced to the kept vocab; pure embedding-lookup model
+  tokprune - ship a pruned tokenizer.json (kept pieces only, ids = new ids
+             natively, LUT no longer needed); verified identical ids vs
+             full-tokenizer+LUT on corpus+bench
+  vocab4e  - 15,276-token rung: int4-packed word AND position embedding tables
+             (uint8 nibble pairs + per-row fp32 scales + in-graph decode) +
+             MatMulNBits int4 matmuls; biases/LayerNorm stay fp32; pos table
+             trimmed 514->320 (max_len 256)
+  vocab4s  - same as vocab4e with the kept vocab capped by corpus token
+             frequency at {12k, 10k, 8k} (specials + single chars pinned)
+  fresh_audit - 10 hand-written fresh queries through every vocab4* artifact
+             with its PRUNED tokenizer (deployment path): verdicts vs live
+             BGE-M3 teacher, embedding drift vs deployed int8 student,
+             unk/decomposition stats
 
-Run from bge_m3/:  .venv/bin/python quant_ladder.py --stage baseline|int4|vocab|vocab4|static|all
+Run from bge_m3/:  .venv/bin/python quant_ladder.py --stage baseline|int4|vocab|vocab4|static|tokprune|vocab4e|vocab4s|fresh_audit|all
 Bench protocol and quality metrics mirror train_distill.py exactly.
 """
 import argparse
@@ -52,6 +65,14 @@ VOCAB_INT8 = MODELS_OUT / "nav_e5s_distill_vocab8.onnx"
 VOCAB_INT4 = MODELS_OUT / "nav_e5s_distill_vocab4.onnx"
 STATIC_DIR = MODELS_OUT / "nav_static"
 
+# <15 MB total-footprint experiment (onnx + pruned tokenizer)
+POS_ROWS = 320                     # 514 -> 320 (MAX_LEN 256 + specials headroom)
+SWEEP_K = (12, 10, 8)              # kept-vocab caps in thousands for vocab4s
+SP_FLOOR = 0.89                    # acceptance floor on the section-7 harness
+SIZE_BUDGET_MB = 15.0              # total deployed bytes (onnx + tokenizer)
+FRESH_AUDIT_PATH = DATA / "fresh_audit_results.json"
+TEACHER_Q_CACHE = DATA / "fresh_audit_teacher_q.npy"
+
 E5_PREFIX = "query: "  # required on ALL texts for e5 models
 
 SEED = 42
@@ -76,7 +97,8 @@ ACCENTED = ("àáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ"
             "đģķļ ŽžŠšŒœŸÿ")
 EXTRA_CHARS = set(string.printable) | set(ACCENTED)
 
-STAGES = ["baseline", "int4", "vocab", "vocab4", "static"]
+STAGES = ["baseline", "int4", "vocab", "vocab4", "static",
+          "tokprune", "vocab4e", "vocab4s", "fresh_audit"]
 
 PROCESS = psutil.Process(os.getpid())
 
@@ -581,9 +603,10 @@ def export_pruned_onnx(st, out_path, lut):
             opset_version=17, dynamo=False, do_constant_folding=True)
 
 
-def prune_and_export(kept_data, out_path):
+def prune_and_export(kept_data, out_path, pos_rows=None):
     """Overwrite word embedding rows with the kept old rows (sorted ascending);
-    position/token_type embeddings are untouched by resize_token_embeddings."""
+    position/token_type embeddings are untouched by resize_token_embeddings.
+    pos_rows: optionally slice the position table (514 -> pos_rows)."""
     import torch
     from sentence_transformers import SentenceTransformer
     clear_stale(out_path)
@@ -603,6 +626,9 @@ def prune_and_export(kept_data, out_path):
         raise RuntimeError("resize_token_embeddings touched position/token_type embeddings")
     with torch.no_grad():
         emb.weight.copy_(old_w[kept])
+        if pos_rows is not None and shapes_before[0][0] > pos_rows:
+            auto.embeddings.position_embeddings.weight.data = \
+                auto.embeddings.position_embeddings.weight.data[:pos_rows].clone()
     if not torch.equal(emb.weight.data, old_w[kept]):
         raise RuntimeError("pruned word embeddings do not match kept old rows")
     lut = make_lut(kept_data)
@@ -834,6 +860,448 @@ def stage_static(results, ctx):
           f"cos_torch={entry['cos_vs_torch']} sp={entry['quality']['spearman_20k']}", flush=True)
 
 
+# ---------- <15MB experiment: variant paths, pruned tokenizer, int4 tables ----------
+
+def kept_variant_json(k):
+    return MODELS_OUT / ("nav_vocab_kept_ids.json" if k == 15 else f"nav_vocab_kept_ids_{k}k.json")
+
+
+def tok_variant_dir(k):
+    return MODELS_OUT / ("nav_tok15" if k == 15 else f"nav_tok{k}")
+
+
+def onnx_variant_path(k):
+    return MODELS_OUT / ("nav_e5s_distill_vocab4e.onnx" if k == 15
+                         else f"nav_e5s_distill_vocab4s{k}.onnx")
+
+
+def fp32_variant_path(k):
+    return MODELS_OUT / ("nav_e5s_distill_vocab_fp32e.onnx" if k == 15
+                         else f"nav_e5s_distill_vocab_fp32s{k}.onnx")
+
+
+def token_frequencies(tok):
+    """Corpus token occurrence counts (SAME preprocessing as inference/build_kept_ids)."""
+    cache = DATA / "nav_token_freq.json"
+    if cache.exists():
+        d = json.loads(cache.read_text())
+        return {int(k): v for k, v in d.items()}
+    from collections import Counter
+    freq = Counter()
+    corpus = load_corpus_texts()
+    for i in range(0, len(corpus), 2048):
+        enc = tok([E5_PREFIX + t for t in corpus[i:i + 2048]], padding=False,
+                  truncation=True, max_length=MAX_LEN)
+        for row in enc["input_ids"]:
+            freq.update(row)
+    cache.write_text(json.dumps({str(k): v for k, v in freq.items()}))
+    return dict(freq)
+
+
+def get_kept_ids_for(k, tok):
+    """k=15: corpus-exact set (existing). k<15: specials + single chars + most
+    frequent corpus tokens, capped at k*1000 ids, sorted ascending (new id = rank)."""
+    path = kept_variant_json(k)
+    if path.exists():
+        return json.loads(path.read_text())
+    if k == 15:
+        return get_kept_ids(tok)
+    freq = token_frequencies(tok)
+    vocab = tok.get_vocab()
+    pinned = set(tok.all_special_ids)
+    for ch in EXTRA_CHARS:
+        tid = vocab.get(ch)
+        if tid is not None:
+            pinned.add(tid)
+    ranked = sorted((t for t in freq if t not in pinned), key=lambda t: (-freq[t], t))
+    room = max(k * 1000 - len(pinned), 0)
+    kept = sorted(pinned | set(ranked[:room]))
+    unk_old = vocab["<unk>"]
+    d = {"kept_old_ids": kept, "orig_vocab": len(tok), "unk_old_id": unk_old,
+         "unk_new_id": kept.index(unk_old) if unk_old in kept else 0,
+         "target_k": k, "n_pinned": len(pinned),
+         "min_freq_kept": freq.get(ranked[room - 1]) if room else None,
+         "max_freq_dropped": freq.get(ranked[room]) if room < len(ranked) else None}
+    path.write_text(json.dumps(d))
+    return d
+
+
+def prune_tokenizer_dir(kept_data, out_dir):
+    """tokenizer.json surgery: keep only kept pieces, IN ASCENDING OLD-ID ORDER so
+    the emitted ids ARE the new ids (rank in kept list) -> no runtime LUT needed."""
+    tj = json.loads((STUDENT_DIR / "tokenizer.json").read_text())
+    kept = kept_data["kept_old_ids"]
+    vocab = tj["model"]["vocab"]
+    if len(vocab) != kept_data["orig_vocab"]:
+        raise RuntimeError(f"tokenizer vocab {len(vocab)} != orig_vocab {kept_data['orig_vocab']}")
+    tj["model"]["vocab"] = [vocab[i] for i in kept]
+    old2new = {o: n for n, o in enumerate(kept)}
+    tj["added_tokens"] = [dict(t, id=old2new[t["id"]]) for t in tj.get("added_tokens", [])
+                          if t["id"] in old2new]
+    if out_dir.exists():
+        shutil.rmtree(out_dir)
+    out_dir.mkdir(parents=True)
+    (out_dir / "tokenizer.json").write_text(json.dumps(tj, ensure_ascii=False,
+                                                       separators=(",", ":")))
+    shutil.copyfile(STUDENT_DIR / "tokenizer_config.json", out_dir / "tokenizer_config.json")
+    return out_dir
+
+
+def verify_pruned_tokenizer(kept_data, out_dir):
+    """Prunder tokenizer ids must equal full-tokenizer+LUT ids on corpus+bench
+    (hard gate); demo queries are reported but allowed to differ (fresh tokens
+    decompose instead of mapping to <unk>)."""
+    from tokenizers import Tokenizer
+    full = get_tok().backend_tokenizer
+    full.no_padding(); full.enable_truncation(max_length=MAX_LEN)
+    pruned = Tokenizer.from_file(str(out_dir / "tokenizer.json"))
+    pruned.no_padding(); pruned.enable_truncation(max_length=MAX_LEN)
+    lut = make_lut(kept_data)
+    unk_new = kept_data["unk_new_id"]
+
+    def check(texts):
+        enc_f = full.encode_batch([E5_PREFIX + t for t in texts])
+        enc_p = pruned.encode_batch([E5_PREFIX + t for t in texts])
+        mism, unk_f, unk_p, lenf, lenp = 0, 0, 0, 0, 0
+        examples = []
+        for ef, ep, t in zip(enc_f, enc_p, texts):
+            a = lut[np.asarray(ef.ids, dtype=np.int64)].tolist()
+            b = ep.ids
+            lenf += len(a); lenp += len(b)
+            unk_f += sum(x == unk_new for x in a)
+            unk_p += sum(x == unk_new for x in b)
+            if a != b:
+                mism += 1
+                if len(examples) < 3:
+                    examples.append(t[:80])
+        return {"n": len(texts), "mismatches": mism, "unk_full_lut": unk_f,
+                "unk_pruned": unk_p, "tokens_full": lenf, "tokens_pruned": lenp,
+                "examples": examples}
+
+    bench_texts, _, _ = load_bench()
+    from discrepancy_demo import QUERIES as DEMO_QUERIES
+    stats = {"corpus": check(load_corpus_texts()),
+             "bench": check(bench_texts),
+             "demo": check([q["text"] for q in DEMO_QUERIES])}
+    if stats["corpus"]["mismatches"] or stats["bench"]["mismatches"]:
+        raise RuntimeError("pruned tokenizer diverges from full+LUT on corpus/bench: "
+                           f"{stats['corpus']['mismatches']} corpus / {stats['bench']['mismatches']} bench mismatches")
+    return stats
+
+
+def insert_int4_gather(model, weight_name, prefix, ids_name=None):
+    """Replace Gather(<fp32 weight init>, ids) with a packed-int4 decode subgraph:
+    uint8 nibble pairs [V, D//2] + per-row fp32 scales; decode = Gather -> Cast ->
+    nibble split -> signed -> interleave -> Mul(gathered scale). Exact per-row
+    symmetric int4, plain opset-17 ops, O(batch*seq) compute, no int4 dtype."""
+    import onnx
+    from onnx import TensorProto, helper, numpy_helper
+    g = model.graph
+    inits = {i.name: i for i in g.initializer}
+    if weight_name not in inits:
+        raise RuntimeError(f"{weight_name} is not an initializer")
+    W = numpy_helper.to_array(inits[weight_name]).astype(np.float32)
+    V, D = W.shape
+    scale = np.maximum(np.abs(W).max(axis=1) / 7.0, 1e-12).astype(np.float32)
+    Q = np.clip(np.rint(W / scale[:, None]), -8, 7).astype(np.int8)
+    packed = ((Q[:, 0::2] & 0xF).astype(np.uint8)
+              | ((Q[:, 1::2] & 0xF).astype(np.uint8) << 4))
+    cands = [n for n in g.node if n.op_type == "Gather" and n.input and n.input[0] == weight_name]
+    if len(cands) != 1:
+        raise RuntimeError(f"expected exactly 1 Gather on {weight_name}, found {len(cands)}")
+    gn = cands[0]
+    if ids_name is not None and gn.input[1] != ids_name:
+        raise RuntimeError(f"Gather on {weight_name} takes ids {gn.input[1]}, expected {ids_name}")
+    ids = gn.input[1]
+    out_name = gn.output[0]
+    idx = list(g.node).index(gn)
+    g.node.remove(gn)
+    g.initializer.remove(inits[weight_name])
+    del inits[weight_name]
+
+    w4n, scn = prefix + "w4u8", prefix + "srow"
+    for arr, nm in ((packed, w4n), (scale, scn),
+                    (np.array(16.0, np.float32), prefix + "c16"),
+                    (np.array(8.0, np.float32), prefix + "c8"),
+                    (np.array([0], np.int64), prefix + "st0"),
+                    (np.array([2], np.int64), prefix + "en2"),
+                    (np.array([0], np.int64), prefix + "ax0"),
+                    (np.array([-1], np.int64), prefix + "axm1"),
+                    (np.array([-1], np.int64), prefix + "neg1")):
+        g.initializer.append(numpy_helper.from_array(arr, nm))
+
+    m = lambda s: prefix + s  # noqa: E731
+
+    def N(op, ins, out, **kw):
+        return helper.make_node(op, ins, [m(out)], name=m(out), **kw)
+
+    nodes = [
+        N("Gather", [w4n, ids], "g8", axis=0),
+        N("Cast", [m("g8")], "xf", to=TensorProto.FLOAT),
+        N("Div", [m("xf"), prefix + "c16"], "d16"),
+        N("Floor", [m("d16")], "hi"),
+        N("Mul", [m("hi"), prefix + "c16"], "hi16"),
+        N("Sub", [m("xf"), m("hi16")], "lo"),
+        N("GreaterOrEqual", [m("lo"), prefix + "c8"], "lge"),
+        N("Sub", [m("lo"), prefix + "c16"], "lom"),
+        N("Where", [m("lge"), m("lom"), m("lo")], "los"),
+        N("GreaterOrEqual", [m("hi"), prefix + "c8"], "hge"),
+        N("Sub", [m("hi"), prefix + "c16"], "him"),
+        N("Where", [m("hge"), m("him"), m("hi")], "his"),
+        N("Unsqueeze", [m("los"), prefix + "axm1"], "los3"),
+        N("Unsqueeze", [m("his"), prefix + "axm1"], "his3"),
+        N("Concat", [m("los3"), m("his3")], "stk", axis=-1),
+        N("Shape", [m("g8")], "shp3"),
+        N("Slice", [m("shp3"), prefix + "st0", prefix + "en2", prefix + "ax0"], "shp2"),
+        N("Concat", [m("shp2"), prefix + "neg1"], "shpn", axis=0),
+        N("Reshape", [m("stk"), m("shpn")], "flat"),
+        N("Gather", [scn, ids], "sc", axis=0),
+        N("Unsqueeze", [m("sc"), prefix + "axm1"], "sc3"),
+        helper.make_node("Mul", [m("flat"), m("sc3")], [out_name], name=m("out")),
+    ]
+    for off, nd in enumerate(nodes):
+        g.node.insert(idx + off, nd)
+    return {"rows": int(V), "cols": int(D), "packed_bytes": int(packed.nbytes),
+            "scale_bytes": int(scale.nbytes)}
+
+
+def build_int4_rung(k, kept_data, tag):
+    """Pruned-vocab fp32 export (pos table sliced to POS_ROWS) -> int4-packed word
+    AND position tables -> MatMulNBits on the matmuls. No dynamic-int8 pass."""
+    import onnx
+    fp32p, finalp = fp32_variant_path(k), onnx_variant_path(k)
+    clear_stale(finalp)
+    prune_and_export(kept_data, fp32p, pos_rows=POS_ROWS)
+    model = onnx.load(str(fp32p))
+    w_info = insert_int4_gather(model, "m.embeddings.word_embeddings.weight",
+                                "w4_", ids_name="input_ids")
+    p_info = insert_int4_gather(model, "m.embeddings.position_embeddings.weight", "p4_")
+    tmp = MODELS_OUT / "nav_e5s_distill_int4tab_tmp.onnx"
+    onnx.save(model, str(tmp))
+    nbits_bytes = nbits4_quantize(tmp, finalp)
+    for p in (tmp, fp32p):
+        clear_stale(p)
+    print(f"  [{tag}] word table int4 {fmt_bytes(w_info['packed_bytes'] + w_info['scale_bytes'])}, "
+          f"pos table int4 {fmt_bytes(p_info['packed_bytes'] + p_info['scale_bytes'])}, "
+          f"nbits+tables -> {fmt_bytes(nbits_bytes)}", flush=True)
+    return finalp, w_info, p_info
+
+
+def dir_bytes(path):
+    return sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
+
+
+def stage_tokprune(results, ctx):
+    tok = get_tok()
+    kept = get_kept_ids_for(15, tok)
+    out_dir = prune_tokenizer_dir(kept, tok_variant_dir(15))
+    stats = verify_pruned_tokenizer(kept, out_dir)
+    total = dir_bytes(out_dir)
+    entry = results["tokprune"]
+    entry.update({"kept_vocab_size": len(kept["kept_old_ids"]), "dir": str(out_dir),
+                  "files": [{"path": str(f), "bytes": f.stat().st_size}
+                            for f in sorted(out_dir.rglob("*")) if f.is_file()],
+                  "total_mb": round(total / 1024**2, 2),
+                  "replaces": "17.0MB full tokenizer.json + 107KB LUT (emits new ids natively)",
+                  "verify": stats})
+    print(f"[tokprune] {entry['total_mb']}MB kept={entry['kept_vocab_size']} "
+          f"corpus/bench mismatches={stats['corpus']['mismatches']}/{stats['bench']['mismatches']} "
+          f"demo: {stats['demo']['mismatches']}/10 differ, unk {stats['demo']['unk_full_lut']}->{stats['demo']['unk_pruned']}",
+          flush=True)
+
+
+def _finish_variant_rung(entry, finalp, tok_dir, kept_data, perf, emb, ctx,
+                         w_info, p_info, tag):
+    finish_rung(entry, [finalp], perf, emb, ctx)
+    tok_mb = dir_bytes(tok_dir) / 1024**2
+    entry["deployment"] = {
+        "onnx_mb": entry["total_mb"],
+        "pruned_tokenizer_mb": round(tok_mb, 2),
+        "lut_needed": False,
+        "deploy_total_mb": round(entry["total_mb"] + tok_mb, 2),
+        "max_seq_len": POS_ROWS,
+        "tokenizer_dir": str(tok_dir),
+    }
+    entry["kept_vocab_size"] = len(kept_data["kept_old_ids"])
+    entry["pos_rows"] = POS_ROWS
+    entry["quant"] = ("MatMulNBits int4 (block 64) matmuls + int4-packed word/pos tables "
+                      "(uint8 nibble pairs, per-row fp32 scales, in-graph decode); "
+                      "biases/LayerNorm/token_type fp32")
+    entry["table_bytes"] = {"word_packed": w_info["packed_bytes"], "word_scales": w_info["scale_bytes"],
+                            "pos_packed": p_info["packed_bytes"], "pos_scales": p_info["scale_bytes"]}
+    sp = entry["quality"]["spearman_20k"]
+    entry["sp_floor"] = SP_FLOOR
+    entry["sp_within_acceptance"] = bool(sp >= SP_FLOOR)
+    entry["meets_size_budget"] = bool(entry["deployment"]["deploy_total_mb"] < SIZE_BUDGET_MB)
+    print(f"[{tag}] onnx {entry['total_mb']}MB + tok {tok_mb:.2f}MB = "
+          f"{entry['deployment']['deploy_total_mb']}MB | sp={sp} "
+          f"(floor {SP_FLOOR}: {entry['sp_within_acceptance']}, "
+          f"budget <{SIZE_BUDGET_MB}MB: {entry['meets_size_budget']})", flush=True)
+
+
+def stage_vocab4e(results, ctx):
+    tok = get_tok()
+    kept = get_kept_ids_for(15, tok)
+    tok_dir = prune_tokenizer_dir(kept, tok_variant_dir(15))
+    finalp, w_info, p_info = build_int4_rung(15, kept, "vocab4e")
+    lut = make_lut(kept)
+    perf = ort_bench(finalp, tok, ctx["texts"], lut=lut)
+    emb = onnx_embeddings(finalp, tok, ctx["texts"], lut=lut)
+    _finish_variant_rung(results["vocab4e"], finalp, tok_dir, kept, perf, emb, ctx,
+                         w_info, p_info, "vocab4e")
+
+
+def stage_vocab4s(results, ctx):
+    tok = get_tok()
+    for k in SWEEP_K:
+        tag = f"vocab4s{k}"
+        kept = get_kept_ids_for(k, tok)
+        tok_dir = prune_tokenizer_dir(kept, tok_variant_dir(k))
+        finalp, w_info, p_info = build_int4_rung(k, kept, tag)
+        lut = make_lut(kept)
+        perf = ort_bench(finalp, tok, ctx["texts"], lut=lut)
+        emb = onnx_embeddings(finalp, tok, ctx["texts"], lut=lut)
+        entry = results["vocab4s"].setdefault(f"{k}k", {})
+        _finish_variant_rung(entry, finalp, tok_dir, kept, perf, emb, ctx,
+                             w_info, p_info, tag)
+        entry["min_freq_kept"] = kept.get("min_freq_kept")
+        entry["max_freq_dropped"] = kept.get("max_freq_dropped")
+
+
+# ---------- stage fresh_audit (deployment-path check on hand-written queries) ----------
+
+def _encode_pruned_np(tok_backend, texts, max_len=MAX_LEN):
+    enc = tok_backend.encode_batch([E5_PREFIX + t for t in texts])
+    ids = [e.ids[:max_len] for e in enc]
+    return ids
+
+
+def _onnx_embed_ids(sess, list_of_ids, bs=8):
+    outs = []
+    names = [i.name for i in sess.get_inputs()]
+    pad_id = 1
+    for i in range(0, len(list_of_ids), bs):
+        chunk = list_of_ids[i:i + bs]
+        maxlen = max(len(x) for x in chunk)
+        input_ids = np.full((len(chunk), maxlen), pad_id, dtype=np.int64)
+        mask = np.zeros((len(chunk), maxlen), dtype=np.int64)
+        for j, x in enumerate(chunk):
+            input_ids[j, :len(x)] = x
+            mask[j, :len(x)] = 1
+        feed = {"input_ids": input_ids, "attention_mask": mask}
+        if "token_type_ids" in names:
+            feed["token_type_ids"] = np.zeros_like(input_ids)
+        h = next(o for o in sess.run(None, feed) if o.ndim == 3)
+        m = mask.astype(np.float32)
+        v = (h * m[:, :, None]).sum(1) / np.maximum(m.sum(1)[:, None], 1.0)
+        outs.append(v.astype(np.float32))
+    return l2norm(np.concatenate(outs))
+
+
+def stage_fresh_audit(results, ctx):
+    import onnxruntime as ort
+    from tokenizers import Tokenizer
+    from discrepancy_demo import QUERIES as DEMO_QUERIES
+    qtexts = [q["text"] for q in DEMO_QUERIES]
+    gt = ctx["gt"]  # teacher corpus embeddings (fp32 CUDA, cached)
+    if TEACHER_Q_CACHE.exists():
+        tq = np.load(TEACHER_Q_CACHE).astype(np.float32)
+    else:
+        from discrepancy_demo import embed_teacher
+        tq, w = embed_teacher(qtexts)
+        np.save(TEACHER_Q_CACHE, tq.astype(np.float32))
+        results["fresh_audit"]["teacher_wall_s"] = round(w, 3)
+    tq = l2norm(tq)
+
+    full_tok = get_tok().backend_tokenizer
+    full_tok.no_padding(); full_tok.enable_truncation(max_length=MAX_LEN)
+    kept15 = get_kept_ids_for(15, get_tok())
+    lut15 = make_lut(kept15)
+    unk15 = kept15["unk_new_id"]
+    full_ids = _encode_pruned_np(full_tok, qtexts)
+
+    # reference: deployed int8 full-vocab student (full tokenizer, no LUT)
+    ref_q = onnx_embeddings(ONNX_INT8, get_tok(), qtexts)
+
+    artifacts = []
+    if VOCAB_INT8.exists():
+        artifacts.append(("vocab8_ref", VOCAB_INT8, 15, "lut"))
+    if onnx_variant_path(15).exists():
+        artifacts.append(("vocab4e", onnx_variant_path(15), 15, "pruned"))
+    for k in SWEEP_K:
+        if onnx_variant_path(k).exists():
+            artifacts.append((f"vocab4s{k}", onnx_variant_path(k), k, "pruned"))
+    if not artifacts:
+        raise RuntimeError("no artifacts to audit; run tokprune/vocab4e/vocab4s first")
+
+    out = {"meta": {"queries": len(qtexts), "gt": str(GT_PATH),
+                    "teacher": "BAAI/bge-m3 fp32 CUDA CLS (live, cached)",
+                    "deployment_path": "pruned tokenizer -> ids -> onnx (no LUT)"},
+           "artifacts": {}}
+    for name, path, k, mode in artifacts:
+        tok_dir = tok_variant_dir(k)
+        if mode == "pruned":
+            pruned = Tokenizer.from_file(str(tok_dir / "tokenizer.json"))
+            pruned.no_padding(); pruned.enable_truncation(max_length=MAX_LEN)
+            q_ids = _encode_pruned_np(pruned, qtexts)
+        else:  # lut: full tokenizer + LUT (vocab8's real deployment path)
+            q_ids = [lut15[np.asarray(x, dtype=np.int64)].tolist() for x in full_ids]
+        so = ort.SessionOptions(); so.intra_op_num_threads = 8
+        sess = ort.InferenceSession(str(path), so, providers=["CPUExecutionProvider"])
+        # per-query latency (bs1, deployment path)
+        lat = []
+        for ids in q_ids:
+            t0 = time.perf_counter()
+            _onnx_embed_ids(sess, [ids])
+            lat.append((time.perf_counter() - t0) * 1000)
+        sq = _onnx_embed_ids(sess, q_ids)
+        # corpus embeddings under THIS artifact via its deployment tokenizer path
+        if mode == "pruned":
+            corpus_ids = _encode_pruned_np(pruned, ctx["texts"])
+        else:
+            cenc = full_tok.encode_batch([E5_PREFIX + t for t in ctx["texts"]])
+            corpus_ids = [lut15[np.asarray(e.ids[:MAX_LEN], dtype=np.int64)].tolist()
+                          for e in cenc]
+        s_corpus = _onnx_embed_ids(sess, corpus_ids, bs=8)
+        del sess; gc.collect()
+
+        rows = []
+        verdicts = {"EXACT": 0, "REORDER": 0, "IN_TOP10": 0, "DIVERGE": 0}
+        for i, (meta, qv_t, qv_s) in enumerate(zip(DEMO_QUERIES, tq, sq)):
+            t_top1 = int(np.argmax(gt @ qv_t))
+            sims = s_corpus @ qv_s
+            order = np.argsort(-sims)
+            rank = int(np.where(order == t_top1)[0][0]) if t_top1 in order[:50] else 999
+            verdict = "EXACT" if rank == 0 else ("REORDER" if rank < 5 else
+                                                 ("IN_TOP10" if rank < 10 else "DIVERGE"))
+            verdicts[verdict] += 1
+            a = lut15[np.asarray(full_ids[i], dtype=np.int64)].tolist()
+            b = q_ids[i]
+            rows.append(dict(id=meta["id"], verdict=verdict,
+                             teacher_top1_rank_in_student=rank,
+                             cos_top1=round(float(sims[order[0]]), 4),
+                             drift_vs_int8q=round(float(qv_s @ ref_q[i]), 5),
+                             tok_full=len(a), tok_pruned=len(b),
+                             unk_full_lut=sum(x == unk15 for x in a),
+                             unk_pruned=sum(x == unk15 for x in b),
+                             ids_equal=a == b))
+        drift = [r["drift_vs_int8q"] for r in rows]
+        out["artifacts"][name] = {
+            "onnx": str(path), "tokenizer": str(tok_dir), "verdicts": verdicts,
+            "latency_ms": {"p50": r(np.median(lat), 2), "mean": r(np.mean(lat), 2)},
+            "drift_cos_vs_int8_query_emb": {"mean": r(np.mean(drift), 5),
+                                            "min": r(np.min(drift), 5)},
+            "queries": rows}
+        print(f"[fresh_audit] {name}: {verdicts} | drift min {r(np.min(drift), 4)} | "
+              f"p50 {r(np.median(lat), 1)}ms", flush=True)
+    FRESH_AUDIT_PATH.write_text(json.dumps(out, indent=2, ensure_ascii=False))
+    results["fresh_audit"].update({"path": str(FRESH_AUDIT_PATH),
+                                   "artifacts": {n: {"verdicts": a["verdicts"],
+                                                     "drift_min": a["drift_cos_vs_int8_query_emb"]["min"]}
+                                                 for n, a in out["artifacts"].items()}})
+    print(f"[fresh_audit] saved -> {FRESH_AUDIT_PATH}", flush=True)
+
+
 # ---------- summary ----------
 
 def print_summary(results):
@@ -848,7 +1316,11 @@ def print_summary(results):
         return cur
 
     def get(rung, path):
-        cur = results.get(rung) or {}
+        cur = results
+        for key in rung.split("."):
+            if not isinstance(cur, dict) or key not in cur:
+                return None
+            cur = cur[key]
         for key in path.split("."):
             if not isinstance(cur, dict) or key not in cur:
                 return None
@@ -857,9 +1329,11 @@ def print_summary(results):
 
     cols = [("baseline(ref)", refget, True)]
     cols += [(name, lambda p, n=name: get(n, p), False)
-             for name in ("baseline", "int4", "vocab", "vocab4", "static")]
+             for name in ("baseline", "int4", "vocab", "vocab4", "static",
+                          "vocab4e", "vocab4s.12k", "vocab4s.10k", "vocab4s.8k")]
     rows = [
         ("size_mb", "total_mb", "size_mb"),
+        ("deploy_mb", "deployment.deploy_total_mb", None),
         ("load_s", "load_s", "load_s"),
         ("p50_ms", "p50_ms", "bs1.latency_ms.p50"),
         ("p95_ms", "p95_ms", "bs1.latency_ms.p95"),
@@ -880,7 +1354,7 @@ def print_summary(results):
     for label, rung_path, ref_path in rows:
         cells = []
         for _, getter, is_ref in cols:
-            v = getter(ref_path if is_ref else rung_path)
+            v = getter(ref_path) if (is_ref and ref_path is not None) else getter(rung_path)
             cells.append(f"{v:.3f}" if isinstance(v, float) else ("-" if v is None else str(v)))
         print(f"{label:<14}" + "".join(f"{c:>15}" for c in cells))
     errs = results.get("errors") or {}
@@ -899,7 +1373,8 @@ def load_results():
             res = {}
     else:
         res = {}
-    for k in ("meta", "baseline", "int4", "vocab", "vocab4", "static", "errors"):
+    for k in ("meta", "baseline", "int4", "vocab", "vocab4", "static", "errors",
+              "tokprune", "vocab4e", "vocab4s", "fresh_audit"):
         res.setdefault(k, {})
     return res
 
@@ -948,6 +1423,14 @@ def main():
                 stage_vocab4(results, ctx)
             elif stage == "static":
                 stage_static(results, ctx)
+            elif stage == "tokprune":
+                stage_tokprune(results, ctx)
+            elif stage == "vocab4e":
+                stage_vocab4e(results, ctx)
+            elif stage == "vocab4s":
+                stage_vocab4s(results, ctx)
+            elif stage == "fresh_audit":
+                stage_fresh_audit(results, ctx)
             results["errors"].pop(stage, None)
         except Exception:
             results["errors"][stage] = traceback.format_exc()[-3000:]
