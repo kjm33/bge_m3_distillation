@@ -1,0 +1,275 @@
+{
+  "meta": {
+    "script": "train_distill.py",
+    "created": "2026-09-26 14:13:56",
+    "seed": 42,
+    "torch": "2.14.0+cu130",
+    "sentence_transformers": "6.1.0",
+    "transformers": "5.17.0",
+    "cuda_device": "NVIDIA GeForce RTX 3090",
+    "hf_hub_offline": true,
+    "teacher_wall_s": 91.9,
+    "train_wall_s": 1506.3,
+    "onnx_wall_s": 41.1
+  },
+  "teacher": {
+    "model": "BAAI/bge-m3",
+    "pooling": "cls",
+    "dtype": "fp32",
+    "l2_normalized": true,
+    "device": "cuda",
+    "batch": 256,
+    "max_length": 8192,
+    "n": 21447,
+    "dim": 1024,
+    "npy": "/home/kamil/projects/here/embeddings/bge_m3/data/teacher_full_bge_m3.npy",
+    "texts_jsonl": "/home/kamil/projects/here/embeddings/bge_m3/data/train_texts.jsonl",
+    "excluded_bench_overlap": 0,
+    "wall_s": 91.9,
+    "torch": "2.14.0+cu130",
+    "cuda_device": "NVIDIA GeForce RTX 3090"
+  },
+  "train": {
+    "tau0.03_bs64_ep8": {
+      "config": {
+        "tau": 0.03,
+        "bs": 64,
+        "epochs": 8,
+        "lr": 2e-05,
+        "dims": [
+          64,
+          128,
+          256,
+          384
+        ],
+        "max_len": 256,
+        "topk": 64,
+        "window": 7,
+        "seed": 42,
+        "weight_decay": 0.01,
+        "warmup_frac": 0.1,
+        "grad_clip": 1.0,
+        "teacher_batch": 256,
+        "loss": "matryoshka_sym_kl",
+        "student": "intfloat/multilingual-e5-small",
+        "teacher": "BAAI/bge-m3"
+      },
+      "student_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/nav-e5s-distill",
+      "per_epoch": [
+        {
+          "epoch": 0,
+          "train_loss": 0.3125,
+          "secs": 186.0,
+          "pairwise_spearman_20k_pairs": 0.8623,
+          "knn_jaccard_at10": 0.5584,
+          "mrr_at10_of_gt_top1": 0.7584,
+          "top1_agreement": 0.6348,
+          "top1_agreement_crosslingual": 0.4286,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3597
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.1862,
+          "secs": 187.0,
+          "pairwise_spearman_20k_pairs": 0.8933,
+          "knn_jaccard_at10": 0.5911,
+          "mrr_at10_of_gt_top1": 0.7745,
+          "top1_agreement": 0.6484,
+          "top1_agreement_crosslingual": 0.5119,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3375
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.157,
+          "secs": 187.2,
+          "pairwise_spearman_20k_pairs": 0.8835,
+          "knn_jaccard_at10": 0.5965,
+          "mrr_at10_of_gt_top1": 0.7682,
+          "top1_agreement": 0.6406,
+          "top1_agreement_crosslingual": 0.4881,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3755
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.1428,
+          "secs": 186.9,
+          "pairwise_spearman_20k_pairs": 0.8958,
+          "knn_jaccard_at10": 0.6085,
+          "mrr_at10_of_gt_top1": 0.7868,
+          "top1_agreement": 0.6621,
+          "top1_agreement_crosslingual": 0.5357,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3193
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.1318,
+          "secs": 188.1,
+          "pairwise_spearman_20k_pairs": 0.8933,
+          "knn_jaccard_at10": 0.611,
+          "mrr_at10_of_gt_top1": 0.7887,
+          "top1_agreement": 0.666,
+          "top1_agreement_crosslingual": 0.5357,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3376
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.1256,
+          "secs": 188.4,
+          "pairwise_spearman_20k_pairs": 0.9046,
+          "knn_jaccard_at10": 0.617,
+          "mrr_at10_of_gt_top1": 0.7946,
+          "top1_agreement": 0.6777,
+          "top1_agreement_crosslingual": 0.5357,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3277
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.1206,
+          "secs": 188.6,
+          "pairwise_spearman_20k_pairs": 0.9078,
+          "knn_jaccard_at10": 0.6227,
+          "mrr_at10_of_gt_top1": 0.7956,
+          "top1_agreement": 0.6777,
+          "top1_agreement_crosslingual": 0.5476,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3693
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.1184,
+          "secs": 187.4,
+          "pairwise_spearman_20k_pairs": 0.9065,
+          "knn_jaccard_at10": 0.6213,
+          "mrr_at10_of_gt_top1": 0.7951,
+          "top1_agreement": 0.6777,
+          "top1_agreement_crosslingual": 0.5476,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3614
+        }
+      ],
+      "best_epoch": 6,
+      "final_metrics": {
+        "pairwise_spearman_20k_pairs": 0.9078,
+        "knn_jaccard_at10": 0.6227,
+        "mrr_at10_of_gt_top1": 0.7956,
+        "top1_agreement": 0.6777,
+        "top1_agreement_crosslingual": 0.5476,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.3693
+      },
+      "train_s": 1501.8,
+      "steps": 21448,
+      "student_repo": "intfloat/multilingual-e5-small",
+      "teacher_repo": "BAAI/bge-m3"
+    }
+  },
+  "onnx": {
+    "tau0.03_bs64_ep8": {
+      "model_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/nav-e5s-distill",
+      "torch_fp32": {
+        "n_params": 117653760,
+        "quality": {
+          "pairwise_spearman_20k_pairs": 0.9078,
+          "knn_jaccard_at10": 0.6227,
+          "mrr_at10_of_gt_top1": 0.7956,
+          "top1_agreement": 0.6777,
+          "top1_agreement_crosslingual": 0.5476,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3693
+        },
+        "emb_cache_recomputed": false
+      },
+      "fp32_onnx": {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill.onnx",
+        "bytes": 470225155,
+        "load_s": 1.04,
+        "session_inputs": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "bs1": {
+          "texts_s": 118.3,
+          "latency_ms": {
+            "p50": 7.79,
+            "p95": 11.89
+          }
+        },
+        "bs8": {
+          "texts_s": 155.0,
+          "ms_per_batch": 51.6
+        },
+        "bs32": {
+          "texts_s": 137.9,
+          "ms_per_batch": 232.1
+        },
+        "peak_rss_mb": 2083,
+        "rss_delta_mb": 425,
+        "quality_vs_gt": {
+          "pairwise_spearman_20k_pairs": 0.9078,
+          "knn_jaccard_at10": 0.6227,
+          "mrr_at10_of_gt_top1": 0.7956,
+          "top1_agreement": 0.6777,
+          "top1_agreement_crosslingual": 0.5476,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3693
+        },
+        "cos_vs_torch_fp32": {
+          "mean": 1.0,
+          "min": 1.0
+        },
+        "size_mb": 448.4,
+        "external_data": false
+      },
+      "int8_onnx": {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_int8.onnx",
+        "bytes": 118063352,
+        "load_s": 0.28,
+        "session_inputs": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "bs1": {
+          "texts_s": 204.6,
+          "latency_ms": {
+            "p50": 4.66,
+            "p95": 6.65
+          }
+        },
+        "bs8": {
+          "texts_s": 212.3,
+          "ms_per_batch": 37.7
+        },
+        "bs32": {
+          "texts_s": 170.4,
+          "ms_per_batch": 187.7
+        },
+        "peak_rss_mb": 1775,
+        "rss_delta_mb": 94,
+        "quality_vs_gt": {
+          "pairwise_spearman_20k_pairs": 0.8965,
+          "knn_jaccard_at10": 0.5991,
+          "mrr_at10_of_gt_top1": 0.7852,
+          "top1_agreement": 0.6641,
+          "top1_agreement_crosslingual": 0.5,
+          "n_crosslingual_top1_texts": 84,
+          "ari_50_clusters": 0.3702
+        },
+        "cos_vs_torch_fp32": {
+          "mean": 0.983776,
+          "min": 0.97208
+        },
+        "size_mb": 112.6,
+        "external_data": false
+      }
+    }
+  },
+  "errors": {}
+}

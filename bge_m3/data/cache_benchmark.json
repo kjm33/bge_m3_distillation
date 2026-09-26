@@ -1,0 +1,33 @@
+{
+  "n_texts": 200,
+  "cold_s": 9.35,
+  "cold_ms_per_text": 46.7,
+  "warm_s": 0.007,
+  "warm_ms_per_text": 0.035,
+  "sqlite_single_lookup_ms": 3.349,
+  "speedup": 1342.9,
+  "cold": {
+    "vectors": 200,
+    "dim": 1024,
+    "db_bytes": 954368,
+    "bytes_per_vector": 4771.84,
+    "api_calls": 4,
+    "cache_hits": 0,
+    "tokens_billed": 6435
+  },
+  "warm": {
+    "vectors": 200,
+    "dim": 1024,
+    "db_bytes": 954368,
+    "bytes_per_vector": 4771.84,
+    "api_calls": 4,
+    "cache_hits": 200,
+    "tokens_billed": 6435
+  },
+  "int8_storage": {
+    "bytes_per_vector_fp32": 4096,
+    "bytes_per_vector_int8": 1028,
+    "min_cosine_vs_fp32": 0.9997812509536743,
+    "nn_agreement_top1": 0.98
+  }
+}

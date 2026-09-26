@@ -1,0 +1,120 @@
+{
+  "model": "baai/bge-m3",
+  "n_texts": 15,
+  "T1_repeat_x5": [
+    {
+      "all_bitwise": true,
+      "max_abs_diff": 0.0,
+      "min_cosine": 1.0
+    },
+    {
+      "all_bitwise": true,
+      "max_abs_diff": 0.0,
+      "min_cosine": 1.0
+    },
+    {
+      "all_bitwise": false,
+      "max_abs_diff": 0.0002796053886413574,
+      "min_cosine": 0.9999989077166361
+    },
+    {
+      "all_bitwise": false,
+      "max_abs_diff": 0.00029200315475463867,
+      "min_cosine": 0.9999990161438428
+    }
+  ],
+  "T1_response_meta_keys": [
+    "data",
+    "id",
+    "model",
+    "object",
+    "provider",
+    "usage"
+  ],
+  "T1_provider_field": "DeepInfra",
+  "T2_delayed_20s": {
+    "all_bitwise": false,
+    "max_abs_diff": 0.0002796053886413574,
+    "min_cosine": 0.9999991264263537
+  },
+  "T3_batch_vs_single": {
+    "all_bitwise": false,
+    "max_abs_diff": 0.0003038942813873291,
+    "min_cosine": 0.9999977207524529
+  },
+  "T4_providers": {
+    "deepinfra": {
+      "vs_default": {
+        "all_bitwise": false,
+        "max_abs_diff": 0.00021979212760925293,
+        "min_cosine": 0.9999989760006496
+      },
+      "norm_range": [
+        0.9999999424505668,
+        1.0000000442833683
+      ]
+    },
+    "parasail": {
+      "vs_default": {
+        "all_bitwise": false,
+        "max_abs_diff": 0.0002796053886413574,
+        "min_cosine": 0.9999989077166361
+      },
+      "norm_range": [
+        0.9999999466197558,
+        1.0000000368713184
+      ]
+    }
+  },
+  "T5_local_fp32": {
+    "api_norm_range": [
+      0.999999942450567,
+      1.0000000498279598
+    ],
+    "cos_api_vs_local_cls": [
+      0.9999993048172028,
+      0.9999996888965024,
+      0.9999995199857472,
+      0.9999996947368486,
+      0.9999994385577675,
+      0.9999996110749532,
+      0.9999995516569189,
+      0.9999995806856088,
+      0.9989458152257169,
+      0.9999994391796226,
+      0.9999995245419421,
+      0.9999994828716026,
+      0.9999995196334986,
+      0.9999994714003062,
+      0.9999992386495218
+    ],
+    "cos_api_vs_local_mean": [
+      0.7920491270066817,
+      0.7949119430877215,
+      0.8241622038761034,
+      0.7985606996706626,
+      0.8260469119071597,
+      0.8480271328387374,
+      0.7941246426122832,
+      0.7702008161194965,
+      0.6995601347500917,
+      0.7403185402275363,
+      0.7612960476984361,
+      0.7720430299040446,
+      0.7540592104134718,
+      0.7345350469631622,
+      0.7580607577857046
+    ]
+  },
+  "T6_in_batch_dups": {
+    "dup_pair_bitwise": false,
+    "other_pair_bitwise": true,
+    "dup_cmp": {
+      "bitwise_equal": false,
+      "max_abs_diff": 0.00017135962843894958,
+      "cosine": 0.9999990938088539
+    }
+  },
+  "usage_total_tokens_all_requests": 7410,
+  "est_cost_usd": 7.41e-05
+}

@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "script": "quant_ladder.py",
+    "created": "2026-09-26 15:55:36",
+    "seed": 42,
+    "onnxruntime": "1.30.0",
+    "onnx": "1.23.0",
+    "transformers": "5.17.0",
+    "cuda_device": "NVIDIA GeForce RTX 3090",
+    "hf_hub_offline": true,
+    "student_dir": "/home/kamil/projects/here/embeddings/bge_m3/models/nav-e5s-distill",
+    "bench_texts": 512,
+    "gt": "/home/kamil/projects/here/embeddings/bge_m3/data/edge_gt_fp32.npy",
+    "torch": "2.14.0+cu130",
+    "model2vec": "0.9.0",
+    "baseline_wall_s": 12.9,
+    "int4_wall_s": 25.9,
+    "vocab_wall_s": 17.4,
+    "vocab4_wall_s": 18.5,
+    "static_wall_s": 46.2
+  },
+  "baseline": {
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_int8.onnx",
+        "bytes": 118063352
+      }
+    ],
+    "total_mb": 112.6,
+    "load_s": 0.3,
+    "p50_ms": 4.08,
+    "p95_ms": 6.39,
+    "bs1_texts_s": 221.1,
+    "tps_bs8": 223.9,
+    "tps_bs32": 180.2,
+    "peak_rss_mb": 1483,
+    "rss_delta_mb": 236,
+    "cos_vs_torch": 0.983776,
+    "cos_vs_torch_min": 0.97208,
+    "quality": {
+      "spearman_20k": 0.8965,
+      "jaccard_at10": 0.5991,
+      "mrr_at10": 0.7852,
+      "top1": 0.6641,
+      "top1_crosslingual": 0.5,
+      "ari_50": 0.3702
+    },
+    "reference_distill_results": {
+      "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_int8.onnx",
+      "bytes": 118063352,
+      "load_s": 0.28,
+      "session_inputs": [
+        "input_ids",
+        "attention_mask",
+        "token_type_ids"
+      ],
+      "bs1": {
+        "texts_s": 204.6,
+        "latency_ms": {
+          "p50": 4.66,
+          "p95": 6.65
+        }
+      },
+      "bs8": {
+        "texts_s": 212.3,
+        "ms_per_batch": 37.7
+      },
+      "bs32": {
+        "texts_s": 170.4,
+        "ms_per_batch": 187.7
+      },
+      "peak_rss_mb": 1775,
+      "rss_delta_mb": 94,
+      "quality_vs_gt": {
+        "pairwise_spearman_20k_pairs": 0.8965,
+        "knn_jaccard_at10": 0.5991,
+        "mrr_at10_of_gt_top1": 0.7852,
+        "top1_agreement": 0.6641,
+        "top1_agreement_crosslingual": 0.5,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.3702
+      },
+      "cos_vs_torch_fp32": {
+        "mean": 0.983776,
+        "min": 0.97208
+      },
+      "size_mb": 112.6,
+      "external_data": false
+    }
+  },
+  "int4": {
+    "nbits_matmul_int4_then_dynamic_int8": true,
+    "external_data": false,
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_int4.onnx",
+        "bytes": 108854194
+      }
+    ],
+    "total_mb": 103.8,
+    "load_s": 0.28,
+    "p50_ms": 5.14,
+    "p95_ms": 8.97,
+    "bs1_texts_s": 170.8,
+    "tps_bs8": 143.7,
+    "tps_bs32": 93.9,
+    "peak_rss_mb": 1506,
+    "rss_delta_mb": 187,
+    "cos_vs_torch": 0.979704,
+    "cos_vs_torch_min": 0.971365,
+    "quality": {
+      "spearman_20k": 0.901,
+      "jaccard_at10": 0.6106,
+      "mrr_at10": 0.7917,
+      "top1": 0.6777,
+      "top1_crosslingual": 0.5119,
+      "ari_50": 0.3078
+    }
+  },
+  "vocab": {
+    "kept_vocab_size": 15276,
+    "unk_new_id": 3,
+    "sanity_cos": 1.0,
+    "orig_vocab": 250002,
+    "dynamic_int8_applied": true,
+    "external_data": false,
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab8.onnx",
+        "bytes": 27915127
+      }
+    ],
+    "total_mb": 26.6,
+    "load_s": 0.1,
+    "p50_ms": 4.33,
+    "p95_ms": 7.16,
+    "bs1_texts_s": 208.0,
+    "tps_bs8": 223.8,
+    "tps_bs32": 177.7,
+    "peak_rss_mb": 1543,
+    "rss_delta_mb": 53,
+    "cos_vs_torch": 0.983776,
+    "cos_vs_torch_min": 0.97208,
+    "quality": {
+      "spearman_20k": 0.8965,
+      "jaccard_at10": 0.5991,
+      "mrr_at10": 0.7852,
+      "top1": 0.6641,
+      "top1_crosslingual": 0.5,
+      "ari_50": 0.3702
+    },
+    "sp_delta_vs_int8_ref": 0.0,
+    "sp_within_acceptance": true,
+    "quant": "pure dynamic int8",
+    "fp32_intermediate_mb": 104.6,
+    "fp32_intermediate_note": "build intermediate for vocab4; not a deploy artifact"
+  },
+  "vocab4": {
+    "kept_vocab_size": 15276,
+    "unk_new_id": 3,
+    "sanity_cos": null,
+    "nbits_matmul_int4_then_dynamic_int8": true,
+    "external_data": false,
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_e5s_distill_vocab4.onnx",
+        "bytes": 18705969
+      }
+    ],
+    "total_mb": 17.8,
+    "load_s": 0.09,
+    "p50_ms": 5.22,
+    "p95_ms": 8.53,
+    "bs1_texts_s": 168.8,
+    "tps_bs8": 142.8,
+    "tps_bs32": 97.8,
+    "peak_rss_mb": 1408,
+    "rss_delta_mb": 88,
+    "cos_vs_torch": 0.979704,
+    "cos_vs_torch_min": 0.971365,
+    "quality": {
+      "spearman_20k": 0.901,
+      "jaccard_at10": 0.6106,
+      "mrr_at10": 0.7917,
+      "top1": 0.6777,
+      "top1_crosslingual": 0.5119,
+      "ari_50": 0.3078
+    }
+  },
+  "static": {
+    "method": "local faithful replication of model2vec create_embeddings (specials-wrapped tokens, mean pool)",
+    "normalize": true,
+    "sif_weights": null,
+    "pca_dims": null,
+    "vectors_dtype": "float32",
+    "kept_vocab_size": 15276,
+    "unk_new_id": 3,
+    "note": "model2vec.distill unavailable: `skeletoken`, is required. Please reinstall model2vec with the `distill` extra. `pip install model2vec[distill]`",
+    "files": [
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_static/README.md",
+        "bytes": 3975
+      },
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_static/config.json",
+        "bytes": 94
+      },
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_static/model.safetensors",
+        "bytes": 6583276
+      },
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_static/modules.json",
+        "bytes": 278
+      },
+      {
+        "path": "/home/kamil/projects/here/embeddings/bge_m3/models/edge/nav_static/tokenizer.json",
+        "bytes": 9081475
+      }
+    ],
+    "total_mb": 14.9,
+    "load_s": 0.95,
+    "p50_ms": 0.15,
+    "p95_ms": 0.23,
+    "bs1_texts_s": 6315.4,
+    "tps_bs8": 18243.6,
+    "tps_bs32": 29758.6,
+    "peak_rss_mb": 2599,
+    "rss_delta_mb": 110,
+    "cos_vs_torch": null,
+    "cos_vs_torch_min": 0.437962,
+    "quality": {
+      "spearman_20k": 0.4646,
+      "jaccard_at10": 0.2473,
+      "mrr_at10": 0.3846,
+      "top1": 0.2832,
+      "top1_crosslingual": 0.0,
+      "ari_50": 0.2044
+    },
+    "pca_dims_whitened": 300,
+    "quant_note": "vectors int8 (model2vec quantize_model)",
+    "cos_vs_torch_note": "n/a: 300d rung vs 384d torch (PCA-whitened space)"
+  },
+  "errors": {}
+}

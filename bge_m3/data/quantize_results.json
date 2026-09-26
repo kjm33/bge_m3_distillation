@@ -1,0 +1,108 @@
+{
+  "model": "BAAI/bge-m3",
+  "n_texts": 512,
+  "n_tokens": 11690,
+  "avg_tokens_per_text": 22.8,
+  "seed": 0,
+  "sizes": {
+    "fp32_onnx_bytes": 2267545531,
+    "int8_onnx_bytes": 568791736,
+    "fp32_onnx_gb": 2.112,
+    "int8_onnx_mb": 542.4,
+    "compression_ratio": 3.99
+  },
+  "quantization": {
+    "method": "quantize_dynamic",
+    "weight_type": "QUInt8",
+    "extra_options": {
+      "WeightSymmetric": true
+    },
+    "use_external_data_format": true,
+    "wall_s": 17.4
+  },
+  "benchmark": {
+    "fp32_onnx_cpu": {
+      "config": "fp32_onnx_cpu",
+      "session_inputs": [
+        "input_ids",
+        "attention_mask"
+      ],
+      "load_s": 1.37,
+      "baseline_rss_mb": 2656,
+      "peak_rss_mb": 3953,
+      "bs1": {
+        "texts_s": 9.8,
+        "tokens_s": 224,
+        "ms_per_batch": 101.8
+      },
+      "bs8": {
+        "texts_s": 18.9,
+        "tokens_s": 431,
+        "ms_per_batch": 423.6
+      },
+      "bs32": {
+        "texts_s": 18.5,
+        "tokens_s": 423,
+        "ms_per_batch": 1725.7
+      },
+      "latency_ms": {
+        "p50": 99.6,
+        "p95": 117.8
+      },
+      "rss_delta_mb": 1297
+    },
+    "int8_onnx_cpu": {
+      "config": "int8_onnx_cpu",
+      "session_inputs": [
+        "input_ids",
+        "attention_mask"
+      ],
+      "load_s": 0.4,
+      "baseline_rss_mb": 3870,
+      "peak_rss_mb": 3940,
+      "bs1": {
+        "texts_s": 24.3,
+        "tokens_s": 556,
+        "ms_per_batch": 41.1
+      },
+      "bs8": {
+        "texts_s": 30.7,
+        "tokens_s": 702,
+        "ms_per_batch": 260.2
+      },
+      "bs32": {
+        "texts_s": 22.9,
+        "tokens_s": 522,
+        "ms_per_batch": 1399.5
+      },
+      "latency_ms": {
+        "p50": 41.0,
+        "p95": 52.6
+      },
+      "rss_delta_mb": 69
+    }
+  },
+  "speedup": {
+    "texts_s_bs8": 1.62,
+    "texts_s_bs32": 1.24,
+    "latency_p50": 2.43
+  },
+  "quality": {
+    "fp32_onnx_vs_torch_fp32": {
+      "cosine_min": 1.0,
+      "cosine_mean": 1.0,
+      "max_abs_coord_diff": 1e-06,
+      "pairwise_spearman": 1.0,
+      "retrieval_jaccard_at10_mean": 1.0,
+      "retrieval_mrr_of_gt_top1": 1.0
+    },
+    "int8_vs_torch_fp32": {
+      "cosine_min": 0.964682,
+      "cosine_mean": 0.98064,
+      "max_abs_coord_diff": 0.034871,
+      "pairwise_spearman": 0.977994,
+      "retrieval_jaccard_at10_mean": 0.778062,
+      "retrieval_mrr_of_gt_top1": 0.907
+    }
+  }
+}

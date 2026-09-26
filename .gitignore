@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Model weights and ONNX binaries (multi-GB; reproducible via scripts, see RESULTS.md)
+**/models/
+
+# Large data artifacts (embeddings arrays, SQLite cache)
+**/data/*.npy
+**/data/embeddings_cache.db

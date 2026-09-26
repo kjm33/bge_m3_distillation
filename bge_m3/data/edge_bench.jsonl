@@ -1,0 +1,512 @@
+{"text": "route from Chennai to Arni via the fastest route", "language": "en"}
+{"text": "route from London to Manchester ['London', 'Manchester']", "language": "en"}
+{"text": "route from London to Paris ['Brussels', 'Paris', 'London', 'Manchester', 'Amsterdam', 'Brussels']", "language": "en"}
+{"text": "Take me from Lyon to Barcelona, skip the toll highways, route me through the scenic coastal roads, and find a coffee stop around Girona to keep me awake.", "language": "en"}
+{"text": "route from Miami to Orlando ['Berlin', 'Warsaw', 'Prague', 'Bratislava', 'Vienna', 'Budapest']", "language": "en"}
+{"text": "route from Mokotów to Piecki-Migowo with EV charging stops every 300 km", "language": "en"}
+{"text": "take me from Xi’an to Yezhou with breaks after each two hours", "language": "en"}
+{"text": "Navigation, find the fastest route from Dover to Rotterdam on the A2, avoiding tolls and avoiding roadworks if possible.", "language": "en"}
+{"text": "take me from Kitale to Bugiri via Tororo", "language": "en"}
+{"text": "From Minneapolis to Salt Lake City, please avoid any highways and skip tolls, and make sure we stop for a late dinner in Rapid City around 10 pm.", "language": "en"}
+{"text": "navigate from Carletonville to Vryburg without ferries", "language": "en"}
+{"text": "route from Seattle to Portland ['Dubai', 'Abu Dhabi', 'London', 'Paris', 'New York', 'Tokyo', 'Sydney', 'Melbourne']", "language": "en"}
+{"text": "Drive from New York to Miami, but detour through the Blue Ridge Parkway for a scenic stretch, and avoid any toll roads.", "language": "en"}
+{"text": "Route me from Amsterdam to Athens avoiding tolls, staying off the major highways, and planning a charging stop in Budapest.", "language": "en"}
+{"text": "What is the best route to drive from Ataturk Aiport to Yenikapi?", "language": "en"}
+{"text": "take me from Stockholm to Oslo ['New York', 'Boston', 'Paris', 'London']", "language": "en"}
+{"text": "We need a route from Dover to London, please, but avoid tolls and we’d like a break halfway for tea—also, can you keep us off the motorway if possible? We’re in the camper and it’s already late.", "language": "en"}
+{"text": "Take the TGV from Paris to Lyon.", "language": "en"}
+{"text": "From Phoenix to Chicago, take the scenic route through the mountains instead of the interstate.", "language": "en"}
+{"text": "route from London to Paris ['Berlin', 'Madrid']", "language": "en"}
+{"text": "Navigate from Rotterdam to Málaga, avoiding toll roads in France, and add a charging stop near Lyon before we continue through the night.", "language": "en"}
+{"text": "go from Rome to Milan with breaks after each 100 km and after each two hours, but not more than 3 breaks and not more than 100 km between breaks and not", "language": "en"}
+{"text": "take me from Vitória to Caetité without motorways", "language": "en"}
+{"text": "route from Paris to Venice ['Rome', 'Milan']", "language": "en"}
+{"text": "go from Chicago to Detroit with breaks after each 100 miles and after each 2 hours", "language": "en"}
+{"text": "go from Kaech’ŏn to Sinŭiju avoiding tolls via the fastest route", "language": "en"}
+{"text": "Navigate from my current location to the University, avoid tolls, don't use closed roads, and find a charging station along the way.", "language": "en"}
+{"text": "Take us from Calais to Verona, avoid the A2 roadworks on the A2 if possible, and please include a 20-minute charging stop near Lyon for the motorhome.", "language": "en"}
+{"text": "plan a route from Nanchang to Sanhe, about 1430 km", "language": "en"}
+{"text": "drive from Ciudad Guayana to Punta de Mata via the fastest route, about 230 km", "language": "en"}
+{"text": "plan a route from Ecatepec de Morelos to Veracruz with breaks after each two hours, about 380 km", "language": "en"}
+{"text": "go from Madrid to Barcelona with breaks after each 100 km and after each two hours", "language": "en"}
+{"text": "Route: From Milan head north on the A4/E70 to the A22, then connect to the A1/E35 toward the Swiss border. Cross into Switzerland, follow the A2 to the A1 in Italy again, then take the A4/E70 to the A1/E35 toward the German border. In Germany, follow the A7 north, then the A2 to Hamburg, and finally the A1 to Copenhagen.", "language": "en"}
+{"text": "take me from Munich to Zurich avoiding highways", "language": "en"}
+{"text": "take me from Shanghai to Lianshan without ferries with a coffee stop", "language": "en"}
+{"text": "plan a route from Shiyan to Nanyang without motorways with a lunch stop halfway", "language": "en"}
+{"text": "go from Rome to Milan with breaks after each 100 km, but not in the city and not in the mountains and not in the tunnels", "language": "en"}
+{"text": "plan a route from Islamabad to Bārmer without motorways", "language": "en"}
+{"text": "go from Toronto to Montreal with breaks after each two hours and stop at the gas station and at the", "language": "en"}
+{"text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls", "language": "en"}
+{"text": "route from Athens to Thessaloniki ['Athens', 'Thessaloniki']", "language": "en"}
+{"text": "route from San Antonio to Cedar Park avoiding tolls", "language": "en"}
+{"text": "Take me from Seattle to Portland, avoiding highways due to the late hour.", "language": "en"}
+{"text": "Hi, I'm lost in this rain and traffic — can you get me from downtown Chicago to Navy Pier, and I'd like to avoid toll roads if possible?", "language": "en"}
+{"text": "go from Tallahassee to Cary with EV charging stops every 300 km", "language": "en"}
+{"text": "Plan a trip from Chicago to Nashville, add a charging stop in Indianapolis, avoid highways through Louisville, and include a quick lunch waypoint in Bowling Green.", "language": "en"}
+{"text": "I need a route from Chicago to Nashville, but please avoid all tolls, include a stop for a charging station, and add a waypoint in Indianapolis.", "language": "en"}
+{"text": "route from Seattle to Portland ['Spokane', 'Boise']", "language": "en"}
+{"text": "Navigate from Bristol to Edinburgh, avoiding all toll bridges and sticking to the M5 and M74 scenic coastal stretches, with a 30-minute charging pause at the Gretna Green fast-charger.", "language": "en"}
+{"text": "route from Westonaria to Mbombela", "language": "en"}
+{"text": "plan a route from Stockton to Prunedale via the fastest route", "language": "en"}
+{"text": "\"maneuver\": {\"type\": \"turn\", \"modifier\": \"left\", \"location\": [-3.7038, 40.4168]}, \"name\": \"maneuver\", \"type\": \"turn\", \"modifier\": \"left\", \"location\": [-3.7038, 40.4168]}", "language": "en"}
+{"text": "shortest route from Mumbai to Delhi ['Chennai', 'Kolkata']", "language": "en"}
+{"text": "go from New York to Boston with stops for lunch and dinner", "language": "en"}
+{"text": "take me from Rome to Milan ['Copenhagen', 'Hamburg', 'Berlin', 'Paris', 'London', 'Madrid', 'Barcelona', 'Rome']", "language": "en"}
+{"text": "Driving from Denver to DC in December.", "language": "en"}
+{"text": "Take me from Brussels to Frankfurt on the A2, and avoid highways after midnight.", "language": "en"}
+{"text": "navigate from Songjiang to Wenzhou via a scenic route, about 420 km", "language": "en"}
+{"text": "go from London to Manchester with breaks after each 100 km and after each two hours, but not more than 3 breaks", "language": "en"}
+{"text": "Route me from Paris to Rome via a scenic route with a quick coffee break.", "language": "en"}
+{"text": "From Atlanta to New Orleans, avoid all highways and tolls, stop for gas in Mobile, and detour along the Gulf Coast scenic route for a few miles near Biloxi.", "language": "en"}
+{"text": "go from Dubai to Abu Dhabi with breaks after each 100 km, but not more than 2 times, and not more than 2 hours", "language": "en"}
+{"text": "go from Rio de Janeiro to São Paulo, use the BR-116, and pause for a 20‑minute break every 200 km", "language": "en"}
+{"text": "route from Seattle to Portland ['Sydney", "language": "en"}
+{"text": "Take me from Amsterdam to Paris, but route around tolls and the construction on the A2.", "language": "en"}
+{"text": "Take the highway all the way from the apartment to the new house in Vancouver, but try to stick to the scenic routes if you can.", "language": "en"}
+{"text": "route from Ichihara to Itogawa with EV charging stops every 300 km", "language": "en"}
+{"text": "Driving from Berlin to the Amalfi Coast, avoiding all tolls and adding a stop at the Swiss Alps.", "language": "en"}
+{"text": "route from Sapopemba to Ouro Branco avoiding tolls, about 590 km", "language": "en"}
+{"text": "Hey, I need to get from my office on 5th Avenue to my house on Maple Street. Please avoid toll roads if possible.", "language": "en"}
+{"text": "Take me from Portland to San Francisco, but include a scenic coastal road on Highway 101 and a fast-charging stop near Eugene.", "language": "en"}
+{"text": "Drive from Rome to Milan avoiding tolls and highways, and arrive before 5 pm.", "language": "en"}
+{"text": "There are several ways to travel from Berlin to Warsaw, depending on your budget and preference for speed:", "language": "en"}
+{"text": "go from Vienna to Budapest with breaks after each 100 km and after each two hours, but not after 18:00 and not on Sundays and not on public holidays and not on rainy days", "language": "en"}
+{"text": "go from Stockholm to Oslo with breaks after each 200 km", "language": "en"}
+{"text": "route from Rome to Milan ['Copenhagen', 'Hamburg', 'Berlin', 'Munich']", "language": "en"}
+{"text": "Hey, head from Calais to Lyon, but skip the toll roads and take the scenic D-road through the Alps; also, plan a quick 20-minute charging stop in Dijon and a lunch break near Beaune.", "language": "en"}
+{"text": "route from London to Edinburgh ['Mumbai', 'Delhi']", "language": "en"}
+{"text": "Guide me from Barcelona to Paris while avoiding highways near Toulouse and including a rest and charge stop around Carcassonne.", "language": "en"}
+{"text": "From our campsite near Bordeaux to our final destination in Warsaw, please avoid all toll roads and take the best scenic route through the countryside.", "language": "en"}
+{"text": "\"point\": {\"latitude\": 48.2082, \"longitude\": 16.3738}, \"instructionType\": \"SEARCH_LOCATION\"}", "language": "en"}
+{"text": "I'm driving cross-country from New England to San Francisco in a few days.", "language": "en"}
+{"text": "route from Rome to Milan ['Copenhagen', 'Hamburg', 'Berlin', 'Paris', 'London', 'Madrid', 'Barcelona', 'Athens', 'Istanbul']", "language": "en"}
+{"text": "go from Vienna to Budapest with breaks after each 100 km and after each 2 hours", "language": "en"}
+{"text": "route from Budapest to Zagreb ['Pecs', 'Varazdin']", "language": "en"}
+{"text": "Find me a route from the downtown office to the airport, avoiding tolls, including a stop at a coffee shop, and adding a scenic coastal waypoint.", "language": "en"}
+{"text": "take me from Stockholm to Oslo ['New York', 'Boston', 'Chicago', 'Los Angeles', 'San Francisco', 'Seattle']", "language": "en"}
+{"text": "take me from Sydney to Melbourne ['Munich', 'Prague', 'London', 'Paris', 'New York', 'Tokyo', 'Sydney', 'Melbourne']", "language": "en"}
+{"text": "From Chicago to New York City, avoid Interstate 90 and plan a charging station stop in Cleveland, Ohio.", "language": "en"}
+{"text": "route from Warsaw to Krakow ['Detroit', 'Chicago', 'Detroit']", "language": "en"}
+{"text": "route from Madrid to Barcelona ['Milan']", "language": "en"}
+{"text": "plan a route from Rio de Janeiro to Juiz de Fora via Paty do Alferes without toll roads", "language": "en"}
+{"text": "go from Guang’an to Deyang with breaks after each two hours, about 280 km", "language": "en"}
+{"text": "route from Chicago to Detroit ['Berlin', 'Madrid']", "language": "en"}
+{"text": "I had planned to take a road trip from Delhi to Ladakh on my Royal Enfield from 31st August to 13 September.", "language": "en"}
+{"text": "drive from Bazhong to Yinchuan via the fastest route, about 880 km", "language": "en"}
+{"text": "route from Seattle to Vancouver ['Dubai', 'Abu Dhabi']", "language": "en"}
+{"text": "navigate from Taizhou to Yangpu with a coffee stop, about 380 km", "language": "en"}
+{"text": "go from Birmingham to Harwich with breaks after each two hours, about 280 km", "language": "en"}
+{"text": "take me from Wuchang to Macheng without toll roads, about 120 km", "language": "en"}
+{"text": "navigate from Jinjiang to Guiyang avoiding city centers, about 1490 km", "language": "en"}
+{"text": "navigate from San Diego to Los Angeles, use the most efficient route and schedule a 25‑minute break at the first rest stop.", "language": "en"}
+{"text": "Driving our camper from Amsterdam to the South of France, finding a route with plenty of charging stops and avoiding the heavy tolls.", "language": "en"}
+{"text": "fahre von Lagos nach Yola über Ondo, etwa 1330 km", "language": "de"}
+{"text": "navigiere von Wādī as Sīr nach Shaykh Miskīn über die schnellste Route", "language": "de"}
+{"text": "Hallo, ich möchte von München nach Innsbruck fahren, heute Sonntagnachmittag. Aber Achtung: Wir haben zwei Kinder auf dem Rücksitz und suchen eine Route, die Maut vermeidet und eine Pause mit Spielplatz nach etwa der Hälfte der Strecke einbaut. Außerdem habe ich gehört, dass wegen einer Veranstaltung gesperrt ist – kann das die Fahrt betreffen?", "language": "de"}
+{"text": "route von Agra nach Meerut ohne Mautstraßen", "language": "de"}
+{"text": "Bitte leite mich von Frankfurt am Main nach München und plane einen Ladestopp für das Elektroauto ein.", "language": "de"}
+{"text": "navigiere von Ilorin nach Biu über die schnellste Route", "language": "de"}
+{"text": "Fahr mich von Chicago nach San Francisco und such dir eine Panoramastraße, aber vermeid möglichst Mautstellen.", "language": "de"}
+{"text": "Zeige mir den Weg von Frankfurt nach München ohne Maut und mit einem Stopp zum Aufladen des Autos.", "language": "de"}
+{"text": "Berechne die Route von Köln nach München ohne Maut und füge einen Zwischenstopp für ein Mittagessen in Nürnberg hinzu.", "language": "de"}
+{"text": "fahr uns von Sorocaba nach Ubiratã Autobahnen vermeidend, etwa 760 km", "language": "de"}
+{"text": "Suche den schnellsten Weg von Leipzig nach München und plane eine Ladepause in Erfurt ein.", "language": "de"}
+{"text": "„Fahr mich von Freiburg nach Berlin, nimm die Landstraße, nicht die Autobahn, und mach einen Kaffee-Stopp in Würzburg, weil der Kaffee dort am besten schmeckt.", "language": "de"}
+{"text": "navigiere von Weifang nach Binzhou über die schnellste Route, etwa 150 km", "language": "de"}
+{"text": "fahr uns von Zaozhuang nach Yingqiu über die schnellste Route, etwa 300 km", "language": "de"}
+{"text": "navigiere von Riverside nach Bakersfield mit Lade stopps alle 300 km", "language": "de"}
+{"text": "fahre von Nanjing nach Zhushan über eine landschaftlich schöne Route ohne Autobahnen", "language": "de"}
+{"text": "Fahr von Berlin nach München mit zwei kurzen Pausen für den Kaffee und vermeide die Autobahn, nimm stattdessen die Panoramastraßen, aber achte auf die Mautgebühren.", "language": "de"}
+{"text": "plane eine Route von Paris nach Aubagne über Auxerre, etwa 790 km", "language": "de"}
+{"text": "Ich muss von der Münchner Innenstadt nach Garmisch-Partenkirchen, aber ich will unbedingt die Panoramastraße über den Kochelsee nehmen – keine Autobahn, auch wenn es länger dauert.", "language": "de"}
+{"text": "„Von Stuttgart nach Köln bitte über die malerische Burgenstraße, und berücksichtige einen Zwischenstopp in Würzburg, damit ich den Kaffee to go und einen Akku-Stopp an der Säule neben dem Parkhaus machen kann.", "language": "de"}
+{"text": "plane eine Route von Xinxiang nach Nanjing mit einem Kaffeestopp", "language": "de"}
+{"text": "navigiere von Zapopan nach Iztacalco mit einem Kaffeestopp", "language": "de"}
+{"text": "plane eine Route von Modena nach Budapest Stadtzentren vermeidend", "language": "de"}
+{"text": "plane eine Route von Jinan nach Huangpu Stadtzentren vermeidend", "language": "de"}
+{"text": "Navigiere mich von München nach Hamburg, aber vermeide bitte alle Autobahnen.", "language": "de"}
+{"text": "plane eine Route von Jiaozuo nach Shanghai über eine landschaftlich schöne Route Stadtzentren vermeidend, etwa 1020 km", "language": "de"}
+{"text": "Ich fahre von Hamburg nach München, über die Romantische Straße, und brauche eine Route ohne Autobahn.", "language": "de"}
+{"text": "fahre von Kasur nach Daud Khel ohne Fähren", "language": "de"}
+{"text": "navigiere von Lahore nach Jalālābād Stadtzentren vermeidend, etwa 750 km", "language": "de"}
+{"text": "route von Recife nach Ituaçu über die schnellste Route", "language": "de"}
+{"text": "navigiere von Shenzhen nach Shuizhai mit Lade stopps alle 300 km mit Pausen alle zwei Stunden", "language": "de"}
+{"text": "route von Mengzi nach Taiping Autobahnen vermeidend", "language": "de"}
+{"text": "fahr uns von Taguig nach Polangui mit einer Pause alle drei Stunden, etwa 440 km", "language": "de"}
+{"text": "fahre von Soweto nach Vryheid mit einem Mittagsstop auf halber Strecke", "language": "de"}
+{"text": "Von Hamburg nach München, aber bitte ohne die Autobahn und über die Panoramastraßen.", "language": "de"}
+{"text": "fahre von Suining nach Shanting mit Lade stopps alle 300 km", "language": "de"}
+{"text": "plane eine Route von Baghdad nach Kirkuk über eine landschaftlich schöne Route Autobahnen vermeidend, etwa 260 km", "language": "de"}
+{"text": "Navigiere uns mit dem Wohnmobil von München nach Kopenhagen, aber achte auf eine Route mit möglichst vielen Ladestopps und vermeide die Mautgebühren.", "language": "de"}
+{"text": "navigiere von Xuancheng nach Xinxing über die schnellste Route", "language": "de"}
+{"text": "„Von Berlin nach Köln, aber bitte ohne Maut und mit einem Zwischenstopp in Kassel an der E-Ladesäule, denn wir müssen den Akku fürs Wohnmobil aufladen.", "language": "de"}
+{"text": "„Ich muss von München nach Hamburg, aber umfahr die Mautstraßen, und lad mein E-Auto in Kassel auf, damit ich den Rest ohne Stopp schaffe – die Sonne blendet nämlich.", "language": "de"}
+{"text": "Berechne die Route von Berlin nach München über die Autobahn und vermeide dabei alle mautpflichtigen Straßen.", "language": "de"}
+{"text": "Hi, ich brauche eine Route von München nach Zürich, aber ich muss auf dem Weg laden können und möchte Mautgebühren vermeiden.", "language": "de"}
+{"text": "route von Bālurghāt nach Pāli über Godda", "language": "de"}
+{"text": "Route von Köln nach München bitte mit einem Zwischenstopp in Regensburg.", "language": "de"}
+{"text": "fahre von Ambarnath nach Parbhani über Rāhuri, etwa 460 km", "language": "de"}
+{"text": "Fahre von München nach Berlin, nimm die Landstraße mit Panoramaaussichten und plane eine Mittagspause in Leipzig ein.", "language": "de"}
+{"text": "fahre von Yao nach Ishinari mit Pausen alle zwei Stunden, etwa 660 km", "language": "de"}
+{"text": "plane eine Route von Multan nach Dhirkot Stadtzentren vermeidend über eine landschaftlich schöne Route", "language": "de"}
+{"text": "Bitte leite uns von Frankfurt am Main nach Berlin, aber plane einen Zwischenstopp in Leipzig für ein Mittagessen ein.", "language": "de"}
+{"text": "Hey, zeig mir am besten eine Route von München bis nach Stuttgart über die A2, bitte führe mich aber unbedingt über eine der neuen Panoramastraßen, gerne auch mit Maut.", "language": "de"}
+{"text": "Fahr von Freiburg nach Hamburg, aber meide bitte die Maut über die Schweiz, und mach gegen 13 Uhr einen Essensstopp in Göttingen, weil wir nun mal ein knappes Budget haben.", "language": "de"}
+{"text": "Navigiere mich von München nach Salzburg, aber plane nur mautfreie Strecken ein und stelle sicher, dass wir zwei Ladestopps bei Schnellladestationen einlegen.", "language": "de"}
+{"text": "Plane mir eine Fahrt von Köln nach Prag, umgeh die Mautstellen in Tschechien, bau eine Kaffeepause in Dresden ein und fahr möglichst über die scenic Strecke entlang der Elbe.", "language": "de"}
+{"text": "„Setz die Route von Köln nach Berlin neu auf, nimm unbedingt die Bundesstraßen statt der Autobahn, und plane einen Zwischenstopp zum Kuchenessen in Magdeburg ein, weil ich dort nachladen muss.", "language": "de"}
+{"text": "„Navigiere mich am Sonntagnachmittag von München nach Berlin, aber bitte über die Landstraße und plane einen Ladestopp in Nürnberg ein, da der Akku nur noch 60 Prozent hat.", "language": "de"}
+{"text": "fahre von Tehran nach Khomeynī Shahr über die schnellste Route", "language": "de"}
+{"text": "Berechne die Strecke von Frankfurt nach München und plane einen Ladestopp für das Elektroauto ein.", "language": "de"}
+{"text": "plane eine Route von Soweto nach Rustenburg mit einem Mittagsstop auf halber Strecke", "language": "de"}
+{"text": "Navigiere mich von Berlin nach München, aber meide unbedingt die Mautstraßen, plane zwei ausgedehnte Pausen in der Natur ein und suche nach einer Route mit Panoramastraßen.", "language": "de"}
+{"text": "Hallo, ich möchte wie gewohnt von zu Hause in Stuttgart nach Ludwigsburg fahren. Es ist Sonntagnachmittag – gibt es wegen der Sperrung eine Umleitung? Und ich hätte gern eine Panoramastraße, wenn möglich.", "language": "de"}
+{"text": "Navigiere uns mit vielen Ladestopps und über die Panoramastraßen von München nach Wien, damit wir den Kundenbesuch entspannt schaffen.", "language": "de"}
+{"text": "Zeige mir den Weg von Köln nach Flensburg, aber vermeide die Mautstraßen und plane eine Mittagspause in Lübeck ein.", "language": "de"}
+{"text": "Ich muss am Sonntag von Frankfurt am Main nach Berlin, bitte nimm die Route ohne Autobahn, aber plane einen Zwischenstopp zum Mittagessen in Leipzig ein.", "language": "de"}
+{"text": "fahre von Hengshui nach Daqing mit einem Mittagsstop auf halber Strecke, etwa 1470 km", "language": "de"}
+{"text": "Berechne die Route von Köln nach Wien über Passau, mit einem Zwischenstopp zum Laden in Nürnberg und möglichst wenigen Mautgebühren in Bayern.", "language": "de"}
+{"text": "Von Hamburg nach München, aber bitte ohne Autobahn und über die Panoramastraßen.", "language": "de"}
+{"text": "„Navigiere mich von München nach Hamburg, aber bitte über die Landstraßen und plane einen Ladestopp in Nürnberg ein, wo ich schnell eine Pause machen kann.", "language": "de"}
+{"text": "„Navigiere mich von München nach Hamburg über die B17 und die A7, aber meide die Mautstelle in Österreich und plane eine Mittagspause in Nürnberg ein.", "language": "de"}
+{"text": "navigiere von Panguíla nach Lucala über die schnellste Route mit Lade stopps alle 300 km, etwa 260 km", "language": "de"}
+{"text": "Führe mich von Hannover nach München und suche eine Strecke über Panoramastraßen, wobei wir zwischendurch eine Ladepause einlegen müssen.", "language": "de"}
+{"text": "„Von Stuttgart nach Dresden, bevorzugt über die A4, aber nicht durch die Innenstädte, und plane einen Schnelllade-Stopp in Erfurt ein.", "language": "de"}
+{"text": "fahre von New York City nach Virginia Beach über Atlantic City über eine landschaftlich schöne Route", "language": "de"}
+{"text": "Ich möchte von Berlin nach München fahren und dabei eine Panoramastraße nutzen sowie eine Ladepause in Nürnberg einplanen.", "language": "de"}
+{"text": "Ich möchte am Sonntagnachmittag von Stuttgart nach München fahren. Gibt es eine Panoramastraße, vermeide Maut und plane eine Pause nach der Hälfte der Strecke ein?", "language": "de"}
+{"text": "Plane eine Strecke von Dresden nach Innsbruck über die A9 und A82, wähle bewusst die Umfahrung Maut über den Norden, füge einen Zwischenstopp zur Beladung im Supermarkt bei Augsburg ein und führe uns ab Passau über die Romantische Straße statt der Autobahn.", "language": "de"}
+{"text": "Berechne die Route von Köln nach München über die Panoramastraße durch den Schwarzwald.", "language": "de"}
+{"text": "Führe mich von München nach Hamburg und plane eine Pause in Kassel ein.", "language": "de"}
+{"text": "navigiere von Saint Petersburg nach Vyshniy Volochëk über eine landschaftlich schöne Route", "language": "de"}
+{"text": "Guten Tag, ich muss von Hannover-Herrenhausen nach Berlin-Spandau, aber bitte vermeide unbedingt die Baustellen auf der A2 – die sind sonntags auch nicht besser. Kannst du mir da eine Route planen?", "language": "de"}
+{"text": "Navigiere uns von München nach Hamburg, aber vermeide die Autobahn und nimm lieber die Panoramastraßen.", "language": "de"}
+{"text": "fahre von Shaoyang nach Hongqiao ohne Fähren", "language": "de"}
+{"text": "Zeig mir den Weg von Berlin nach Wien mit einem Zwischenstopp in Prag für ein Mittagessen.", "language": "de"}
+{"text": "plane eine Route von Jinan nach Pingzhuang ohne Mautstraßen mit einem Kaffeestopp", "language": "de"}
+{"text": "route von Xingtai nach Zhancheng über eine landschaftlich schöne Route", "language": "de"}
+{"text": "Ich möchte eine Route von München nach Salzburg planen. Ich fahre ein E-Auto und muss den Akku im Blick behalten, bitte plane eine Ladestation ein, wenn nötig. Außerdem möchte ich unbedingt Panoramastraßen mitnehmen, auch wenn es etwas länger dauert, und keine Mautstraßen.", "language": "de"}
+{"text": "navigiere von London nach Grantham mit Lade stopps alle 300 km, etwa 180 km", "language": "de"}
+{"text": "Ich möchte am Wochenende von München nach Hamburg fahren, aber bitte plane nur Routen mit Panoramastraßen ein und achte darauf, dass wir nur an Schnellladestationen halten.", "language": "de"}
+{"text": "„Fahr mich von München nach Berlin, aber bitte über die Panoramastraße durch die Fränkische Schweiz und plane einen Ladestopp in Nürnberg ein, weil der Akku für die Autobahn sonst nicht reicht.", "language": "de"}
+{"text": "„Fahr von Bremen nach Köln, aber umgeh die A2 mit ihren Baustellen und such mir eine Strecke über die Sauerland-Panoramastraße, dabei sollst du eine Rast von 20 Minuten an der Raststätte Siegerland einplanen.", "language": "de"}
+{"text": "Rute von Frankfurt nach Stuttgart aus, aber vermeide Autobahnen komplett und leg einen Zwischenstopp zum Mittagessen in Heidelberg ein.", "language": "de"}
+{"text": "Navi, ich will von Frankfurt nach München über die Fahrt durch die Schwäbische Alb, ohne Autobahn, dafür mit einem Tank- und Toilettenstopp in Ulm, und wenn du eine Route mit wenig Stau findest, dann fahr die Panoramastraße B10 ab Augsburg entlang.", "language": "de"}
+{"text": "Führe mich von Frankfurt nach München über die Panoramastraßen durch den Schwarzwald.", "language": "de"}
+{"text": "Von Köln nach Stuttgart, vermeide Autobahnen, nimm die Panoramastraße durch den Schwarzwald und mach einen kurzen Stopp in Karlsruhe fürs Mittagessen.", "language": "de"}
+{"text": "Navigiere uns von Berlin nach München, aber nimm bitte die Route über die Landstraßen und Panoramastraßen, damit die Kinder etwas sehen.", "language": "de"}
+{"text": "Navigiere mich von Berlin nach München, aber nimm die Panoramastraßen durch das Erzgebirge, plan eine längere Pause an einem schönen See ein und achte darauf, dass wir möglichst mautfrei bleiben.", "language": "de"}
+{"text": "route von Porto Velho nach Cacoal ohne Mautstraßen", "language": "de"}
+{"text": "navigiere von Havana nach Aguada de Pasajeros mit Lade stopps alle 300 km", "language": "de"}
+{"text": "Navigiere uns von Berlin nach München, aber suche eine Route mit vielen Ladestoppen und vermeide alle mautpflichtigen Autobahnen.", "language": "de"}
+{"text": "Zeige mir den Weg von Frankfurt nach München, aber plane einen Ladestopp für das Wohnmobil ein.", "language": "de"}
+{"text": "plane eine Route von Guli nach Ninghai über Xianju über die schnellste Route", "language": "de"}
+{"text": "Bitte führe mich von München nach Hamburg über die A7 und mache dabei zwischendurch eine Tankpause in Hannover, um den stressigen Sonntagstraфик zu vermeiden.", "language": "de"}
+{"text": "navigiere von Fengxiang nach Changsha mit Pausen alle zwei Stunden Stadtzentren vermeidend, etwa 1010 km", "language": "de"}
+{"text": "Pars de Angers pour aller à Nevers, sans autoroute, avec un détour par la route des vins de Sancerre, et un arrêt de pause-déjeuner à Bourges.", "language": "fr"}
+{"text": "Salut, je pars de Lyon et je vais à Marseille. Évite les péages, prévois une pause toutes les deux heures, et trouve des routes panoramiques si possible.", "language": "fr"}
+{"text": "Pars de Douai et va à Gand en passant par l'A2, mais prévois un arrêt à une station-service pour faire le plein avant le brouillard matinal.", "language": "fr"}
+{"text": "navigue de Wuhan à Beijing par la route la plus pittoresque avec des pauses toutes les deux heures", "language": "fr"}
+{"text": "itinéraire de Bremen à Prague avec des arrêts de recharge tous les 300 km en évitant les centres-villes", "language": "fr"}
+{"text": "De Nantes à Poitiers, évite les péages et les grands axes, intégre un point de passage par Niort pour déposer un colis, et prévois une pause casse-croûte à Fontenay-le-Comte.", "language": "fr"}
+{"text": "De Nantes à Rennes, prends la voie panoramique par la forêt de Brocéliande, planifie une halte déjeuner à Vitré, évite les péages et contrôle le brouillard sur la D177.", "language": "fr"}
+{"text": "« De Lille à Metz, coupe par la D104 et la D643 pour rester sur les petites routes, et programme une recharge rapide à Reims, mais contourne le centre-ville à cause du cortège, avec un arrêt déjeuner à Verdun en plus. »", "language": "fr"}
+{"text": "Bonjour, je voudrais aller de Lyon à Annecy, s'il vous plaît, mais je veux éviter les péages et je dois absolument inclure une pause pour la recharge de ma batterie.", "language": "fr"}
+{"text": "navigue de Florencia à Guayaquil par l'itinéraire le plus rapide", "language": "fr"}
+{"text": "« De Rennes à Angers, prends la route panoramique par le parc de la Loire, mais évite les péages et prévois un arrêt pique-nique à Laval, à cause du brouillard de la matinée. »", "language": "fr"}
+{"text": "Démarre de Calais pour aller à Reims en évitant les autoroutes à péage, mais passe par Laon pour contourner la fermeture.", "language": "fr"}
+{"text": "Bonjour, pouvez-vous me guider de Lyon à Valence, s'il vous plaît ? J'aimerais éviter les péages et prévoir une pause de 30 minutes dans un endroit avec une borne de recharge, car ma batterie est à 40%.", "language": "fr"}
+{"text": "navigue de Tampico à Cacahoatán avec une pause toutes les trois heures", "language": "fr"}
+{"text": "J'arrive de Paris à Bordeaux en passant par Orléans en évitant les péages, avec une pause café à Tours et en longeant la Loire.", "language": "fr"}
+{"text": "planifie un itinéraire de Kunming à Xindian avec un arrêt déjeuner à mi-chemin", "language": "fr"}
+{"text": "« Départ d'Amiens, direction Arras comme chaque jour, mais détourne-moi parce que la D919 est bloquée pour un semi-marathon, et arrête-toi à un point de recharge à Bapaume. »", "language": "fr"}
+{"text": "va de Guangzhou à Bake avec des arrêts de recharge tous les 300 km", "language": "fr"}
+{"text": "De Marseille à Nice, prends la route panoramique via Cassis et évite l'autoroute A7.", "language": "fr"}
+{"text": "Bonjour, je dois aller de Lyon à Genève, mais j'aimerais éviter les péages si possible, faire une pause toutes les deux heures, et passer par un point de vue panoramique sur les Alpes.", "language": "fr"}
+{"text": "« Va de Nancy à Besançon par la route des crêtes, passe par Épinal et Vesoul, et évite les grands axes, mais surtout arrête-toi à Lure pour faire le plein d’essence. »", "language": "fr"}
+{"text": "Bonjour, navigue de Rouen à Caen en évitant les péages, avec un arrêt recharge à Lisieux sur la route panoramique.", "language": "fr"}
+{"text": "« Calcule un itinéraire de Lille à Charleville-Mézières avec une pause café à Saint-Quentin vers huit heures, le brouillard devrait se lever d'ici là. »", "language": "fr"}
+{"text": "planifie un itinéraire de Bozhou à Jiawang avec une pause toutes les trois heures", "language": "fr"}
+{"text": "va de Zarqa à Az-Zuhūr sans traversées en ferry", "language": "fr"}
+{"text": "Trace le trajet de Nantes à Marseille en prévoyant une recharge électrique près de Lyon.", "language": "fr"}
+{"text": "« Emmène-moi de Beauvais à Compiègne sans autoroute, et ajoute un arrêt à Clermont vers huit heures pour prendre un café, la circulation est déjà dense. »", "language": "fr"}
+{"text": "navigue de Goyang-si à Ulsan avec une pause toutes les trois heures", "language": "fr"}
+{"text": "Bonjour, je dois aller de Lille à Bruxelles, mais évite les péages s'il te plaît. Il y a du brouillard et des travaux sur l'A2 ce matin.", "language": "fr"}
+{"text": "Je pars de Rouen pour aller à Brest, mais évite les autoroutes à péage et passe par les petites routes côtières, s'il te plaît.", "language": "fr"}
+{"text": "conduis-moi de Jinan à Gongyi avec un arrêt café", "language": "fr"}
+{"text": "Bonjour, je souhaite aller de Lyon à Annecy ce matin tôt. Pourriez-vous éviter les péages et programmer une pause café à mi-chemin ?", "language": "fr"}
+{"text": "Trouve le trajet de Caen à Rouen en passant par les petites routes de campagne pour éviter les péages.", "language": "fr"}
+{"text": "« De Lille à Strasbourg, prends les routes nationales et intègre une pause panoramique dans les Ardennes ainsi qu’une charge complémentaire à Reims. »", "language": "fr"}
+{"text": "Bonjour, on part de Dijon pour aller à Bruxelles, mais on veut éviter les péages et on préfère faire une pause toutes les deux heures maximum. Il y a des travaux sur l’A2, alors on veut une route alternative. C’est possible ?", "language": "fr"}
+{"text": "Je dois partir de mon van à Saint-Pierre sur l'A2 en direction de Lyon, en passant par la route panoramique du Semnoz, avec une pause tous les 90 minutes et une recharge électrique au premier poste disponible.", "language": "fr"}
+{"text": "Route de Strasbourg à Mulhouse par le plus vieux chemin vers le sud, en passant par la ville de Belfort, avec une escale obligatoire pour déjeuner à Rouffach et en évitant tous les péages.", "language": "fr"}
+{"text": "« Va de Tours à Poitiers par la D910, et évite les autoroutes pour traverser les villages avant le petit-déjeuner. »", "language": "fr"}
+{"text": "Va de Lyon à Clermont-Ferrand par l’autoroute A89, mais fais une pause d’une demi-heure à mi-chemin pour éviter la fatigue.", "language": "fr"}
+{"text": "« De Strasbourg à Nancy, évite les autoroutes bondées, planifie une halte pour déjeuner à Saverne et passe par le col panoramique du Donon. »", "language": "fr"}
+{"text": "Bonjour, je pars de Lyon et je vais à Marseille. Peux-tu me trouver un itinéraire sans péages, avec des aires de repos toutes les deux heures, et en passant par Valence ?", "language": "fr"}
+{"text": "Planifie un trajet de Dijon à Grenoble sans autoroute, en passant par Annecy pour une recharge rapide et en évitant le centre-ville de Chambéry.", "language": "fr"}
+{"text": "conduis-moi de Indore à Rājkot par l'itinéraire le plus rapide", "language": "fr"}
+{"text": "Conduis-moi de Lille à Reims par les routes panoramiques en évitant les péages.", "language": "fr"}
+{"text": "Guide-moi de Lille à Marseille en passant par une route panoramique.", "language": "fr"}
+{"text": "« Va de Dijon à Lyon en évitant l’A2 à cause des travaux, mais prends la nationale pour passer par Beaune, sans péage. »", "language": "fr"}
+{"text": "va de Jinan à Taitou avec une pause toutes les trois heures", "language": "fr"}
+{"text": "Va de Nantes à Limoges en passant par la route des châteaux de la Loire, et prévois une recharge à Poitiers.", "language": "fr"}
+{"text": "Bonjour, je suis en service. Je dois emmener un client de l'aéroport de Charleroi à Bruxelles-Nord. Vu le brouillard et les travaux sur l'A2, peux-tu me calculer un itinéraire ? Et évite les péages si possible, s'il te plaît.", "language": "fr"}
+{"text": "navigue de Dongtai à Huicheng avec un arrêt café", "language": "fr"}
+{"text": "conduis-moi de Belém à Ipixuna do Pará via Concórdia do Pará", "language": "fr"}
+{"text": "De Lille à Strasbourg, évite les autoroutes, ajoute une halte recharge à Reims et passe par les vignobles de Champagne.", "language": "fr"}
+{"text": "itinéraire de Shenyang à Panshan sans routes à péage", "language": "fr"}
+{"text": "« Bonjour, je pars de Rouen pour aller à Tours, mais passe par Le Mans et évite les autoroutes à péage, s’il te plaît. »", "language": "fr"}
+{"text": "Recherche un itinéraire de Chambéry à Annecy en évitant les péages et en ajoutant un arrêt pipi aux Usses pour les enfants.", "language": "fr"}
+{"text": "De Lille à Reims, évite les autoroutes via la D102, fais une pause de recharge à Cambrai, passe par la route touristique du vin de Champagne à Épernay et ajoute un arrêt déjeuner à Laon.", "language": "fr"}
+{"text": "Bonjour, je voudrais aller de Rennes à Bordeaux. Évitez les péages, s'il vous plaît. La circulation semble déjà dense ce matin.", "language": "fr"}
+{"text": "va de Tumkūr à Bodupāl avec des arrêts de recharge tous les 300 km, environ 550 km", "language": "fr"}
+{"text": "navigue de Qiqihar à Baiquan sans traversées en ferry", "language": "fr"}
+{"text": "Mon mari veut conduire notre fourgon de livraison de Zurich à Milan aujourd'hui à cause du brouillard et de la circulation dense, avec une tolérance stricte sur les péages.", "language": "fr"}
+{"text": "Va de Chambéry à Annecy par l’A41, évite les péages et fais une pause à Aix-les-Bains pour recharger la batterie.", "language": "fr"}
+{"text": "De Bourges à Orléans, évite le péage et passe par Sully-sur-Loire car la route principale est fermée pour la foire du matin.", "language": "fr"}
+{"text": "Bonjour, j'aimerais aller de Lyon à Nice en évitant les péages, en faisant une pause café à Valence et en passant par des routes panoramiques.", "language": "fr"}
+{"text": "De Maubeuge à Épernay, choisis une route secondaire vallonnée, et insère un point de passage à Sedan pour voir la citadelle, avec un stop pour le plein de gasoil.", "language": "fr"}
+{"text": "navigue de Navi Mumbai à Mudhol par l'itinéraire le plus rapide, environ 470 km", "language": "fr"}
+{"text": "Calcule l'itinéraire de Caen vers Paris en évitant les péages et en prévoyant une halte de recharge à Rouen.", "language": "fr"}
+{"text": "Conduis-nous de Beauvais à Arras par la route panoramique de la vallée de la Somme, et évite la D916 fermée pour l'événement du matin.", "language": "fr"}
+{"text": "va de Moscow à Kimry en évitant les péages", "language": "fr"}
+{"text": "Je pars de Bourges direction Poitiers sur la D940 pour longer la vallée du Cher, mais rajoute une pause recharge de trente minutes à Tours.", "language": "fr"}
+{"text": "itinéraire de Songjiang à Gaomi sans traversées en ferry", "language": "fr"}
+{"text": "Dis-moi comment aller de Troyes à Chartres en passant par une route panoramique.", "language": "fr"}
+{"text": "Va de Nantes à Limoges par la route panoramique le long de la Vienne, et ajoute une pause déjeuner à Poitiers sans prendre l'autoroute.", "language": "fr"}
+{"text": "« On va de Clermont-Ferrand à Angoulême, prends la D941 par les monts du Limousin pour la vue, mais évite les routes fermées vers la forêt de Bort, et ajoute un stop de recharge à Egletons. »", "language": "fr"}
+{"text": "itinéraire de Minhang à Shaji en évitant les centres-villes", "language": "fr"}
+{"text": "Indique le parcours de Metz à Nancy en prévoyant une pause café pour éviter la zone de travaux.", "language": "fr"}
+{"text": "Conduis de Rennes à Caen sans utiliser les péages, en t'arrêtant à Avranches pour une pause-café et faire le plein, en choisissant la route des bords de mer, et en évitant la D675 fermée pour le marché matinal.", "language": "fr"}
+{"text": "« Emmène-nous de Rouen à Deauville en évitant les péages, et ajoute un arrêt à Pont-l'Évêque pour le petit-déjeuner, les enfants ont faim. »", "language": "fr"}
+{"text": "On va livrer les colis de Lille à Reims, évite les péages et prévois une halte recharge à mi-chemin, mais pas par l'A2 à cause des travaux dans le brouillard.", "language": "fr"}
+{"text": "conduis-moi de Larkana à Nawabshah", "language": "fr"}
+{"text": "Emmène-moi de Douai à Namur en passant par un point de passage à Somain, et prévois une pause déjeuner près de Binche.", "language": "fr"}
+{"text": "planifie un itinéraire de Sydney à Adelaide Hills par la route la plus pittoresque, environ 1370 km", "language": "fr"}
+{"text": "« Toujours de Clermont-Ferrand à Montluçon, prends la nationale 145 sans péage, prévois un arrêt déjeuner à Ébreuil, et contourne le bouchon de Saint-Pourçain en passant par la route des vins. »", "language": "fr"}
+{"text": "va de Delhi à Hisar en évitant les péages", "language": "fr"}
+{"text": "Calcule l'itinéraire de Reims à Amiens en évitant l'autoroute A2 à cause des travaux et sans prendre de péages.", "language": "fr"}
+{"text": "Trouve le chemin de Lille à Strasbourg en passant par les routes panoramiques.", "language": "fr"}
+{"text": "Quel est le trajet de Strasbourg à Caen en évitant les voies rapides et en prévoyant une recharge électrique?", "language": "fr"}
+{"text": "Emmène-moi de Lille à Bruxelles par l'A2, mais évite les travaux entre Valenciennes et Mons à cause du brouillard.", "language": "fr"}
+{"text": "On part de Tours pour aller à Poitiers, évite les péages et fais-moi passer par les petites routes de campagne, mais contourne la D910 qui est fermée à cause de la course cycliste.", "language": "fr"}
+{"text": "va de Kansas City à Burleson sans traversées en ferry", "language": "fr"}
+{"text": "« Emmène-moi de Rennes à Nantes, évite les péages et prévois un arrêt de recharge à Redon parce que la batterie est à 60 pour cent. »", "language": "fr"}
+{"text": "Allons de Paris à Lyon en évitant les péages et en passant par Dijon pour prendre le café à midi.", "language": "fr"}
+{"text": "Aller de Paris à Lyon en évitant les péages.", "language": "fr"}
+{"text": "Propose un itinéraire de Nantes à Rennes incluant un arrêt pour la recharge du camion.", "language": "fr"}
+{"text": "conduis-moi de Evaton à Piet Retief par l'itinéraire le plus rapide, environ 370 km", "language": "fr"}
+{"text": "De Valenciennes à Rotterdam, évite l'autoroute près des travaux et prends une route panoramique le long de l'Escaut.", "language": "fr"}
+{"text": "« Guide-moi de Rouen à Amiens, sans péages, avec un point de passage à Neufchâtel-en-Bray pour acheter du pain à trois euros, et par la petite route côtière si c'est possible. »", "language": "fr"}
+{"text": "Navigue-moi de Lyon à Annecy, mais passe par la route des Crêtes pour la vue, évite les péages, et prévois une pause de 20 minutes à Aix-les-Bains pour le café.", "language": "fr"}
+{"text": "navigue de Zaozhuang à Chongqing par la route la plus pittoresque, environ 1510 km", "language": "fr"}
+{"text": "Conduisez de Strasbourg à Lille en rechargeant la batterie à mi-chemin et en contournant la voie rapide pour rester en centre-ville.", "language": "fr"}
+{"text": "planifie un itinéraire de Johannesburg à Dundee sans traversées en ferry, environ 360 km", "language": "fr"}
+{"text": "conduis-moi de Centro Habana à Cumanayagua en évitant les péages", "language": "fr"}
+{"text": "Planifie un trajet de Grenoble à Nice en évitant les tunnels payants, avec une recharge à Sisteron et un détour par la route napoléon pour le panorama.", "language": "fr"}
+{"text": "zabierz mnie z Kochi do Mihara z postojami ładowania co 300 km, około 190 km", "language": "pl"}
+{"text": "Wyznacz trasę z Warszawy do Zakopanego, unikaj autostrad z opłatami i zaplanuj trasę przez malownicze, górskie drogi.", "language": "pl"}
+{"text": "„Z Poznania do Torunia, jedź przez Gniezno i Inowrocław, ale omijaj autostradę A1 i zatrzymaj się na chwilę w Kruszwicy przy wieży widokowej, zanim dotrzesz na miejsce.", "language": "pl"}
+{"text": "zabierz mnie z Zunyi do Shuanglu z postojami ładowania co 300 km, około 300 km", "language": "pl"}
+{"text": "Dzień dobry, szukam trasy z Poznania do Warszawy. Proszę uwzględnić, że muszę zrobić przerwę na kawę po około 150 kilometrach jazdy.", "language": "pl"}
+{"text": "Z Poznania do Rzeszowa, jedź przez Łódź i Lublin, wybierając drogi lokalne zamiast A2 i S19 (unikaj płatnych i ruchliwych tras), a dla odmiany zrób krótki odpoczynek w Radomiu, żeby rozprostować nogi i sprawdzić łańcuchy, bo pada śnieg i robi się niebezpiecznie.", "language": "pl"}
+{"text": "Poprowadź nas z Wrocławia do Karpacza przez malownicze trasy, unikając płatnych odcinków.", "language": "pl"}
+{"text": "Jadę motocyklem z Krakowa do Zakopanego przez malownicze drogi z przerwą na lunch i obowiazkową stacją doładowania, unikaj opłat drogowych.", "language": "pl"}
+{"text": "Dzień dobry, proszę wyznaczyć trasę z Krakowa do Zakopanego. Dodatkowo chcę unikać dróg płatnych i proszę zaplanować ładowanie baterii na trasie, ale tylko na szybkich ładowarkach.", "language": "pl"}
+{"text": "Bukujemy drogę z Wrocławia do Gdańska z translatora, aby uniknąć opłat drogowych i zatrzymać się na przerwę w Gnieźnie.", "language": "pl"}
+{"text": "nawiguj z Frisco do Alief z postojem na lunch w połowie drogi, około 450 km", "language": "pl"}
+{"text": "zaplanuj trasę z Salinas do Lemoore z postojami ładowania co 300 km z postojem na kawę", "language": "pl"}
+{"text": "zabierz mnie z Ho Chi Minh City do Châu Đốc bez promów", "language": "pl"}
+{"text": "Dzień dobry, proszę o wytyczenie trasy z Krakowa do Zakopanego, ale proszę unikać dróg płatnych, bo to świąteczny długi weekend i chcę uniknąć dodatkowych opłat.", "language": "pl"}
+{"text": "Znajdź najszybszą drogę z Łodzi do Białegostoku z uwzględnieniem postoju na ładowanie auta.", "language": "pl"}
+{"text": "Jadę motocyklem z Krakowa do Zakopanego na długi weekend, święta, pada śnieg i ruch jest mały – poprowadź trasą poniżej 100 km, unikaj autostrad i dróg płatnych, dodaj jeden przystanek na kawę w Nowym Targu oraz zaplanuj 10-minutową przerwę na rozgrzanie co 30 km.", "language": "pl"}
+{"text": "Proszę wyznaczyć trasę z Poznania do Gdańska, ale unikajcie autostrad z opłatami i uwzględnijcie postoje na kawę co dwie godziny.", "language": "pl"}
+{"text": "zaplanuj trasę z Beijing do Fengxiang malowniczą trasą", "language": "pl"}
+{"text": "jedź z Sylhet do Gaya unikając płatnych dróg", "language": "pl"}
+{"text": "Wyznacz trasę z Wrocławia do Białegostoku bez przejazdu przez płatne odcinki dróg.", "language": "pl"}
+{"text": "wyznacz trasę z Taboão da Serra do Cerquilho malowniczą trasą, około 150 km", "language": "pl"}
+{"text": "Dzień dobry, szukam trasy z Poznania do Warszawy. Jedziemy kamperem, jest świąteczny długi weekend, pada śnieg, a na A2 są roboty drogowe. Proszę unikać płatnych dróg i zaplanować dwie przerwy po 20 minut co około 2 godziny jazdy.", "language": "pl"}
+{"text": "Wyznacz trasę z Wrocławia do Szczecina z przerwą na obiad, omijając zablokowane przejazdy.", "language": "pl"}
+{"text": "Cześć, jadę w ten długi weekend z Krakowa do Zakopanego. Prosze o trasę, ale chciałbym po drodze zatrzymać się na jedną przerwę w jakiejś restauracji, żeby odpocząć, bo pada śnieg i jest duży ruch.", "language": "pl"}
+{"text": "Z Krakowa do Częstochowy, ale omijaj autostradę A4, bo świąteczny ruch straszny, na dodatek zatrzymaj się na ciepłą zupę w Miejscu Obsługi Podróżnych w Sławnie po czterdziestu minutach jazdy, i wybierz drogę przez Wolbrom, żeby uniknąć korków na DK79.", "language": "pl"}
+{"text": "Wyznacz trasę z Warszawy do Berlina, omijaj autostrady z opłatami, uwzględnij przerwę na ładowanie elektryka i prowadź mnie przez malownicze trasy.", "language": "pl"}
+{"text": "Przewidź trasę z Krakowa do Warszawy z przystankiem na ładowanie auta, omijając autostrady.", "language": "pl"}
+{"text": "Dzień dobry, chcę zaplanować trasę z Krakowa do Zakopanego. Proszę o unikanie dróg płatnych i zaplanowanie ładowania tak, żeby nie ryzykować rozładowania w górach, najlepiej z jedną przerwą na szybkie ładowanie po około połowie trasy.", "language": "pl"}
+{"text": "zabierz mnie z Quezon City do Capas malowniczą trasą", "language": "pl"}
+{"text": "Z Gdańska do Krakowa, omijaj płatne odcinki i zaplanuj przerwę na obiad w Warszawie.", "language": "pl"}
+{"text": "Jadę z Warszawy do Zakopanego, ale niech to będzie trasa malownicza.", "language": "pl"}
+{"text": "Z Gdańska do Torunia, wybierz drogę krajową nr 91 zamiast autostrady A1, ale dodaj punkt ładowania w Grudziądzu na 20 minut.", "language": "pl"}
+{"text": "Cześć, wyznacz mi trasę z Wrocławia do Gdyni dla ciężarówki. Chcę ominąć punkty poboru opłat, potrzebuję minimum 45-minutowej przerwy po 4 godzinach jazdy i punktem pośrednim ma być Sklep Rolnik w Grudziądzu, tam się zaopatrzę.", "language": "pl"}
+{"text": "Wyznacz trasę z Warszawy do Zakopanego, ale uwzględnij malownicze drogi.", "language": "pl"}
+{"text": "jedź z Kurume do Higashiosaka unikając autostrad, około 640 km", "language": "pl"}
+{"text": "Jadę furgonetką z Innsbrucku do Seefeldu i chciałbym objechać to malowniczą trasą przez Zirl, ale ominąć odcinki płatne.", "language": "pl"}
+{"text": "Znajdź najszybszą drogę z Warszawy do Białegostoku, uwzględniając postój na ładowanie samochodu.", "language": "pl"}
+{"text": "nawiguj z Wuzhong do Yan’an z postojami ładowania co 300 km", "language": "pl"}
+{"text": "Asystentie, zaplanuj trasę z Warszawy do Krakowa. Unikaj dróg płatnych, zaplanuj przerwę co 2 godziny na odpoczynek, i dodaj punkt pośredni w Kielcach na tankowanie.", "language": "pl"}
+{"text": "Wyznacz trasę z Warszawy do Lublina z przystankiem na tanie jedzenie w połowie drogi.", "language": "pl"}
+{"text": "Znajdź najszybszą drogę z Warszawy do Gdańska, uwzględniając przerwę na ładowanie samochodu.", "language": "pl"}
+{"text": "Z Krakowa do Zakopanego, ale omiń autostradę A4, bo jest świąteczny korek, i zatrzymaj się na ciepłą herbatę w Rabce-Zdroju.", "language": "pl"}
+{"text": "nawiguj z Sohag do Abū Tīj malowniczą trasą", "language": "pl"}
+{"text": "nawiguj z Baghdad do Umm Qaşr omijając centra miast przez najładniejszą drogę, około 570 km", "language": "pl"}
+{"text": "zabierz mnie z Yangpu do Buzhuang z postojem na kawę najszybszą trasą", "language": "pl"}
+{"text": "„Z Gdańska do Białowieży, ale omijaj krajową „ósemkę” przez Warszawę, jedź przez Białystok i zaplanuj przerwę na obiad w Augustowie, plus postój na kawę przy Puszczy Białowieskiej.", "language": "pl"}
+{"text": "Dzień dobry, potrzebuję trasy z Poznania do Gdańska, unikaj dróg płatnych, zaplanuj przerwę na odpoczynek co 2 godziny i dodaj punkt pośredni do ładowania samochodu elektrycznego.", "language": "pl"}
+{"text": "Znajdź najkrótszą drogę z Wrocławia do Poznania bez przejazdu przez odcinki płatne i zaplanuj postój na ładowanie baterii.", "language": "pl"}
+{"text": "Wyznacz trasę z Katowic do Szczecina bez przejazdu przez płatne odcinki dróg.", "language": "pl"}
+{"text": "wyznacz trasę z Kuala Lumpur do Lebaksiu z postojami ładowania co 300 km, około 1710 km", "language": "pl"}
+{"text": "wyznacz trasę z Quarto Oggiaro do Cenisia z postojem na lunch w połowie drogi", "language": "pl"}
+{"text": "Proszę o trasę malowniczą z Zielonej Góry do Wrocławia, bez opłat mostowych i z przerwą na poczęstunek w Legnicy.", "language": "pl"}
+{"text": "zaplanuj trasę z Ibadan do Sokoto przez najładniejszą drogę, około 820 km", "language": "pl"}
+{"text": "Z Lublina do Białegostoku, omijaj drogi ekspresowe S17 i S19, zrób przerwę na ciepłą herbatę w Międzyrzecu Podlaskim, wybierz trasę przez Biebrzański Park Narodowy i zaplanuj krótki postój naładowania w Bielsku Podlaskim.", "language": "pl"}
+{"text": "Jaka jest najładniejsza trasa z Zakopanego do Morskiego Oka? Jedziemy dostawczakiem w świąteczny weekend, śnieg pada, dużo ruchu, więc po drodze chcę się zatrzymać raz na przerwę.", "language": "pl"}
+{"text": "Z Wrocławia do Karpacza, omijaj drogi ekspresowe S3 i A8, skręć na drogę krajową nr 3 przez Jelenią Górę, zaplanuj postój na ładowanie samochodu elektrycznego w Bolkowie po 35 minutach, dodatkowo unikaj przejazdu przez centrum Kowar i wybierz trasę przez wiejskie dróżki wokół Ogorzelca.", "language": "pl"}
+{"text": "nawiguj z Homs do Shubrā al Khaymah unikając płatnych dróg", "language": "pl"}
+{"text": "zaplanuj trasę z Zhanjiang do Xintian z postojem na kawę", "language": "pl"}
+{"text": "Znajdź mi najtańszą drogę z Warszawy do Olsztyna bez autostrad, uwzględniając przystanek na ładowanie auta w drodze.", "language": "pl"}
+{"text": "Hej, nawigacja, poprowadź mnie z Krakowa do Zakopanego, ale mniej niż 100 km, unikaj płatnych dróg i dodaj jeden przystanek w Wadowicach na kawę.", "language": "pl"}
+{"text": "Wyznacz trasę z Krakowa do Zakopanego z postojem na obiad, omijając autostrady i drogi płatne.", "language": "pl"}
+{"text": "zaplanuj trasę z Beijing do Linshui bez autostrad", "language": "pl"}
+{"text": "wyznacz trasę z Rājkot do Sihor najszybszą trasą, około 150 km", "language": "pl"}
+{"text": "Prowadź mnie z Warszawy do Krakowa, ale unikaj autostrady A4 z opłatami i zaplanuj 30-minutową przerwę na kawę w połowie trasy. Śnieg sypie, ruch duży, jestem w środku rundy dostaw.", "language": "pl"}
+{"text": "Poprowadź mnie z Warszawy do Sochaczewa drogą A2, unikając odcinka z robotami drogowymi i licząc nie więcej niż 100 kilometrów.", "language": "pl"}
+{"text": "Poprowadź mnie z Lublina do Białegostoku, unikając płatnych odcinków i robiąc przystanek na szybkie ładowanie w Łomży.", "language": "pl"}
+{"text": "Z Białki Tatrzańskiej do Szczyrku przez Rabkę i Jordanów, ale omijaj drogę przez Głogoczów, bo tam jest blokada, dodaj punkt pośredni w Myślenicach na obiad w restauracji z kącikiem zabaw i koniecznie unikaj dróg szutrowych koło Kalwarii Zebrzydowskiej.", "language": "pl"}
+{"text": "„Z Torunia do Gorzowa Wielkopolskiego, jedź drogą krajową nr 91 zamiast A2, unikaj opłat za autostradę, zaplanuj postój na ładowanie w Inowrocławiu i przejedź przez malownicze okolice Puszczy Noteckiej.", "language": "pl"}
+{"text": "Wyznacz trasę z Wrocławia do Krakowa, unikając opłat drogowych na węzłach.", "language": "pl"}
+{"text": "Z Katowic do Bielska-Białej przez Pszczynę i Żywiec, bez autostrady A1, i doładuj auto w Bieruniu, bo śnieg i jazda górska zabiera prąd.", "language": "pl"}
+{"text": "Dzień dobry, proszę o wytyczenie trasy z Warszawy do Zakopanego. Po drodze chciałbym uniknąć płatnych odcinków autostrad i dodatkowo zaplanujcie mi dwie, pilne przerwy na szybkie ładowanie, bo bateria jest na 40%, a na dworze jest naprawdę mroźno.", "language": "pl"}
+{"text": "Cześć, poprowadź mnie z Krakowa do Zakopanego. Chcę ominąć opłaty drogowe i zaplanować przerwę na ładowanie, bo bateria mam już tylko na 300 kilometrów.", "language": "pl"}
+{"text": "Z Gdańska do Malborka, wybierz trasę malowniczą przez Kaszuby, unikaj płatnych dróg i wstąp do punktu szybkiego ładowania w Tczewie.", "language": "pl"}
+{"text": "Znajdź drogę z Gdańska do Olsztyna bez autostrad, jadąc przez mniejsze miejscowości i robiąc przerwę na kawę.", "language": "pl"}
+{"text": "Z Warszawy do Augustowa, z przerwą na ładowanie w Ostrołęce, unikając korków na S8.", "language": "pl"}
+{"text": "jedź z Belém do Pinheiro bez promów", "language": "pl"}
+{"text": "Jadę z paczkami z Warszawy do Radomia, potrzebuję trasy bez autostrad, najlepiej przez wiejskie drogi.", "language": "pl"}
+{"text": "Dzień dobry, proszę ustawić trasę z Krakowa do Zakopanego na świętych. Proszę o omijanie płacenia opłat drogowych, bo nie mam karty tol.", "language": "pl"}
+{"text": "nawiguj z Xiantao do Wuhan bez autostrad", "language": "pl"}
+{"text": "nawiguj z Marseille do Romano Banco malowniczą trasą", "language": "pl"}
+{"text": "jedź z Dachang do Zhoukou z przerwą co trzy godziny, około 750 km", "language": "pl"}
+{"text": "jedź z Bekasi do Surabaya omijając centra miast", "language": "pl"}
+{"text": "Jadę z Krakowa do Nowego Targu, przeprowadzka do nowego mieszkania, trasa poniżej 100 km, ale unikaj autostrad i zaplanuj jeden przystanek na kawę.", "language": "pl"}
+{"text": "Wyjeżdżam w długi weekend, mam vana i chcę jechać z Warszawy do Modlina, ale tak, żeby trasa miała poniżej 100 km, proszę unikać płatnych dróg, w planie zrobić jedną 15-minutową przerwę na kawę i wybrać trasę przez malownicze okolice, a nie autostradę A2, bo tam roboty.", "language": "pl"}
+{"text": "Jedziemy z Krakowa do Zakopanego, unikaj autostrad i płatnych dróg, i znajdź po drodze stację ładowania w Rabce, najlepiej taką z szybkim ładowaniem, bo mam mało baterii.", "language": "pl"}
+{"text": "Z Gdańska do Wrocławia, z przerwą na obiad we Wrześni, i unikaj tras płatnych, bo ruch i tak jest mały.", "language": "pl"}
+{"text": "Cześć, potrzebuję trasy z Krakowa do Zakopanego. Dodatkowo: chcę ominąć odcinki płatne, muszę zrobić co najmniej jedną przerwę na kawę po 2 godzinach jazdy i wole malownicze drogi, jeśli to możliwe.", "language": "pl"}
+{"text": "wyznacz trasę z Zigong do Anju unikając płatnych dróg bez promów", "language": "pl"}
+{"text": "Z Krakowa do Częstochowy, ale omijaj autostradę A4 i bramki, jedź przez Olkusz i zatrzymaj się na gorącą czekoladę w Wolbromiu, potem przed Świętą Anną zjedź na malowniczą drogę przez wzgórza.", "language": "pl"}
+{"text": "Naviguj z Warszawy do Zakopanego, ale omijaj autostrady i drogi płatne.", "language": "pl"}
+{"text": "Z Wrocławia do Gorzowa Wielkopolskiego, unikaj dróg ekspresowych i opłat, zaplanuj postoje na kawę w nowej Soli i na ładowanie w Międzyrzeczu, wybierz trasę przez malownicze wzgórza koło Krosna Odrzańskiego.", "language": "pl"}
+{"text": "Z Wrocławia do Karpacza, omijając autostrady i drogi płatne, z przerwą na kawę i ładowanie w Jeleniej Górze.", "language": "pl"}
+{"text": "Jedź z bazy w Katowicach do biura klienta w Gliwicach, omijaj zatory przez imprezę, uwzględnij opłaty drogowe, przerwy na odpoczynek i malownicze trasy.", "language": "pl"}
+{"text": "zabierz mnie z Johannesburg do Thaba Nchu unikając autostrad", "language": "pl"}
+{"text": "jedź z Visakhapatnam do Payakaraopeta", "language": "pl"}
+{"text": "jedź z São Luís do Itapagé z postojami ładowania co 300 km, około 760 km", "language": "pl"}
+{"text": "Czy da się dojechać z Krakowa do lotniska w Katowicach bez autostrady, ale unikając korków?", "language": "pl"}
+{"text": "Z Poznania do Szklarskiej Poręby, ale jedź przez Leszno i Jelenią Górę, omijaj autostradę A2 i drogi płatne, i zrób obiadową przerwę w Karpaczu, zanim dojedziesz do celu, bo na lokalnych drogach leży śnieg i trwa parada.", "language": "pl"}
+{"text": "Z Gdańska do Torunia, jedź przez Grudziądz i Świecie, unikaj autostrady A1 ze względu na opłaty i śnieg, dodaj punkt pośredni na krótki spacer w Tleniu, zorganizuj postój na ładowanie w Nowem, i wybierz drogę nadwiślańską, żeby podziwiać krajobrazy.", "language": "pl"}
+{"text": "Wyznacz trasę z Warszawy do Berlina, uwzględnij obowiązkowe przerwy co 4,5 godziny, unikaj płatnych autostrad i prowadź mnie przez malownicze trasy, jeśli to możliwe.", "language": "pl"}
+{"text": "Jedź z Poznania do Wrocławia drogami ekspresowymi, ale unikaj płatnych odcinków i zatrzymaj się na 10 minut przy stacji benzynowej w Lesznie.", "language": "pl"}
+{"text": "Jedź z Wrocławia do Zielonej Góry, unikaj dróg ekspresowych S3 i S5, wybierz malowniczą drogę przez Lubin i Nową Sól, z przerwą na obiad w Polkowicach i postoje na ładowanie baterii w Szprotawie.", "language": "pl"}
+{"text": "Quiero conducir esta autocaravana eléctrica de Valladolid a Zaragoza el viernes a las 18:00, evitando la A2 por obras y la ola de calor, y necesito dos paradas para recargar la batería, una en Aranda de Duero y otra en Calatayud, sin peajes.", "language": "es"}
+{"text": "Dime cómo ir de Bilbao a San Sebastián evitando peajes y con una parada de recarga eléctrica.", "language": "es"}
+{"text": "Calcula la ruta de Bilbao a Murcia evitando peajes y buscando un lugar para recargar la batería.", "language": "es"}
+{"text": "Llévame de Bilbao a Sevilla por la autovía, con una parada para almorzar en Córdoba, pero sin peajes.", "language": "es"}
+{"text": "Calcula la ruta de Madrid a Cádiz sin pasar por la A2 por las obras, y busca un área de autocaravanas para dormir cerca de Sevilla.", "language": "es"}
+{"text": "Viajo de Madrid a Barcelona para visitar a un cliente, voy a evitar peajes, pararé media hora en Zaragoza para descansar, y necesito llegar antes de las 5 de la tarde.", "language": "es"}
+{"text": "planifica una ruta de Tianjin a Daxing sin autopistas, unos 120 km", "language": "es"}
+{"text": "Calcula la ruta de Madrid a Zaragoza por la carretera panorámica de la Sierra de Albarracín y añade un descanso de veinte minutos a mitad de camino.", "language": "es"}
+{"text": "Necesito ir de Madrid a Barcelona con el coche eléctrico, evitando peajes, y con una parada para recargar la batería a medio camino.", "language": "es"}
+{"text": "Dirígete de Bilbao a Murcia sin usar peajes y haciendo una parada para cargar el coche.", "language": "es"}
+{"text": "Ve de Murcia a Madrid por la A-30, pero evita la autovía de peaje y para en Albacete para cargar el coche, porque con esta ola de calor no quiero quedarme sin batería en medio del campo.", "language": "es"}
+{"text": "Necesito ir desde el almacén de la Calle Alcalá 45 hasta el centro logístico de Getafe, y quiero que evites peajes y que incluyas una parada para descansar de 15 minutos a mitad de ruta.", "language": "es"}
+{"text": "Calcula el trayecto de Sevilla a Málaga incluyendo una parada para comer en algún pueblo de la ruta.", "language": "es"}
+{"text": "planifica una ruta de Tianjin a Chongxing por la ruta más pintoresca, unos 1170 km", "language": "es"}
+{"text": "planifica una ruta de Strasbourg a Klingenstein con descansos cada dos horas con paradas de recarga cada 300 km", "language": "es"}
+{"text": "Voy de Logroño a Cartagena, pero nada de peajes y nada de autovías, con una parada de diez minutos en Soria y otra de recarga en Hellín, más dar un rodeo por la carretera de la Sierra para buscar aire fresco.", "language": "es"}
+{"text": "llévame de Bazhong a Guangzhou con una parada para dormir, unos 1480 km", "language": "es"}
+{"text": "navega de Nanning a Yanjing sin transbordadores", "language": "es"}
+{"text": "Busca una ruta para ir de Madrid a Sevilla evitando la A2 por las obras, que incluya una parada para cargar el coche y que me lleve por carreteras panorámicas para no sufrir tanto con el calor y el tráfico.", "language": "es"}
+{"text": "Salgo de Zaragoza con destino a Barcelona, no quiero pagar peajes, necesito una pausa en Lleida para estirar las piernas y encuentra una ruta que pase por el Priorat para disfrutar del paisaje.", "language": "es"}
+{"text": "Llévame de Madrid a Málaga por la carretera panorámica de la sierra, con una parada en una gasolinera cerca de Córdoba para descansar quince minutos.", "language": "es"}
+{"text": "llévame de Puyang a Huangji con una parada para dormir", "language": "es"}
+{"text": "Navega de Barcelona a Valencia sin usar autopistas y busca un sitio para descansar en Tarragona.", "language": "es"}
+{"text": "Calcula la ruta de Madrid a Valencia evitando los peajes y buscando una parada para recargar la batería antes de llegar.", "language": "es"}
+{"text": "ruta de Cali a Bosconia sin transbordadores", "language": "es"}
+{"text": "Guíame de Madrid a Santiago de Compostela evitando peajes\".", "language": "es"}
+{"text": "ruta de Maianga a Humbe con paradas de recarga cada 300 km", "language": "es"}
+{"text": "Quiero la ruta de Zaragoza a Bilbao sin peajes, evitando el centro de Pamplona, con una parada de recarga en Logroño y prefiere carreteras con árboles por el calor.", "language": "es"}
+{"text": "Llévame de Sevilla a Valencia evitando peajes y con una parada de recarga en Murcia.", "language": "es"}
+{"text": "Necesito ir de Málaga a Zaragoza hoy; planea una parada para almorzar hacia la mitad del camino.", "language": "es"}
+{"text": "Busca el camino de Sevilla a Málaga pero haz una parada para comer en una zona con sombra por el calor.", "language": "es"}
+{"text": "Hola, quiero ir desde el centro de Madrid hasta Valencia. Como es viernes y hay una ola de calor, quiero una ruta que incluya una parada de recarga obligatoria a mitad de camino y que evite los peajes.", "language": "es"}
+{"text": "Necesito ir de Bilbao a Logroño pasando por el punto intermedio de Miranda de Ebro, sin carreteras de peaje por las obras.", "language": "es"}
+{"text": "Llévame de Madrid a Valencia evitando las autopistas de peaje, con una parada para comer en Cuenca y toma la carretera panorámica por la Serranía Baja para no pasar por el corte del evento en la N-III.", "language": "es"}
+{"text": "Quiero ir de Madrid a Valencia con el coche, evita las autopistas de peaje, planifica una parada para recargar el coche eléctrico en Cuenca y busca una ruta por la N-III que sea más barata, saliendo antes para esquivar el tráfico de la hora punta del viernes.", "language": "es"}
+{"text": "planifica una ruta de Bengaluru a Chennai sin autopistas con una parada para comer a mitad de camino, unos 330 km", "language": "es"}
+{"text": "Necesito ir de Bilbao a Zaragoza evitando autopistas de peaje y con una parada de recarga del coche a mitad de camino.", "language": "es"}
+{"text": "Calcula el trayecto de Sevilla a Alicante pasando por un punto intermedio para almorzar y evitando la A2 por las obras.", "language": "es"}
+{"text": "ruta de Santa Luzia a Linhares con una parada para dormir", "language": "es"}
+{"text": "¿Cómo voy de Madrid a Valencia con la furgoneta para la mudanza pero esquivando todos los peajes?", "language": "es"}
+{"text": "Llévame de Madrid a Valencia por la autovía, evitando peajes, con una parada para comer en Cuenca y una ruta panorámica cerca de la costa.", "language": "es"}
+{"text": "Recalcula de Zaragoza a Barcelona por una carretera panorámica que nos saque del calor de la autopista.", "language": "es"}
+{"text": "Conduciendo con una furgoneta de reparto desde Málaga a Santiago de Compostela, evitando peajes.", "language": "es"}
+{"text": "ruta de Dandong a Harbin con una parada para tomar café", "language": "es"}
+{"text": "Ve de Málaga a Córdoba evitando autopistas y peajes, haz una pausa de recarga en Ronda con el coche, y toma la carretera panorámica de los pueblos blancos para sortear el corte por el evento, a pesar del calor.", "language": "es"}
+{"text": "Quiero ir de Madrid a Barcelona en coche, evitando autopistas de peaje y parando 10 minutos en Zaragoza para estirar las piernas.", "language": "es"}
+{"text": "Llévame de Madrid a Valencia por la A-3, evita los peajes y haz una parada para descansar en Cuenca.", "language": "es"}
+{"text": "Necesito ir de Bilbao a Madrid saliendo a las seis, mete un descanso en Burgos y otra parada para recargar en Aranda de Duero, y ni un solo peaje.", "language": "es"}
+{"text": "Viajando de Madrid a Barcelona, necesito parar a cargar el coche en Zaragoza y evitar peajes.", "language": "es"}
+{"text": "Navega de Murcia a La Coruña evitando peajes y autovías, incluye una parada para comer en Salamanca y pasa por la ruta paisajística de la N-630.", "language": "es"}
+{"text": "ve de Surat a Najafgarh sin transbordadores, unos 1060 km", "language": "es"}
+{"text": "Salgo de la estación de autobuses de Sevilla y voy a la entrada sur de Burgos, mete una paradita en Mérida para echar agua al radiador y evita la AP-4 y la AP-6 que con el viernes van a ser un infierno, pero buscando una carretera secundaria con sombra para no sufrir la ola de calor.", "language": "es"}
+{"text": "Busca la ruta más rápida desde la central de logística de Albacete hasta el centro de distribución de Valencia, pero evita la A2 por las obras y busca un sitio para cargar el coche antes de parar a descansar una hora.", "language": "es"}
+{"text": "Calcula una ruta de Barcelona a Zaragoza sin peajes y con una parada para comer en Lleida, que es viernes y la hora punta va a estar fatal.", "language": "es"}
+{"text": "Necesito ir de Bilbao a Logroño esquivando la A-1 por las obras del evento y haciendo un descanso en un área de servicio, porque con este calor no quiero conducir sin parar.", "language": "es"}
+{"text": "Calcula el trayecto de Bilbao a San Sebastián por una carretera panorámica y para a comer en un pueblo.", "language": "es"}
+{"text": "Lleva de Madrid a Granada sin usar autovías de peaje y programa una recarga de quince minutos en Bailén, porque la batería va justa y no quiero quedarme tirado entre olivos.", "language": "es"}
+{"text": "Ve de Bilbao a Pamplona evitando las autopistas principales y busca una ruta con más sombra por el calor que hace.", "language": "es"}
+{"text": "navega de Lima a Minas de Marcona sin transbordadores", "language": "es"}
+{"text": "Hola, necesito ir desde la Calle Gran Vía, Madrid, hasta el Aeropuerto de Barajas, y tengo tres restricciones: nada de peajes, necesito una pausa de 10 minutos a mitad de camino, y quiero evitar autopistas, solo calles normales. ¿Me ayudas?", "language": "es"}
+{"text": "De Burgos a Alicante, sin autopistas, con una pausa para comer en Cuenca y desviándonos por la N-420 para una ruta más pintoresca.", "language": "es"}
+{"text": "De Málaga a San Sebastián, tira por la carretera panorámica de la costa cantábrica, pero quita los peajes del País Vasco, que hoy con el atasco de viernes no pago yo.", "language": "es"}
+{"text": "Calcula la ruta de Valencia a Bilbao por la carretera panorámica de los Picos de Europa y añade un descanso de veinte minutos en Burgos.", "language": "es"}
+{"text": "Ponme la ruta de Madrid a Valencia evitando los peajes y haciendo una parada para comer en mitad del camino.", "language": "es"}
+{"text": "ve de Bahçelievler a İdil sin autopistas con una parada cada tres horas, unos 1590 km", "language": "es"}
+{"text": "Calcula el trayecto de Bilbao a Faro pero que sea por carretera panorámica para ver el paisaje.", "language": "es"}
+{"text": "Dime cómo ir de Barcelona a Granada por la carretera panorámica para ver un poco el paisaje.", "language": "es"}
+{"text": "Quiero ir de Bilbao a Granada evitando las autopistas de peaje y buscando un punto intermedio para descansar del calor.", "language": "es"}
+{"text": "Navega de Barcelona a Valencia buscando una parada para la recarga eléctrica.", "language": "es"}
+{"text": "De Málaga a Murcia, por la costa evitando la A-7 de pago, con una parada de carga en Almería y un desvío por el Cabo de Gata para que el coche no sufra tanto.", "language": "es"}
+{"text": "Busca el camino de Sevilla a Málaga pero haz una parada para comer en mitad del trayecto.", "language": "es"}
+{"text": "Llévame de Málaga a Sevilla saliendo ahora mismo, incluye un descanso de veinte minutos en un área de servicio en Osuna, toma la carretera panorámica de la A-375 por Grazalema y evita los peajes de la AP-4.", "language": "es"}
+{"text": "llévame de Turkistan a Shiyeli evitando los centros de las ciudades, unos 170 km", "language": "es"}
+{"text": "¿Puedo ir en la autocaravana de Sevilla a Valencia en ruta panorámica, con una parada para recargar el coche eléctrico y evitando peajes?", "language": "es"}
+{"text": "Salimos de Zaragoza y vamos a Bilbao, evitando la autovía y haciendo una pausa para comer en Logroño, con el aire acondicionado a tope por el calor.", "language": "es"}
+{"text": "Calcula la ruta de Madrid a Valencia por carreteras panorámicas y con parada para almorzar hacia la una.", "language": "es"}
+{"text": "navega de Lagos a Aba evitando los centros de las ciudades", "language": "es"}
+{"text": "Hola, necesito una ruta de Algeciras a Bilbao. Quiero evitar peajes, necesito paradas de descanso cada 4 horas y que la ruta tenga buena cobertura de gasolineras para camiones, es la hora punta del viernes y paso mucho calor.", "language": "es"}
+{"text": "ve de Multan a Jalalpur Pirwala sin autopistas, unos 100 km", "language": "es"}
+{"text": "planifica una ruta de Rasapūdipalem a Guntur con una parada para tomar café", "language": "es"}
+{"text": "Ponme el camino de Valencia a Málaga pero busca una parada para comer por el medio que no esté masificada.", "language": "es"}
+{"text": "ruta de Dachang a Gaofeng sin carreteras de peaje", "language": "es"}
+{"text": "llévame de Tapachula a Benito Juárez evitando los centros de las ciudades con una parada para tomar café", "language": "es"}
+{"text": "Busca el trayecto de Sevilla a Bilbao sin usar autopistas y que incluya una parada para recargar el coche eléctrico.", "language": "es"}
+{"text": "Guíame de Málaga a Barcelona evitando autopistas y planifica una recarga rápida en Tarragona porque la batería está por debajo del cuarenta por ciento.", "language": "es"}
+{"text": "Ponme de Madrid a Valencia pero busca una ruta sin peajes que me permita evitar el atasco de la salida.", "language": "es"}
+{"text": "ve de Songjiang a Zhangzhuang sin transbordadores por la ruta más rápida, unos 650 km", "language": "es"}
+{"text": "De Murcia a Granada, pero nada de autovías con peaje, y añade una recarga rápida en Baza, además de buscar una carretera panorámica que evite el centro de las ciudades, que con el atasco del viernes no quiero ni ver.", "language": "es"}
+{"text": "Vamos de Zaragoza a Pamplona por la A-15, pero por favor, hijo, evita la AP-2 en todo lo que puedas y búscame un sitio para cargar el coche en Soria de paso.", "language": "es"}
+{"text": "Ponme una ruta de Madrid a Valencia evitando la A2 por las obras y parando en un sitio con sombra para comer.", "language": "es"}
+{"text": "Tenemos que ir de Murcia a La Coruña, pero por la A-3 y luego la N-VI, evitando la AP-1 y con una parada de diez minutos en Madrid para tomar algo fresco.", "language": "es"}
+{"text": "ruta de Chongqing a Tongren con una parada cada tres horas", "language": "es"}
+{"text": "ruta de Bogotá a Chinchiná evitando los centros de las ciudades", "language": "es"}
+{"text": "navega de Chongqing a Qianjiang evitando autopistas", "language": "es"}
+{"text": "Dime cómo llegar de Bilbao a Murcia evitando peajes y parando en un punto de recarga.", "language": "es"}
+{"text": "Tengo que ir de Madrid a Santiago de Compostela con la autocaravana, pero busca una ruta que incluya carreteras panorámicas y una parada para recargar el gas.", "language": "es"}
+{"text": "Quiero ir de Sevilla a Málaga por una carretera panorámica, y busca también un punto de recarga para el coche eléctrico.", "language": "es"}
+{"text": "Calcula la ruta de Madrid a Sevilla evitando todos los peajes para llegar antes de que se sature más la carretera.", "language": "es"}
+{"text": "ve de Fuyang a Huai'an por la ruta más pintoresca", "language": "es"}
+{"text": "Trayecto de Málaga a Gijón, evitando peajes y con una pausa de veinte minutos en Córdoba para estirar las piernas.", "language": "es"}
+{"text": "Calcula el trayecto de Bilbao a Murcia con una parada para cargar el coche eléctrico a mitad de camino.", "language": "es"}
+{"text": "ve de Wuxi a Qingdao por la ruta más rápida, unos 620 km", "language": "es"}

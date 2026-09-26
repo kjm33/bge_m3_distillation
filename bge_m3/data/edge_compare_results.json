@@ -1,0 +1,667 @@
+{
+  "meta": {
+    "script": "edge_compare.py",
+    "created": "2026-09-26 13:02:18",
+    "seed": 42,
+    "torch": "2.14.0+cu130",
+    "sentence_transformers": "6.1.0",
+    "transformers": "5.17.0",
+    "cuda_device": "NVIDIA GeForce RTX 3090",
+    "hf_hub_offline_default": true,
+    "rss_note": "RSS deltas after the first model in the CPU loop are noisy: python/torch allocators keep freed pages, so peak_rss_mb (absolute) per stage is the more meaningful number; deltas are upper bounds of the true model footprint.",
+    "network_fallbacks": []
+  },
+  "bench": {
+    "source": "/home/kamil/projects/here/instruction_extraction/data/instructions_v3.jsonl",
+    "n_source_records": 21959,
+    "n_filtered_json_artifacts": 880,
+    "n_bench": 512,
+    "per_language": {
+      "en": 103,
+      "de": 103,
+      "fr": 102,
+      "pl": 102,
+      "es": 102
+    },
+    "seed": 42,
+    "path": "/home/kamil/projects/here/embeddings/bge_m3/data/edge_bench.jsonl",
+    "avg_tokens_per_text": 32.6,
+    "bench_tokens_bge_tokenizer": 16694
+  },
+  "models": {
+    "bge_m3": {
+      "meta": {
+        "repo": "BAAI/bge-m3",
+        "role": "baseline/ground_truth",
+        "dim": 1024,
+        "impl": "transformers AutoModel (CLS)",
+        "license": [
+          "mit",
+          "hf_card"
+        ],
+        "weights_fp32": [
+          2271145830,
+          [
+            "pytorch_model.bin"
+          ]
+        ]
+      },
+      "quality_vs_gt": {
+        "pairwise_spearman_20k_pairs": 1.0,
+        "knn_jaccard_at10": 1.0,
+        "mrr_at10_of_gt_top1": 1.0,
+        "top1_agreement": 1.0,
+        "ari_50_clusters": null,
+        "note": "is the ground truth"
+      },
+      "cpu": {
+        "impl": "sentence_transformers",
+        "n_params": 567754752,
+        "load_s": 1.65,
+        "bs1": {
+          "texts_s": 4.4,
+          "latency_ms": {
+            "p50": 234.0,
+            "p95": 259.8
+          }
+        },
+        "bs8": {
+          "texts_s": 18.9,
+          "ms_per_batch": 422.7
+        },
+        "bs32": {
+          "texts_s": 24.5,
+          "ms_per_batch": 1305.2
+        },
+        "peak_rss_mb": 4555,
+        "rss_delta_mb": 1374
+      },
+      "onnx_int8": {
+        "skipped": "no official onnx export usable for edge comparison (2.1 GB, already quantized in quantize_compare.py)"
+      }
+    },
+    "qwen3_06b": {
+      "meta": {
+        "repo": "Qwen/Qwen3-Embedding-0.6B",
+        "prefix": null,
+        "license": [
+          "apache-2.0",
+          "hf_card"
+        ],
+        "weights_fp32": {
+          "bytes": 1191586416,
+          "files": [
+            "model.safetensors"
+          ],
+          "format": "*.safetensors"
+        },
+        "impl": "sentence_transformers (fp32)",
+        "dim": 1024,
+        "n_params": 595776512,
+        "max_seq_length": 32768
+      },
+      "quality": {
+        "pairwise_spearman_20k_pairs": 0.4202,
+        "knn_jaccard_at10": 0.3655,
+        "mrr_at10_of_gt_top1": 0.5432,
+        "top1_agreement": 0.4219,
+        "top1_agreement_crosslingual": 0.0952,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.2661
+      },
+      "cpu": {
+        "impl": "sentence_transformers",
+        "n_params": 595776512,
+        "load_s": 0.59,
+        "bs1": {
+          "texts_s": 6.0,
+          "latency_ms": {
+            "p50": 144.4,
+            "p95": 297.4
+          }
+        },
+        "bs8": {
+          "texts_s": 4.1,
+          "ms_per_batch": 1959.4
+        },
+        "bs32": {
+          "texts_s": 3.7,
+          "ms_per_batch": 8709.7
+        },
+        "peak_rss_mb": 3688,
+        "rss_delta_mb": 972
+      },
+      "onnx_int8": {
+        "skipped": "no official onnx export shipped in repo (MRL dims must stay selectable anyway)"
+      }
+    },
+    "e5_base": {
+      "meta": {
+        "repo": "intfloat/multilingual-e5-base",
+        "prefix": "query: ",
+        "license": [
+          "mit",
+          "hf_card"
+        ],
+        "weights_fp32": {
+          "bytes": 1112201288,
+          "files": [
+            "model.safetensors"
+          ],
+          "format": "*.safetensors"
+        },
+        "impl": "sentence_transformers (fp32)",
+        "dim": 768,
+        "n_params": 278043648,
+        "max_seq_length": 512
+      },
+      "cpu": {
+        "impl": "sentence_transformers",
+        "n_params": 278043648,
+        "load_s": 26.56,
+        "bs1": {
+          "texts_s": 15.8,
+          "latency_ms": {
+            "p50": 64.5,
+            "p95": 74.3
+          }
+        },
+        "bs8": {
+          "texts_s": 61.0,
+          "ms_per_batch": 131.2
+        },
+        "bs32": {
+          "texts_s": 76.1,
+          "ms_per_batch": 420.5
+        },
+        "peak_rss_mb": 4957,
+        "rss_delta_mb": 881
+      },
+      "quality": {
+        "pairwise_spearman_20k_pairs": 0.5708,
+        "knn_jaccard_at10": 0.3877,
+        "mrr_at10_of_gt_top1": 0.5976,
+        "top1_agreement": 0.4785,
+        "top1_agreement_crosslingual": 0.0595,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.255
+      },
+      "onnx_int8": {
+        "fp32_onnx_bytes": 1110059084,
+        "int8_onnx_bytes": 278233317,
+        "compression_ratio": 3.99,
+        "quantization": {
+          "method": "quantize_dynamic",
+          "weight_type": "QInt8",
+          "use_external_data_format": false,
+          "wall_s": 15.3
+        },
+        "session_init_s": 0.64,
+        "session_inputs": [
+          "input_ids",
+          "attention_mask"
+        ],
+        "pooling": "mean",
+        "dense_applied": false,
+        "max_seq_length": 512,
+        "prefix": "query: ",
+        "bs8": {
+          "texts_s": 82.5,
+          "ms_per_batch": 97.0
+        },
+        "latency_ms": {
+          "p50": 12.8,
+          "p95": 18.2
+        },
+        "quality": {
+          "int8_vs_torch_fp32": {
+            "cosine_mean": 0.974851,
+            "cosine_min": 0.943806
+          },
+          "fp32_onnx_vs_torch_fp32": {
+            "cosine_mean": 1.0,
+            "cosine_min": 1.0
+          },
+          "knn_jaccard_at10_vs_gt": 0.3602,
+          "torch_ref_recomputed_in_stage": false
+        }
+      }
+    },
+    "labse": {
+      "meta": {
+        "repo": "sentence-transformers/LaBSE",
+        "prefix": null,
+        "license": [
+          "apache-2.0",
+          "hf_card"
+        ],
+        "weights_fp32": {
+          "bytes": 1886096872,
+          "files": [
+            "model.safetensors",
+            "model.safetensors"
+          ],
+          "format": "*.safetensors"
+        },
+        "impl": "sentence_transformers (fp32)",
+        "dim": 768,
+        "n_params": 471517440,
+        "max_seq_length": 256
+      },
+      "cpu": {
+        "impl": "sentence_transformers",
+        "n_params": 471517440,
+        "load_s": 0.75,
+        "bs1": {
+          "texts_s": 17.1,
+          "latency_ms": {
+            "p50": 60.7,
+            "p95": 67.4
+          }
+        },
+        "bs8": {
+          "texts_s": 70.8,
+          "ms_per_batch": 113.0
+        },
+        "bs32": {
+          "texts_s": 87.7,
+          "ms_per_batch": 364.7
+        },
+        "peak_rss_mb": 3636,
+        "rss_delta_mb": 527
+      },
+      "quality": {
+        "pairwise_spearman_20k_pairs": 0.7253,
+        "knn_jaccard_at10": 0.3501,
+        "mrr_at10_of_gt_top1": 0.5288,
+        "top1_agreement": 0.3828,
+        "top1_agreement_crosslingual": 0.3095,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.2221
+      },
+      "onnx_int8": {
+        "fp32_onnx_bytes": 1881623050,
+        "int8_onnx_bytes": 471180075,
+        "compression_ratio": 3.99,
+        "quantization": {
+          "method": "quantize_dynamic",
+          "weight_type": "QInt8",
+          "use_external_data_format": false,
+          "wall_s": 26.6
+        },
+        "session_init_s": 1.07,
+        "session_inputs": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "pooling": "cls",
+        "dense_applied": true,
+        "max_seq_length": 256,
+        "prefix": null,
+        "bs8": {
+          "texts_s": 66.2,
+          "ms_per_batch": 120.8
+        },
+        "latency_ms": {
+          "p50": 51.2,
+          "p95": 79.3
+        },
+        "quality": {
+          "int8_vs_torch_fp32": {
+            "cosine_mean": 0.520112,
+            "cosine_min": 0.267383
+          },
+          "fp32_onnx_vs_torch_fp32": {
+            "cosine_mean": 1.0,
+            "cosine_min": 1.0
+          },
+          "knn_jaccard_at10_vs_gt": 0.3159,
+          "torch_ref_recomputed_in_stage": false
+        }
+      }
+    },
+    "e5_small": {
+      "meta": {
+        "repo": "intfloat/multilingual-e5-small",
+        "prefix": "query: ",
+        "license": [
+          "mit",
+          "hf_card"
+        ],
+        "weights_fp32": {
+          "bytes": 470641600,
+          "files": [
+            "model.safetensors"
+          ],
+          "format": "*.safetensors"
+        },
+        "impl": "sentence_transformers (fp32)",
+        "dim": 384,
+        "n_params": 117653760,
+        "max_seq_length": 512
+      },
+      "cpu": {
+        "impl": "sentence_transformers",
+        "n_params": 117653760,
+        "load_s": 17.36,
+        "bs1": {
+          "texts_s": 45.9,
+          "latency_ms": {
+            "p50": 21.7,
+            "p95": 25.3
+          }
+        },
+        "bs8": {
+          "texts_s": 207.5,
+          "ms_per_batch": 38.6
+        },
+        "bs32": {
+          "texts_s": 243.5,
+          "ms_per_batch": 131.4
+        },
+        "peak_rss_mb": 3398,
+        "rss_delta_mb": 289
+      },
+      "quality": {
+        "pairwise_spearman_20k_pairs": 0.5718,
+        "knn_jaccard_at10": 0.3564,
+        "mrr_at10_of_gt_top1": 0.5514,
+        "top1_agreement": 0.4238,
+        "top1_agreement_crosslingual": 0.0119,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.2519
+      },
+      "onnx_int8": {
+        "fp32_onnx_bytes": 470268510,
+        "int8_onnx_bytes": 118101091,
+        "compression_ratio": 3.98,
+        "quantization": {
+          "method": "quantize_dynamic",
+          "weight_type": "QInt8",
+          "use_external_data_format": false,
+          "wall_s": 6.8
+        },
+        "session_init_s": 0.3,
+        "session_inputs": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "pooling": "mean",
+        "dense_applied": false,
+        "max_seq_length": 512,
+        "prefix": "query: ",
+        "bs8": {
+          "texts_s": 230.1,
+          "ms_per_batch": 34.8
+        },
+        "latency_ms": {
+          "p50": 5.1,
+          "p95": 7.4
+        },
+        "quality": {
+          "int8_vs_torch_fp32": {
+            "cosine_mean": 0.988219,
+            "cosine_min": 0.976238
+          },
+          "fp32_onnx_vs_torch_fp32": {
+            "cosine_mean": 1.0,
+            "cosine_min": 1.0
+          },
+          "knn_jaccard_at10_vs_gt": 0.3449,
+          "torch_ref_recomputed_in_stage": false
+        }
+      }
+    },
+    "minilm": {
+      "meta": {
+        "repo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "prefix": null,
+        "license": [
+          "apache-2.0",
+          "hf_card"
+        ],
+        "weights_fp32": {
+          "bytes": 470641600,
+          "files": [
+            "model.safetensors"
+          ],
+          "format": "*.safetensors"
+        },
+        "impl": "sentence_transformers (fp32)",
+        "dim": 384,
+        "n_params": 117653760,
+        "max_seq_length": 128
+      },
+      "cpu": {
+        "impl": "sentence_transformers",
+        "n_params": 117653760,
+        "load_s": 19.5,
+        "bs1": {
+          "texts_s": 47.3,
+          "latency_ms": {
+            "p50": 20.9,
+            "p95": 24.3
+          }
+        },
+        "bs8": {
+          "texts_s": 177.9,
+          "ms_per_batch": 45.0
+        },
+        "bs32": {
+          "texts_s": 236.4,
+          "ms_per_batch": 135.4
+        },
+        "peak_rss_mb": 3360,
+        "rss_delta_mb": 203
+      },
+      "quality": {
+        "pairwise_spearman_20k_pairs": 0.471,
+        "knn_jaccard_at10": 0.2948,
+        "mrr_at10_of_gt_top1": 0.4457,
+        "top1_agreement": 0.3164,
+        "top1_agreement_crosslingual": 0.2024,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.2181
+      },
+      "onnx_int8": {
+        "fp32_onnx_bytes": 470301610,
+        "int8_onnx_bytes": 118167673,
+        "compression_ratio": 3.98,
+        "quantization": {
+          "method": "quantize_dynamic",
+          "weight_type": "QInt8",
+          "use_external_data_format": false,
+          "wall_s": 6.9
+        },
+        "session_init_s": 0.32,
+        "session_inputs": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "pooling": "mean",
+        "dense_applied": false,
+        "max_seq_length": 128,
+        "prefix": null,
+        "bs8": {
+          "texts_s": 241.1,
+          "ms_per_batch": 33.2
+        },
+        "latency_ms": {
+          "p50": 3.9,
+          "p95": 6.0
+        },
+        "quality": {
+          "int8_vs_torch_fp32": {
+            "cosine_mean": 0.987336,
+            "cosine_min": 0.948102
+          },
+          "fp32_onnx_vs_torch_fp32": {
+            "cosine_mean": 1.0,
+            "cosine_min": 1.0
+          },
+          "knn_jaccard_at10_vs_gt": 0.2941,
+          "torch_ref_recomputed_in_stage": false
+        }
+      }
+    },
+    "potion": {
+      "meta": {
+        "repo": "minishlab/potion-multilingual-128M",
+        "prefix": null,
+        "license": [
+          "mit",
+          "hf_card"
+        ],
+        "weights_fp32": {
+          "bytes": 512361560,
+          "files": [
+            "model.safetensors"
+          ],
+          "format": "*.safetensors"
+        },
+        "impl": "model2vec.StaticModel (static embeddings)",
+        "dim": 256,
+        "n_params": 128090368,
+        "n_params_note": "vocab x dim static lookup table (no transformer layers)"
+      },
+      "cpu": {
+        "impl": "model2vec.StaticModel",
+        "n_params": 128090368,
+        "load_s": 2.14,
+        "bs1": {
+          "texts_s": 5599.8,
+          "latency_ms": {
+            "p50": 0.2,
+            "p95": 0.3
+          }
+        },
+        "bs8": {
+          "texts_s": 18044.1,
+          "ms_per_batch": 0.4
+        },
+        "bs32": {
+          "texts_s": 29211.4,
+          "ms_per_batch": 1.1
+        },
+        "peak_rss_mb": 3708,
+        "rss_delta_mb": 527
+      },
+      "quality": {
+        "pairwise_spearman_20k_pairs": 0.5009,
+        "knn_jaccard_at10": 0.3027,
+        "mrr_at10_of_gt_top1": 0.4721,
+        "top1_agreement": 0.3496,
+        "top1_agreement_crosslingual": 0.0357,
+        "n_crosslingual_top1_texts": 84,
+        "ari_50_clusters": 0.2
+      }
+    },
+    "nomic_v2": {
+      "meta": {
+        "repo": "nomic-ai/nomic-embed-text-v2-moe"
+      },
+      "onnx_int8": {
+        "skipped": "no official onnx export shipped in repo (custom code, MoE)"
+      }
+    }
+  },
+  "mrl_sweep": {
+    "qwen3_06b": {
+      "trained_mrl": true,
+      "full_dim": 1024,
+      "dims": {
+        "64": {
+          "pairwise_spearman_20k_pairs": 0.4275,
+          "knn_jaccard_at10": 0.2664
+        },
+        "128": {
+          "pairwise_spearman_20k_pairs": 0.4861,
+          "knn_jaccard_at10": 0.3095
+        },
+        "256": {
+          "pairwise_spearman_20k_pairs": 0.4569,
+          "knn_jaccard_at10": 0.3351
+        },
+        "512": {
+          "pairwise_spearman_20k_pairs": 0.4201,
+          "knn_jaccard_at10": 0.3556
+        },
+        "1024": {
+          "pairwise_spearman_20k_pairs": 0.4202,
+          "knn_jaccard_at10": 0.3655
+        }
+      }
+    },
+    "bge_m3_naive_truncation": {
+      "trained_mrl": false,
+      "full_dim": 1024,
+      "dims": {
+        "128": {
+          "pairwise_spearman_20k_pairs": 0.8071,
+          "knn_jaccard_at10": 0.4694
+        },
+        "256": {
+          "pairwise_spearman_20k_pairs": 0.9053,
+          "knn_jaccard_at10": 0.5951
+        },
+        "512": {
+          "pairwise_spearman_20k_pairs": 0.9683,
+          "knn_jaccard_at10": 0.7336
+        },
+        "1024": {
+          "pairwise_spearman_20k_pairs": 1.0,
+          "knn_jaccard_at10": 1.0
+        }
+      },
+      "note": "bge_m3 is NOT MRL-trained; control for the MRL sweep above"
+    },
+    "e5_small": {
+      "trained_mrl": false,
+      "full_dim": 384,
+      "dims": {
+        "96": {
+          "pairwise_spearman_20k_pairs": 0.4949,
+          "knn_jaccard_at10": 0.2891
+        },
+        "192": {
+          "pairwise_spearman_20k_pairs": 0.551,
+          "knn_jaccard_at10": 0.3308
+        },
+        "384": {
+          "pairwise_spearman_20k_pairs": 0.5718,
+          "knn_jaccard_at10": 0.3564
+        }
+      }
+    }
+  },
+  "errors": {
+    "nomic_v2": {
+      "stage": "cpu",
+      "error": "c(texts[:16], 16)  # warmup\n    ^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/edge_compare.py\", line 450, in <lambda>\n    enc = lambda ts, bs: st.encode(ts, batch_size=bs, convert_to_numpy=True,\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\", line 46, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/sentence_transformers/sentence_transformer/model.py\", line 941, in encode\n    out_features = self(features, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/sentence_transformers/base/model.py\", line 569, in forward\n    input = module(input, **module_kwargs)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/sentence_transformers/base/modules/transformer.py\", line 1650, in forward\n    model_output = model_method(**filtered_kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/.cache/huggingface/modules/transformers_modules/nomic_hyphen_ai/nomic_hyphen_bert_hyphen_2048/7710840340a098cfb869c4f65e87cf2b1b70caca/modeling_hf_nomic_bert.py\", line 1914, in forward\n    attention_mask = self.get_extended_attention_mask(attention_mask, hidden_states.shape[:-1])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kamil/projects/here/embeddings/bge_m3/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1972, in __getattr__\n    raise AttributeError(\nAttributeError: 'NomicBertModel' object has no attribute 'get_extended_attention_mask'\n"
+    }
+  },
+  "ground_truth": {
+    "model": "BAAI/bge-m3",
+    "n": 512,
+    "dim": 1024,
+    "dtype": "fp32",
+    "l2_normalized": true,
+    "reused_existing_file": true
+  },
+  "cpu_env": {
+    "device": "cpu",
+    "dtype": "fp32",
+    "torch_threads": 16,
+    "torch_get_num_threads": 16,
+    "note": "RSS deltas after the first model in the CPU loop are noisy: python/torch allocators keep freed pages, so peak_rss_mb (absolute) per stage is the more meaningful number; deltas are upper bounds of the true model footprint.",
+    "n_warmup": 16,
+    "n_bs1_texts": 128,
+    "stage_peak_rss_mb": 4957
+  },
+  "skipped": {
+    "nomic_v2": "nomic custom code (NomicBertModel) incompatible with transformers 5.17 ('get_extended_attention_mask' removed); would need transformers<5"
+  }
+}

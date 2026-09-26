@@ -1,0 +1,963 @@
+{
+  "meta": {
+    "n_corpus": 512,
+    "topk": 5,
+    "dedup_threshold": 0.75,
+    "teacher": "BAAI/bge-m3 fp32 CUDA CLS (live)",
+    "student": "nav-e5s-distill int8 ONNX CPU (live, deployed artifact)",
+    "corpus_emb": {
+      "teacher": "data/edge_gt_fp32.npy (cached fp32)",
+      "student": "data/nav_e5s_distill_torch_emb.npy (cached torch fp32)"
+    },
+    "wall_s": {
+      "teacher_all_queries": 0.253,
+      "student_all_queries": 0.043
+    }
+  },
+  "results": [
+    {
+      "id": "Q1_control_verbatim",
+      "kind": "control-exact-duplicate (en)",
+      "text": "route from San Antonio to Cedar Park avoiding tolls",
+      "verdict": "EXACT",
+      "overlap_at5": 3,
+      "teacher_top1_rank_in_student": 0,
+      "teacher_top5": [
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 1.0,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        },
+        {
+          "idx": 39,
+          "lang": "en",
+          "cos": 0.752,
+          "text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls"
+        },
+        {
+          "idx": 297,
+          "lang": "fr",
+          "cos": 0.6181,
+          "text": "Aller de Paris à Lyon en évitant les péages."
+        },
+        {
+          "idx": 46,
+          "lang": "en",
+          "cos": 0.6161,
+          "text": "I need a route from Chicago to Nashville, but please avoid all tolls, include a stop for a charging station, a"
+        },
+        {
+          "idx": 71,
+          "lang": "en",
+          "cos": 0.6147,
+          "text": "Drive from Rome to Milan avoiding tolls and highways, and arrive before 5 pm."
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 0.9797,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        },
+        {
+          "idx": 39,
+          "lang": "en",
+          "cos": 0.7541,
+          "text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls"
+        },
+        {
+          "idx": 46,
+          "lang": "en",
+          "cos": 0.6374,
+          "text": "I need a route from Chicago to Nashville, but please avoid all tolls, include a stop for a charging station, a"
+        },
+        {
+          "idx": 42,
+          "lang": "en",
+          "cos": 0.6314,
+          "text": "Take me from Seattle to Portland, avoiding highways due to the late hour."
+        },
+        {
+          "idx": 85,
+          "lang": "en",
+          "cos": 0.6305,
+          "text": "Find me a route from the downtown office to the airport, avoiding tolls, including a stop at a coffee shop, an"
+        }
+      ],
+      "dedup_teacher": [
+        {
+          "idx": 39,
+          "lang": "en",
+          "cos": 0.752,
+          "text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls"
+        },
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 1.0,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        }
+      ],
+      "dedup_student": [
+        {
+          "idx": 39,
+          "lang": "en",
+          "cos": 0.754,
+          "text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls"
+        },
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 0.98,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        }
+      ]
+    },
+    {
+      "id": "Q2_paraphrase_en",
+      "kind": "paraphrase of en corpus text (en)",
+      "text": "I need to get from Vienna to Budapest, take a break every 100 km and every two hours",
+      "verdict": "EXACT",
+      "overlap_at5": 5,
+      "teacher_top1_rank_in_student": 0,
+      "teacher_top5": [
+        {
+          "idx": 83,
+          "lang": "en",
+          "cos": 0.9427,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each 2 hours"
+        },
+        {
+          "idx": 73,
+          "lang": "en",
+          "cos": 0.7895,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each two hours, but not after 18:00 and not"
+        },
+        {
+          "idx": 31,
+          "lang": "en",
+          "cos": 0.7607,
+          "text": "go from Madrid to Barcelona with breaks after each 100 km and after each two hours"
+        },
+        {
+          "idx": 24,
+          "lang": "en",
+          "cos": 0.7263,
+          "text": "go from Chicago to Detroit with breaks after each 100 miles and after each 2 hours"
+        },
+        {
+          "idx": 58,
+          "lang": "en",
+          "cos": 0.7107,
+          "text": "go from London to Manchester with breaks after each 100 km and after each two hours, but not more than 3 break"
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 83,
+          "lang": "en",
+          "cos": 0.9579,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each 2 hours"
+        },
+        {
+          "idx": 73,
+          "lang": "en",
+          "cos": 0.8328,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each two hours, but not after 18:00 and not"
+        },
+        {
+          "idx": 31,
+          "lang": "en",
+          "cos": 0.7912,
+          "text": "go from Madrid to Barcelona with breaks after each 100 km and after each two hours"
+        },
+        {
+          "idx": 24,
+          "lang": "en",
+          "cos": 0.7648,
+          "text": "go from Chicago to Detroit with breaks after each 100 miles and after each 2 hours"
+        },
+        {
+          "idx": 58,
+          "lang": "en",
+          "cos": 0.7374,
+          "text": "go from London to Manchester with breaks after each 100 km and after each two hours, but not more than 3 break"
+        }
+      ],
+      "dedup_teacher": [
+        {
+          "idx": 31,
+          "lang": "en",
+          "cos": 0.761,
+          "text": "go from Madrid to Barcelona with breaks after each 100 km and after each two hours"
+        },
+        {
+          "idx": 73,
+          "lang": "en",
+          "cos": 0.789,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each two hours, but not"
+        },
+        {
+          "idx": 83,
+          "lang": "en",
+          "cos": 0.943,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each 2 hours"
+        }
+      ],
+      "dedup_student": [
+        {
+          "idx": 24,
+          "lang": "en",
+          "cos": 0.765,
+          "text": "go from Chicago to Detroit with breaks after each 100 miles and after each 2 hours"
+        },
+        {
+          "idx": 31,
+          "lang": "en",
+          "cos": 0.791,
+          "text": "go from Madrid to Barcelona with breaks after each 100 km and after each two hours"
+        },
+        {
+          "idx": 73,
+          "lang": "en",
+          "cos": 0.833,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each two hours, but not"
+        },
+        {
+          "idx": 83,
+          "lang": "en",
+          "cos": 0.958,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each 2 hours"
+        }
+      ]
+    },
+    {
+      "id": "Q3_xling_pl_of_es",
+      "kind": "Polish rendering of es corpus text (pl)",
+      "text": "Poprowadź mnie z Barcelony do Saragossy bez płatnych dróg, z przerwą na obiad w Lleidzie",
+      "verdict": "EXACT",
+      "overlap_at5": 4,
+      "teacher_top1_rank_in_student": 0,
+      "teacher_top5": [
+        {
+          "idx": 3,
+          "lang": "en",
+          "cos": 0.7057,
+          "text": "Take me from Lyon to Barcelona, skip the toll highways, route me through the scenic coastal roads, and find a "
+        },
+        {
+          "idx": 78,
+          "lang": "en",
+          "cos": 0.6804,
+          "text": "Guide me from Barcelona to Paris while avoiding highways near Toulouse and including a rest and charge stop ar"
+        },
+        {
+          "idx": 413,
+          "lang": "es",
+          "cos": 0.6694,
+          "text": "Llévame de Bilbao a Sevilla por la autovía, con una parada para almorzar en Córdoba, pero sin peajes."
+        },
+        {
+          "idx": 373,
+          "lang": "pl",
+          "cos": 0.6632,
+          "text": "Poprowadź mnie z Lublina do Białegostoku, unikając płatnych odcinków i robiąc przystanek na szybkie ładowanie "
+        },
+        {
+          "idx": 246,
+          "lang": "fr",
+          "cos": 0.6587,
+          "text": "Bonjour, je pars de Lyon et je vais à Marseille. Peux-tu me trouver un itinéraire sans péages, avec des aires "
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 3,
+          "lang": "en",
+          "cos": 0.7522,
+          "text": "Take me from Lyon to Barcelona, skip the toll highways, route me through the scenic coastal roads, and find a "
+        },
+        {
+          "idx": 78,
+          "lang": "en",
+          "cos": 0.7444,
+          "text": "Guide me from Barcelona to Paris while avoiding highways near Toulouse and including a rest and charge stop ar"
+        },
+        {
+          "idx": 373,
+          "lang": "pl",
+          "cos": 0.7261,
+          "text": "Poprowadź mnie z Lublina do Białegostoku, unikając płatnych odcinków i robiąc przystanek na szybkie ładowanie "
+        },
+        {
+          "idx": 22,
+          "lang": "en",
+          "cos": 0.709,
+          "text": "take me from Vitória to Caetité without motorways"
+        },
+        {
+          "idx": 413,
+          "lang": "es",
+          "cos": 0.7035,
+          "text": "Llévame de Bilbao a Sevilla por la autovía, con una parada para almorzar en Córdoba, pero sin peajes."
+        }
+      ],
+      "dedup_teacher": [],
+      "dedup_student": [
+        {
+          "idx": 3,
+          "lang": "en",
+          "cos": 0.752,
+          "text": "Take me from Lyon to Barcelona, skip the toll highways, route me through the scenic coasta"
+        }
+      ]
+    },
+    {
+      "id": "Q4_xling_de_of_en",
+      "kind": "German rendering of en corpus text (de)",
+      "text": "Führ mich von San Antonio nach Cedar Park und meide alle Mautstraßen",
+      "verdict": "EXACT",
+      "overlap_at5": 3,
+      "teacher_top1_rank_in_student": 0,
+      "teacher_top5": [
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 0.851,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        },
+        {
+          "idx": 109,
+          "lang": "de",
+          "cos": 0.72,
+          "text": "Fahr mich von Chicago nach San Francisco und such dir eine Panoramastraße, aber vermeid möglichst Mautstellen."
+        },
+        {
+          "idx": 39,
+          "lang": "en",
+          "cos": 0.6459,
+          "text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls"
+        },
+        {
+          "idx": 127,
+          "lang": "de",
+          "cos": 0.6424,
+          "text": "Navigiere mich von München nach Hamburg, aber vermeide bitte alle Autobahnen."
+        },
+        {
+          "idx": 46,
+          "lang": "en",
+          "cos": 0.623,
+          "text": "I need a route from Chicago to Nashville, but please avoid all tolls, include a stop for a charging station, a"
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 0.8227,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        },
+        {
+          "idx": 109,
+          "lang": "de",
+          "cos": 0.7804,
+          "text": "Fahr mich von Chicago nach San Francisco und such dir eine Panoramastraße, aber vermeid möglichst Mautstellen."
+        },
+        {
+          "idx": 306,
+          "lang": "fr",
+          "cos": 0.7003,
+          "text": "conduis-moi de Centro Habana à Cumanayagua en évitant les péages"
+        },
+        {
+          "idx": 39,
+          "lang": "en",
+          "cos": 0.692,
+          "text": "reroute from San Francisco to Sacramento avoiding traffic and avoiding tolls"
+        },
+        {
+          "idx": 42,
+          "lang": "en",
+          "cos": 0.6868,
+          "text": "Take me from Seattle to Portland, avoiding highways due to the late hour."
+        }
+      ],
+      "dedup_teacher": [
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 0.851,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        }
+      ],
+      "dedup_student": [
+        {
+          "idx": 41,
+          "lang": "en",
+          "cos": 0.823,
+          "text": "route from San Antonio to Cedar Park avoiding tolls"
+        },
+        {
+          "idx": 109,
+          "lang": "de",
+          "cos": 0.78,
+          "text": "Fahr mich von Chicago nach San Francisco und such dir eine Panoramastraße, aber vermeid mö"
+        }
+      ]
+    },
+    {
+      "id": "Q5_theme_ev",
+      "kind": "constraint-theme only, no city anchor (en)",
+      "text": "I'm driving an EV, plan charging stops every 300 km and a coffee break on the way",
+      "verdict": "EXACT",
+      "overlap_at5": 3,
+      "teacher_top1_rank_in_student": 0,
+      "teacher_top5": [
+        {
+          "idx": 44,
+          "lang": "en",
+          "cos": 0.7222,
+          "text": "go from Tallahassee to Cary with EV charging stops every 300 km"
+        },
+        {
+          "idx": 66,
+          "lang": "en",
+          "cos": 0.7061,
+          "text": "route from Ichihara to Itogawa with EV charging stops every 300 km"
+        },
+        {
+          "idx": 424,
+          "lang": "es",
+          "cos": 0.6804,
+          "text": "planifica una ruta de Strasbourg a Klingenstein con descansos cada dos horas con paradas de recarga cada 300 k"
+        },
+        {
+          "idx": 5,
+          "lang": "en",
+          "cos": 0.6796,
+          "text": "route from Mokotów to Piecki-Migowo with EV charging stops every 300 km"
+        },
+        {
+          "idx": 107,
+          "lang": "de",
+          "cos": 0.6787,
+          "text": "Bitte leite mich von Frankfurt am Main nach München und plane einen Ladestopp für das Elektroauto ein."
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 44,
+          "lang": "en",
+          "cos": 0.8164,
+          "text": "go from Tallahassee to Cary with EV charging stops every 300 km"
+        },
+        {
+          "idx": 66,
+          "lang": "en",
+          "cos": 0.7655,
+          "text": "route from Ichihara to Itogawa with EV charging stops every 300 km"
+        },
+        {
+          "idx": 319,
+          "lang": "pl",
+          "cos": 0.7416,
+          "text": "zaplanuj trasę z Salinas do Lemoore z postojami ładowania co 300 km z postojem na kawę"
+        },
+        {
+          "idx": 5,
+          "lang": "en",
+          "cos": 0.7334,
+          "text": "route from Mokotów to Piecki-Migowo with EV charging stops every 300 km"
+        },
+        {
+          "idx": 223,
+          "lang": "fr",
+          "cos": 0.7313,
+          "text": "va de Guangzhou à Bake avec des arrêts de recharge tous les 300 km"
+        }
+      ],
+      "dedup_teacher": [],
+      "dedup_student": [
+        {
+          "idx": 44,
+          "lang": "en",
+          "cos": 0.816,
+          "text": "go from Tallahassee to Cary with EV charging stops every 300 km"
+        },
+        {
+          "idx": 66,
+          "lang": "en",
+          "cos": 0.765,
+          "text": "route from Ichihara to Itogawa with EV charging stops every 300 km"
+        }
+      ]
+    },
+    {
+      "id": "Q6_offcorpus_intent",
+      "kind": "novel intent, no near neighbor expected (en)",
+      "text": "find me the nearest parking garage with a car wash in Zagreb",
+      "verdict": "EXACT",
+      "overlap_at5": 4,
+      "teacher_top1_rank_in_student": 0,
+      "teacher_top5": [
+        {
+          "idx": 84,
+          "lang": "en",
+          "cos": 0.5642,
+          "text": "route from Budapest to Zagreb ['Pecs', 'Varazdin']"
+        },
+        {
+          "idx": 83,
+          "lang": "en",
+          "cos": 0.5188,
+          "text": "go from Vienna to Budapest with breaks after each 100 km and after each 2 hours"
+        },
+        {
+          "idx": 446,
+          "lang": "es",
+          "cos": 0.5038,
+          "text": "Necesito ir de Bilbao a Zaragoza evitando autopistas de peaje y con una parada de recarga del coche a mitad de"
+        },
+        {
+          "idx": 458,
+          "lang": "es",
+          "cos": 0.4957,
+          "text": "Viajando de Madrid a Barcelona, necesito parar a cargar el coche en Zaragoza y evitar peajes."
+        },
+        {
+          "idx": 334,
+          "lang": "pl",
+          "cos": 0.4951,
+          "text": "Przewidź trasę z Krakowa do Warszawy z przystankiem na ładowanie auta, omijając autostrady."
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 84,
+          "lang": "en",
+          "cos": 0.6768,
+          "text": "route from Budapest to Zagreb ['Pecs', 'Varazdin']"
+        },
+        {
+          "idx": 458,
+          "lang": "es",
+          "cos": 0.6458,
+          "text": "Viajando de Madrid a Barcelona, necesito parar a cargar el coche en Zaragoza y evitar peajes."
+        },
+        {
+          "idx": 446,
+          "lang": "es",
+          "cos": 0.6451,
+          "text": "Necesito ir de Bilbao a Zaragoza evitando autopistas de peaje y con una parada de recarga del coche a mitad de"
+        },
+        {
+          "idx": 334,
+          "lang": "pl",
+          "cos": 0.6255,
+          "text": "Przewidź trasę z Krakowa do Warszawy z przystankiem na ładowanie auta, omijając autostrady."
+        },
+        {
+          "idx": 185,
+          "lang": "de",
+          "cos": 0.6238,
+          "text": "Zeig mir den Weg von Berlin nach Wien mit einem Zwischenstopp in Prag für ein Mittagessen."
+        }
+      ],
+      "dedup_teacher": [],
+      "dedup_student": []
+    },
+    {
+      "id": "Q7_de_ev",
+      "kind": "new city pair, EV constraint (de)",
+      "text": "Navigiere von Augsburg nach Regensburg und plane alle 200 km eine Ladepause",
+      "verdict": "IN_TOP10",
+      "overlap_at5": 3,
+      "teacher_top1_rank_in_student": null,
+      "teacher_top5": [
+        {
+          "idx": 133,
+          "lang": "de",
+          "cos": 0.6728,
+          "text": "navigiere von Shenzhen nach Shuizhai mit Lade stopps alle 300 km mit Pausen alle zwei Stunden"
+        },
+        {
+          "idx": 424,
+          "lang": "es",
+          "cos": 0.6703,
+          "text": "planifica una ruta de Strasbourg a Klingenstein con descansos cada dos horas con paradas de recarga cada 300 k"
+        },
+        {
+          "idx": 189,
+          "lang": "de",
+          "cos": 0.6634,
+          "text": "navigiere von London nach Grantham mit Lade stopps alle 300 km, etwa 180 km"
+        },
+        {
+          "idx": 170,
+          "lang": "de",
+          "cos": 0.663,
+          "text": "„Navigiere mich von München nach Hamburg, aber bitte über die Landstraßen und plane einen Ladestopp in Nürnber"
+        },
+        {
+          "idx": 147,
+          "lang": "de",
+          "cos": 0.6586,
+          "text": "Route von Köln nach München bitte mit einem Zwischenstopp in Regensburg."
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 170,
+          "lang": "de",
+          "cos": 0.7369,
+          "text": "„Navigiere mich von München nach Hamburg, aber bitte über die Landstraßen und plane einen Ladestopp in Nürnber"
+        },
+        {
+          "idx": 424,
+          "lang": "es",
+          "cos": 0.7317,
+          "text": "planifica una ruta de Strasbourg a Klingenstein con descansos cada dos horas con paradas de recarga cada 300 k"
+        },
+        {
+          "idx": 113,
+          "lang": "de",
+          "cos": 0.7163,
+          "text": "Suche den schnellsten Weg von Leipzig nach München und plane eine Ladepause in Erfurt ein."
+        },
+        {
+          "idx": 147,
+          "lang": "de",
+          "cos": 0.7156,
+          "text": "Route von Köln nach München bitte mit einem Zwischenstopp in Regensburg."
+        },
+        {
+          "idx": 117,
+          "lang": "de",
+          "cos": 0.7028,
+          "text": "navigiere von Riverside nach Bakersfield mit Lade stopps alle 300 km"
+        }
+      ],
+      "dedup_teacher": [],
+      "dedup_student": []
+    },
+    {
+      "id": "Q8_fr_tolls",
+      "kind": "new city pair, tolls + coffee (fr)",
+      "text": "Trajet de Lyon à Marseille en évitant les péages, avec un arrêt café vers Valence",
+      "verdict": "REORDER",
+      "overlap_at5": 4,
+      "teacher_top1_rank_in_student": 1,
+      "teacher_top5": [
+        {
+          "idx": 268,
+          "lang": "fr",
+          "cos": 0.8229,
+          "text": "Bonjour, j'aimerais aller de Lyon à Nice en évitant les péages, en faisant une pause café à Valence et en pass"
+        },
+        {
+          "idx": 246,
+          "lang": "fr",
+          "cos": 0.8179,
+          "text": "Bonjour, je pars de Lyon et je vais à Marseille. Peux-tu me trouver un itinéraire sans péages, avec des aires "
+        },
+        {
+          "idx": 297,
+          "lang": "fr",
+          "cos": 0.8173,
+          "text": "Aller de Paris à Lyon en évitant les péages."
+        },
+        {
+          "idx": 296,
+          "lang": "fr",
+          "cos": 0.8026,
+          "text": "Allons de Paris à Lyon en évitant les péages et en passant par Dijon pour prendre le café à midi."
+        },
+        {
+          "idx": 237,
+          "lang": "fr",
+          "cos": 0.786,
+          "text": "Bonjour, je souhaite aller de Lyon à Annecy ce matin tôt. Pourriez-vous éviter les péages et programmer une pa"
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 296,
+          "lang": "fr",
+          "cos": 0.8539,
+          "text": "Allons de Paris à Lyon en évitant les péages et en passant par Dijon pour prendre le café à midi."
+        },
+        {
+          "idx": 268,
+          "lang": "fr",
+          "cos": 0.8322,
+          "text": "Bonjour, j'aimerais aller de Lyon à Nice en évitant les péages, en faisant une pause café à Valence et en pass"
+        },
+        {
+          "idx": 297,
+          "lang": "fr",
+          "cos": 0.8151,
+          "text": "Aller de Paris à Lyon en évitant les péages."
+        },
+        {
+          "idx": 207,
+          "lang": "fr",
+          "cos": 0.8118,
+          "text": "Salut, je pars de Lyon et je vais à Marseille. Évite les péages, prévois une pause toutes les deux heures, et "
+        },
+        {
+          "idx": 246,
+          "lang": "fr",
+          "cos": 0.8096,
+          "text": "Bonjour, je pars de Lyon et je vais à Marseille. Peux-tu me trouver un itinéraire sans péages, avec des aires "
+        }
+      ],
+      "dedup_teacher": [
+        {
+          "idx": 207,
+          "lang": "fr",
+          "cos": 0.772,
+          "text": "Salut, je pars de Lyon et je vais à Marseille. Évite les péages, prévois une pause toutes "
+        },
+        {
+          "idx": 237,
+          "lang": "fr",
+          "cos": 0.786,
+          "text": "Bonjour, je souhaite aller de Lyon à Annecy ce matin tôt. Pourriez-vous éviter les péages "
+        },
+        {
+          "idx": 246,
+          "lang": "fr",
+          "cos": 0.818,
+          "text": "Bonjour, je pars de Lyon et je vais à Marseille. Peux-tu me trouver un itinéraire sans péa"
+        },
+        {
+          "idx": 268,
+          "lang": "fr",
+          "cos": 0.823,
+          "text": "Bonjour, j'aimerais aller de Lyon à Nice en évitant les péages, en faisant une pause café "
+        },
+        {
+          "idx": 296,
+          "lang": "fr",
+          "cos": 0.803,
+          "text": "Allons de Paris à Lyon en évitant les péages et en passant par Dijon pour prendre le café "
+        },
+        {
+          "idx": 297,
+          "lang": "fr",
+          "cos": 0.817,
+          "text": "Aller de Paris à Lyon en évitant les péages."
+        }
+      ],
+      "dedup_student": [
+        {
+          "idx": 207,
+          "lang": "fr",
+          "cos": 0.812,
+          "text": "Salut, je pars de Lyon et je vais à Marseille. Évite les péages, prévois une pause toutes "
+        },
+        {
+          "idx": 220,
+          "lang": "fr",
+          "cos": 0.77,
+          "text": "J'arrive de Paris à Bordeaux en passant par Orléans en évitant les péages, avec une pause "
+        },
+        {
+          "idx": 237,
+          "lang": "fr",
+          "cos": 0.766,
+          "text": "Bonjour, je souhaite aller de Lyon à Annecy ce matin tôt. Pourriez-vous éviter les péages "
+        },
+        {
+          "idx": 246,
+          "lang": "fr",
+          "cos": 0.81,
+          "text": "Bonjour, je pars de Lyon et je vais à Marseille. Peux-tu me trouver un itinéraire sans péa"
+        },
+        {
+          "idx": 268,
+          "lang": "fr",
+          "cos": 0.832,
+          "text": "Bonjour, j'aimerais aller de Lyon à Nice en évitant les péages, en faisant une pause café "
+        },
+        {
+          "idx": 296,
+          "lang": "fr",
+          "cos": 0.854,
+          "text": "Allons de Paris à Lyon en évitant les péages et en passant par Dijon pour prendre le café "
+        },
+        {
+          "idx": 297,
+          "lang": "fr",
+          "cos": 0.815,
+          "text": "Aller de Paris à Lyon en évitant les péages."
+        },
+        {
+          "idx": 438,
+          "lang": "es",
+          "cos": 0.75,
+          "text": "Llévame de Sevilla a Valencia evitando peajes y con una parada de recarga en Murcia."
+        }
+      ]
+    },
+    {
+      "id": "Q9_es_fastest",
+      "kind": "new city pair, fastest route (es)",
+      "text": "llévame de Valencia a Alicante por la ruta más rápida",
+      "verdict": "REORDER",
+      "overlap_at5": 5,
+      "teacher_top1_rank_in_student": 2,
+      "teacher_top5": [
+        {
+          "idx": 438,
+          "lang": "es",
+          "cos": 0.6977,
+          "text": "Llévame de Sevilla a Valencia evitando peajes y con una parada de recarga en Murcia."
+        },
+        {
+          "idx": 495,
+          "lang": "es",
+          "cos": 0.6961,
+          "text": "Ponme de Madrid a Valencia pero busca una ruta sin peajes que me permita evitar el atasco de la salida."
+        },
+        {
+          "idx": 473,
+          "lang": "es",
+          "cos": 0.6861,
+          "text": "Ponme la ruta de Madrid a Valencia evitando los peajes y haciendo una parada para comer en mitad del camino."
+        },
+        {
+          "idx": 456,
+          "lang": "es",
+          "cos": 0.6833,
+          "text": "Llévame de Madrid a Valencia por la A-3, evita los peajes y haz una parada para descansar en Cuenca."
+        },
+        {
+          "idx": 450,
+          "lang": "es",
+          "cos": 0.6828,
+          "text": "Llévame de Madrid a Valencia por la autovía, evitando peajes, con una parada para comer en Cuenca y una ruta p"
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 473,
+          "lang": "es",
+          "cos": 0.7472,
+          "text": "Ponme la ruta de Madrid a Valencia evitando los peajes y haciendo una parada para comer en mitad del camino."
+        },
+        {
+          "idx": 495,
+          "lang": "es",
+          "cos": 0.7374,
+          "text": "Ponme de Madrid a Valencia pero busca una ruta sin peajes que me permita evitar el atasco de la salida."
+        },
+        {
+          "idx": 438,
+          "lang": "es",
+          "cos": 0.7361,
+          "text": "Llévame de Sevilla a Valencia evitando peajes y con una parada de recarga en Murcia."
+        },
+        {
+          "idx": 450,
+          "lang": "es",
+          "cos": 0.7263,
+          "text": "Llévame de Madrid a Valencia por la autovía, evitando peajes, con una parada para comer en Cuenca y una ruta p"
+        },
+        {
+          "idx": 456,
+          "lang": "es",
+          "cos": 0.7219,
+          "text": "Llévame de Madrid a Valencia por la A-3, evita los peajes y haz una parada para descansar en Cuenca."
+        }
+      ],
+      "dedup_teacher": [],
+      "dedup_student": []
+    },
+    {
+      "id": "Q10_template_pl",
+      "kind": "corpus template style, pl cities, en wording (en)",
+      "text": "route from Gdańsk to Sopot via the fastest route",
+      "verdict": "REORDER",
+      "overlap_at5": 2,
+      "teacher_top1_rank_in_student": 2,
+      "teacher_top5": [
+        {
+          "idx": 89,
+          "lang": "en",
+          "cos": 0.6556,
+          "text": "route from Warsaw to Krakow ['Detroit', 'Chicago', 'Detroit']"
+        },
+        {
+          "idx": 337,
+          "lang": "pl",
+          "cos": 0.5839,
+          "text": "Z Gdańska do Krakowa, omijaj płatne odcinki i zaplanuj przerwę na obiad w Warszawie."
+        },
+        {
+          "idx": 348,
+          "lang": "pl",
+          "cos": 0.5831,
+          "text": "Znajdź najszybszą drogę z Warszawy do Gdańska, uwzględniając przerwę na ładowanie samochodu."
+        },
+        {
+          "idx": 404,
+          "lang": "pl",
+          "cos": 0.5761,
+          "text": "Czy da się dojechać z Krakowa do lotniska w Katowicach bez autostrady, ale unikając korków?"
+        },
+        {
+          "idx": 354,
+          "lang": "pl",
+          "cos": 0.5747,
+          "text": "Dzień dobry, potrzebuję trasy z Poznania do Gdańska, unikaj dróg płatnych, zaplanuj przerwę na odpoczynek co 2"
+        }
+      ],
+      "student_top5": [
+        {
+          "idx": 348,
+          "lang": "pl",
+          "cos": 0.6705,
+          "text": "Znajdź najszybszą drogę z Warszawy do Gdańska, uwzględniając przerwę na ładowanie samochodu."
+        },
+        {
+          "idx": 50,
+          "lang": "en",
+          "cos": 0.6555,
+          "text": "plan a route from Stockton to Prunedale via the fastest route"
+        },
+        {
+          "idx": 89,
+          "lang": "en",
+          "cos": 0.6236,
+          "text": "route from Warsaw to Krakow ['Detroit', 'Chicago', 'Detroit']"
+        },
+        {
+          "idx": 322,
+          "lang": "pl",
+          "cos": 0.6195,
+          "text": "Znajdź najszybszą drogę z Łodzi do Białegostoku z uwzględnieniem postoju na ładowanie auta."
+        },
+        {
+          "idx": 248,
+          "lang": "fr",
+          "cos": 0.6137,
+          "text": "conduis-moi de Indore à Rājkot par l'itinéraire le plus rapide"
+        }
+      ],
+      "dedup_teacher": [],
+      "dedup_student": []
+    }
+  ],
+  "summary": {
+    "verdicts": {
+      "EXACT": 6,
+      "REORDER": 3,
+      "IN_TOP10": 1,
+      "DIVERGE": 0
+    }
+  }
+}

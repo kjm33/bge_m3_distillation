@@ -1,0 +1,120 @@
+{
+  "model": "BAAI/bge-m3",
+  "n_bench_texts": 512,
+  "bench_tokens": 11690,
+  "avg_tokens_per_text": 22.8,
+  "disk": {
+    "weights_fp32_gb": 2.12,
+    "onnx_fp32_gb": 2.13,
+    "total_cache_gb": 12.77
+  },
+  "cpu_fp32_threads": 16,
+  "cpu_fp32": {
+    "load_s": 0.57,
+    "config": "CPU fp32",
+    "device": "cpu",
+    "dtype": "float32",
+    "bs1": {
+      "texts_s": 4.7,
+      "tokens_s": 101.0,
+      "ms_per_batch": 212.0
+    },
+    "bs8": {
+      "texts_s": 20.8,
+      "tokens_s": 447.0,
+      "ms_per_batch": 385.2
+    },
+    "bs32": {
+      "texts_s": 19.8,
+      "tokens_s": 426.0,
+      "ms_per_batch": 1616.4
+    },
+    "latency_ms": {
+      "p50": 180.9,
+      "p95": 211.2
+    },
+    "peak_ram_mb": 2482.0,
+    "rss_delta_mb": 1336.0,
+    "long_doc": {
+      "tokens": 10802,
+      "s": 18.72,
+      "tokens_s": 577.0
+    }
+  },
+  "gpu_fp32": {
+    "load_s": 1.23,
+    "config": "GPU fp32",
+    "device": "cuda",
+    "dtype": "float32",
+    "bs1": {
+      "texts_s": 87.4,
+      "tokens_s": 1995.0,
+      "ms_per_batch": 11.4
+    },
+    "bs8": {
+      "texts_s": 433.5,
+      "tokens_s": 9897.0,
+      "ms_per_batch": 18.5
+    },
+    "bs32": {
+      "texts_s": 452.1,
+      "tokens_s": 10323.0,
+      "ms_per_batch": 70.8
+    },
+    "bs128": {
+      "texts_s": 337.3,
+      "tokens_s": 7702.0,
+      "ms_per_batch": 379.5
+    },
+    "latency_ms": {
+      "p50": 11.2,
+      "p95": 11.9
+    },
+    "peak_ram_mb": 1769.0,
+    "rss_delta_mb": 489.0,
+    "peak_vram_mb": 2934.0,
+    "long_doc": {
+      "tokens": 10802,
+      "s": 1.11,
+      "tokens_s": 9736.0
+    }
+  },
+  "gpu_fp16": {
+    "load_s": 1.06,
+    "config": "GPU fp16 (model.half)",
+    "device": "cuda",
+    "dtype": "float16",
+    "bs1": {
+      "texts_s": 85.1,
+      "tokens_s": 1942.0,
+      "ms_per_batch": 11.8
+    },
+    "bs8": {
+      "texts_s": 577.9,
+      "tokens_s": 13195.0,
+      "ms_per_batch": 13.8
+    },
+    "bs32": {
+      "texts_s": 1377.7,
+      "tokens_s": 31455.0,
+      "ms_per_batch": 23.2
+    },
+    "bs128": {
+      "texts_s": 1063.4,
+      "tokens_s": 24281.0,
+      "ms_per_batch": 120.4
+    },
+    "latency_ms": {
+      "p50": 11.7,
+      "p95": 12.0
+    },
+    "peak_ram_mb": 2023.0,
+    "rss_delta_mb": 291.0,
+    "peak_vram_mb": 1458.0,
+    "long_doc": {
+      "tokens": 10802,
+      "s": 0.2,
+      "tokens_s": 52721.0
+    }
+  }
+}
