@@ -15,6 +15,25 @@ CUDA CLS (`data/edge_gt_fp32.npy`). Full details: RESULTS.md (§ refs below).
 
 Reference: student fp32/ONNX int8 sp 0.908/0.896, BGE-M3 int8 ONNX 542 MB p50 41 ms.
 
+Headline: the distilled model delivers **~90% of BGE-M3's ranking fidelity at
+1/37th the size and ~9× lower latency** (14.49 MB / 5.1 ms vs 542 MB / 41 ms) —
+better deployment economics, not better embeddings; BGE-M3 remains the quality
+reference (all student metrics measure agreement with it).
+
+How "~90% ranking fidelity" is measured:
+- **§7/§8 harness** (`quant_ladder.py` `quality_report`/`make_pairs`, seed 42):
+  512 held-out bench texts embedded by teacher (BGE-M3 fp32 CUDA,
+  `data/edge_gt_fp32.npy`) and student; **20k random pairs**; Spearman
+  correlation between teacher and student cosine vectors. vocab4s10 = 0.8945,
+  vocab4e/int4 = 0.901, fp32 student = 0.908 → "~90%".
+- **Cross-similarity audit** (`data/cross_sim_bge_m3_vs_distill.json`):
+  130,816 pairs → Spearman 0.908 / Pearson 0.919 (mono 0.950, xl 0.896).
+- Caveat: Spearman over pair scores is a *proxy* for ranking agreement. Direct
+  ranking overlap is stricter: jaccard@10 vs teacher top-10 ≈ 0.60, MRR@10 of
+  teacher top-1 ≈ 0.78, top-1 agreement ≈ 0.66 (0.50 xl), per-query top-10
+  overlap median 0.667. Disagreements are reorders among plausible neighbors;
+  zero hard contradictions (no pair teacher ≥ 0.70 & student < 0.60).
+
 ## Chronology
 
 1. **§1–3 Infrastructure** — OpenRouter bge-m3 API is per-backend deterministic
