@@ -108,7 +108,8 @@ class EmbeddingCache:
                 "tokens_billed": self.tokens_billed}
 
 
-def load_instructions(n=200, path="/home/kamil/projects/here/instruction_extraction/data/instructions_v3.jsonl"):
+def load_instructions(n=200, path=None):
+    path = path or str(DATA / "instructions_v3.jsonl")
     out = []
     with open(path) as f:
         for line in f:

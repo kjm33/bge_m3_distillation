@@ -19,7 +19,7 @@ DATA = HERE / "data"
 MODEL_ID = "BAAI/bge-m3"
 
 # ---------- bench set ----------
-src = Path("/home/kamil/projects/here/instruction_extraction/data/instructions_v3.jsonl")
+src = DATA / "instructions_v3.jsonl"
 by_lang: dict[str, list[str]] = {}
 with open(src) as f:
     for line in f:

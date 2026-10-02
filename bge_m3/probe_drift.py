@@ -13,7 +13,7 @@ URL = "https://openrouter.ai/api/v1/embeddings"
 
 import json as _json
 texts = []
-with open("/home/kamil/projects/here/instruction_extraction/data/instructions_v3.jsonl") as f:
+with open(HERE / "data" / "instructions_v3.jsonl") as f:
     for line in f:
         d = _json.loads(line)
         if d.get("language") == "en" and 60 < len(d["text"]) < 250:

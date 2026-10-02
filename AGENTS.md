@@ -45,13 +45,10 @@ effects from, restore tracked results with
 
 ## Gotchas
 
-- **Hardcoded external corpus path**: `SRC` in `quant_ladder.py:51`,
-  `train_distill.py:35`, `edge_compare.py:42` points to a sibling repo
-  (`~/projects/here/instruction_extraction/data/instructions_v3.jsonl`) that a
-  fresh clone does not have. `train_distill.py` falls back to tracked
-  `data/train_texts.jsonl`; `quant_ladder.py` vocab4s rungs fall back to
-  tracked `data/nav_token_freq.json`; `edge_compare.py` and the k=15 census
-  stages (`vocab`, `tokprune`, `vocab4e`) have **no fallback**.
+- **Corpus is vendored**: `data/instructions_v3.jsonl` (21,959 rows, 15 MB) is
+  the raw source corpus; `SRC` in all scripts points at it in-repo. Derived
+  files (`data/train_texts.jsonl`, `data/edge_bench.jsonl`,
+  `data/bench_texts.json`, `data/nav_token_freq.json`) were built from it.
 - **Tracked caches silently reused**: `data/train_texts.jsonl`,
   `data/nav_token_freq.json`, `data/bench_texts.json` are inputs-or-caches —
   delete the relevant ones when changing datasets, or stale results will be

@@ -30,8 +30,9 @@ bge_m3/
   train_distill.py     # §7: teacher embedding -> distillation training -> ONNX export
   quant_ladder.py      # §8/§8.1: int4/vocab-pruning ladder -> vocab4s rungs (the pick)
   edge_compare.py      # §6: stock-model screen + bench GT builder (needs corpus at SRC)
-  data/                # tracked inputs & results (train_texts.jsonl, edge_bench.jsonl,
-                       #   nav_token_freq.json, *_results.json)
+  data/                # tracked inputs & results (instructions_v3.jsonl source corpus,
+                       #   train_texts.jsonl, edge_bench.jsonl, nav_token_freq.json,
+                       #   *_results.json)
   models/              # gitignored output (rebuilt by the scripts)
   notes/               # long-form explanations
 ```
@@ -81,6 +82,7 @@ Two JSONL files drive the pipeline, one object per line:
 
 | file | role | size |
 |---|---|---|
+| `bge_m3/data/instructions_v3.jsonl` | raw source corpus (rich provenance fields; scripts only read `text`/`language`) | 21,959 lines |
 | `bge_m3/data/train_texts.jsonl` | training pool (bench overlap + dupes already excluded) | 21,447 lines |
 | `bge_m3/data/edge_bench.jsonl` | held-out eval bench (512 texts) | 512 lines |
 
@@ -116,9 +118,9 @@ np.save("data/edge_gt_fp32.npy", v)
 print(v.shape)  # expect (512, 1024)
 ```
 
-(Identical method to `build_gt()` in `edge_compare.py`; that script's full
-stock-model screen additionally needs the source corpus at its `SRC` path and
-is not required to reproduce the pick.)
+(Identical method to `build_gt()` in `edge_compare.py`; running that script's
+full stock-model screen is optional — it revalidates the §6 baseline but
+downloads several extra models.)
 
 ### 2. Distill + export (GPU, ~30–40 min total)
 
@@ -209,10 +211,9 @@ emb /= np.linalg.norm(emb, axis=1, keepdims=True)               # (B, 384), unit
 
 The pipeline is dataset-agnostic given the JSONL format above.
 
-1. Put your corpus at a path and point `SRC` at it in `quant_ladder.py:51`
-   (`train_distill.py:35` / `edge_compare.py:42` likewise if you want the
-   pool rebuilt from source rather than from a hand-written
-   `train_texts.jsonl`).
+1. Replace `data/instructions_v3.jsonl` with your corpus (same JSONL format —
+   extra fields like `language` provenance are ignored), or point `SRC` in
+   `quant_ladder.py` / `train_distill.py` / `edge_compare.py` at your file.
 2. Replace the eval bench `data/edge_bench.jsonl` with ~512 held-out texts
    from your domain, then rerun step 1 (GT rebuild).
 3. Delete derived caches so they regenerate instead of being reused:

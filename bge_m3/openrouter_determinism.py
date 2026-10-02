@@ -46,7 +46,7 @@ TEXTS = [
 # real instructions from the instruction_extraction project (one per top language)
 import collections
 import json as _json
-_in_path = Path("/home/kamil/projects/here/instruction_extraction/data/instructions_v3.jsonl")
+_in_path = DATA / "instructions_v3.jsonl"
 if _in_path.exists():
     _by_lang = collections.defaultdict(list)
     with open(_in_path) as _f:

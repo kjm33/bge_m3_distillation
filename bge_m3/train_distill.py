@@ -32,7 +32,7 @@ from scipy.stats import spearmanr
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 MODELS_OUT = HERE / "models" / "edge"
-SRC = Path("/home/kamil/projects/here/instruction_extraction/data/instructions_v3.jsonl")
+SRC = DATA / "instructions_v3.jsonl"
 BENCH_PATH = DATA / "edge_bench.jsonl"
 GT_PATH = DATA / "edge_gt_fp32.npy"
 RESULTS_PATH = DATA / "distill_results.json"
